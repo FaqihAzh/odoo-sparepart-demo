@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="stock_production_lot_form_inherit_qr" model="ir.ui.view">
+    <field name="name">stock.production.lot.form.qr</field>
+    <field name="model">stock.production.lot</field>
+    <field name="inherit_id" ref="stock.view_production_lot_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//sheet" position="inside">
+        <group>
+          <field name="qr_string"/>
+          <field name="qr_image" widget="image" options="{'preview_image':'qr_image'}"/>
+          <field name="purchase_name"/>
+          <field name="purchase_date"/>
+          <field name="supplier_id"/>
+          <field name="status"/>
+        </group>
+      </xpath>
+    </field>
+  </record>
+</odoo>

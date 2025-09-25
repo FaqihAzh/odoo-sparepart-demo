@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <template id="report_purchase_qr_template">
+    <t t-call="web.html_container">
+      <t t-foreach="docs" t-as="doc">
+        <div class="page">
+          <h3>QR Labels - <t t-esc="doc.name"/></h3>
+          <table>
+            <tr t-foreach="doc._get_lots()" t-as="lot">
+              <td style="width:150px; text-align:center;">
+                <img t-att-src="'data:image/png;base64,%s' % (lot.qr_image or '')" style="width:120px; height:120px;"/>
+                <div><strong><t t-esc="lot.qr_string"/></strong></div>
+                <div><t t-esc="lot.product_id.display_name"/></div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </t>
+    </t>
+  </template>
+
+  <record id="report_purchase_qr_action" model="ir.actions.report">
+    <field name="name">Purchase QR Labels</field>
+    <field name="model">purchase.order</field>
+    <field name="report_type">qweb-pdf</field>
+    <field name="report_name">stock_qr_tracking.report_purchase_qr_template</field>
+    <field name="print_report_name">'QR_' + object.name</field>
+  </record>
+</odoo>

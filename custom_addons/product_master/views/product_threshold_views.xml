@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!-- Threshold list -->
+  <record id="view_product_threshold_tree" model="ir.ui.view">
+    <field name="name">product.threshold.tree</field>
+    <field name="model">product.threshold</field>
+    <field name="arch" type="xml">
+      <tree decoration-danger="alert_status == 'under'" decoration-warning="alert_status == 'over'">
+        <field name="product_id"/>
+        <field name="warehouse_id"/>
+        <field name="alert_status"/>
+        <field name="min_qty"/>
+        <field name="max_qty"/>
+        <field name="current_qty"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id="view_product_threshold_form" model="ir.ui.view">
+    <field name="name">product.threshold.form</field>
+    <field name="model">product.threshold</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <group>
+            <field name="product_id"/>
+            <field name="warehouse_id"/>
+            <field name="min_qty"/>
+            <field name="max_qty"/>
+            <field name="alert_status" readonly="1"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <!-- Action All Thresholds -->
+  <record id="action_product_threshold" model="ir.actions.act_window">
+    <field name="name">Stock Thresholds</field>
+    <field name="res_model">product.threshold</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <!-- Action Alerts Only -->
+  <record id="action_product_threshold_alerts" model="ir.actions.act_window">
+    <field name="name">Threshold Alerts</field>
+    <field name="res_model">product.threshold</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('alert_status','!=','ok')]</field>
+  </record>
+
+  <!-- Menu items -->
+  <menuitem id="menu_product_thresholds"
+            name="Stock Thresholds"
+            parent="menu_product_master_root"
+            action="action_product_threshold"
+            sequence="20"/>
+  <menuitem id="menu_product_threshold_alerts"
+            name="Threshold Alerts"
+            parent="menu_product_master_root"
+            action="action_product_threshold_alerts"
+            sequence="21"/>
+</odoo>

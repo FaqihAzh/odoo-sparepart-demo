@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_picking_move_line_tree_inherit_qr" model="ir.ui.view">
+        <field name="name">stock.picking.move.line.tree.inherit.qr</field>
+        <field name="model">stock.move.line</field>
+        <!-- Gunakan ID XML yang benar untuk Odoo 17 -->
+        <field name="inherit_id" ref="stock.view_move_line_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="inside">
+                <field name="qr_code" widget="image" readonly="1"/>
+                <field name="is_verified"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_move_line_form_inherit_qr" model="ir.ui.view">
+        <field name="name">stock.move.line.form.inherit.qr</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_move_line_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_id']" position="after">
+                <field name="qr_code" widget="image" readonly="1"/>
+                <field name="is_verified"/>
+                <button name="action_verify_line"
+                        string="Verify Scan"
+                        type="object"
+                        class="btn-primary"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

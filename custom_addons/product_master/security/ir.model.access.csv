@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_product_brand,access_product_brand,model_product_brand,base.group_user,1,1,1,1
+access_product_threshold,access_product_threshold,model_product_threshold,base.group_user,1,1,1,1
+access_product_template_extend,access_product_template_extend,model_product_template,base.group_user,1,1,1,1
