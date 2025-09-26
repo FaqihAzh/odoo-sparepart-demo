@@ -1,0 +1,14 @@
+<odoo>
+  <data>
+    <template id="customer_map_qweb" xml:space="preserve">
+      <t t-name="CustomerMapTracking.MapView">
+        <div class="o_customer_map_container">
+          <div id="customer_map" style="height: 650px; width: 100%;"></div>
+          <div class="o_customer_map_legend" style="position:absolute; right:10px; top:10px; z-index:1000;">
+            <button class="btn btn-sm btn-primary o-refresh-markers" type="button">Refresh</button>
+          </div>
+        </div>
+      </t>
+    </template>
+  </data>
+</odoo>

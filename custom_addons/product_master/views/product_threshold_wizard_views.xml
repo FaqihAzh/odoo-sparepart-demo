@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!-- Quick Update Wizard Form -->
+  <record id="view_product_threshold_wizard_form" model="ir.ui.view">
+    <field name="name">product.threshold.wizard.form</field>
+    <field name="model">product.threshold.wizard</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <div class="oe_title">
+            <h1>Quick Update Min/Max Thresholds</h1>
+            <p>Update stock thresholds for multiple products and warehouses at once</p>
+          </div>
+
+          <group>
+            <group string="Selection" col="1">
+              <field name="product_ids" widget="many2many_tags"
+                     placeholder="Select products to update..."
+                     options="{'no_create': True}"/>
+              <field name="warehouse_ids" widget="many2many_tags"
+                     placeholder="Select warehouses..."
+                     options="{'no_create': True}"/>
+            </group>
+            <group string="Update Options">
+              <field name="update_type" widget="radio" options="{'horizontal': false}"/>
+              <field name="update_min" string="Update Minimum Quantities"/>
+              <field name="update_max" string="Update Maximum Quantities"/>
+            </group>
+          </group>
+
+          <group string="Specific Values" attrs="{'invisible': [('update_type', '!=', 'specific')]}">
+            <group>
+              <field name="min_qty" string="Minimum Quantity"
+                     attrs="{'required': [('update_min', '=', True), ('update_type', '=', 'specific')],
+                             'readonly': [('update_min', '=', False)]}"/>
+              <field name="max_qty" string="Maximum Quantity"
+                     attrs="{'required': [('update_max', '=', True), ('update_type', '=', 'specific')],
+                             'readonly': [('update_max', '=', False)]}"/>
+            </group>
+          </group>
+
+          <group string="Percentage Adjustment" attrs="{'invisible': [('update_type', '!=', 'percentage')]}">
+            <group>
+              <label for="min_percentage" string="Minimum Adjustment"/>
+              <div class="o_row">
+                <field name="min_percentage" class="oe_inline"
+                       attrs="{'required': [('update_min', '=', True), ('update_type', '=', 'percentage')],
+                               'readonly': [('update_min', '=', False)]}"/>
+                <span>%</span>
+              </div>
+              <label for="max_percentage" string="Maximum Adjustment"/>
+              <div class="o_row">
+                <field name="max_percentage" class="oe_inline"
+                       attrs="{'required': [('update_max', '=', True), ('update_type', '=', 'percentage')],
+                               'readonly': [('update_max', '=', False)]}"/>
+                <span>%</span>
+              </div>
+            </group>
+            <group>
+              <div class="alert alert-info" role="alert">
+                <strong>Example:</strong> 10% increase will change 100 → 110<br/>
+                -20% decrease will change 100 → 80
+              </div>
+            </group>
+          </group>
+
+          <group string="Add/Subtract Amount" attrs="{'invisible': [('update_type', '!=', 'add_subtract')]}">
+            <group>
+              <field name="min_adjustment" string="Minimum Adjustment (+/-)"
+                     attrs="{'required': [('update_min', '=', True), ('update_type', '=', 'add_subtract')],
+                             'readonly': [('update_min', '=', False)]}"/>
+              <field name="max_adjustment" string="Maximum Adjustment (+/-)"
+                     attrs="{'required': [('update_max', '=', True), ('update_type', '=', 'add_subtract')],
+                             'readonly': [('update_max', '=', False)]}"/>
+            </group>
+            <group>
+              <div class="alert alert-info" role="alert">
+                <strong>Example:</strong> +50 will add 50 to current values<br/>
+                -25 will subtract 25 from current values
+              </div>
+            </group>
+          </group>
+        </sheet>
+
+        <footer>
+          <button name="action_update_thresholds" type="object"
+                  string="Update Thresholds" class="btn-primary"
+                  attrs="{'invisible': [('product_ids', '=', []), ('warehouse_ids', '=', [])]}"/>
+          <button string="Cancel" class="btn-secondary" special="cancel"/>
+        </footer>
+      </form>
+    </field>
+  </record>
+
+  <!-- Bulk Update Wizard Form -->
+  <record id="view_product_threshold_bulk_form" model="ir.ui.view">
+    <field name="name">product.threshold.bulk.form</field>
+    <field name="model">product.threshold.bulk</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <div class="oe_title">
+            <h1>Bulk Edit Thresholds</h1>
+            <p>Edit selected thresholds individually</p>
+          </div>
+
+          <field name="threshold_line_ids" nolabel="1">
+            <tree editable="top">
+              <field name="product_id" readonly="1"/>
+              <field name="warehouse_id" readonly="1"/>
+              <field name="current_stock" readonly="1" string="Current"/>
+              <field name="current_min" readonly="1" string="Old Min"/>
+              <field name="current_max" readonly="1" string="Old Max"/>
+              <field name="new_min" string="New Min"/>
+              <field name="new_max" string="New Max"/>
+            </tree>
+          </field>
+        </sheet>
+
+        <footer>
+          <button name="action_apply_changes" type="object"
+                  string="Apply Changes" class="btn-primary"/>
+          <button string="Cancel" class="btn-secondary" special="cancel"/>
+        </footer>
+      </form>
+    </field>
+  </record>
+
+  <!-- Actions for Wizards -->
+  <record id="action_threshold_wizard" model="ir.actions.act_window">
+    <field name="name">Quick Update Thresholds</field>
+    <field name="res_model">product.threshold.wizard</field>
+    <field name="view_mode">form</field>
+    <field name="target">new</field>
+    <field name="context">{}</field>
+  </record>
+
+  <record id="action_threshold_bulk_update" model="ir.actions.act_window">
+    <field name="name">Bulk Edit Thresholds</field>
+    <field name="res_model">product.threshold.bulk</field>
+    <field name="view_mode">form</field>
+    <field name="target">new</field>
+  </record>
+
+  <!-- Server Action for Bulk Edit from Tree View -->
+  <record id="action_server_bulk_edit" model="ir.actions.server">
+    <field name="name">Bulk Edit Selected</field>
+    <field name="model_id" ref="model_product_threshold"/>
+    <field name="binding_model_id" ref="model_product_threshold"/>
+    <field name="binding_view_types">list</field>
+    <field name="state">code</field>
+    <field name="code">
+if records:
+    action = {
+        'name': 'Bulk Edit Thresholds',
+        'type': 'ir.actions.act_window',
+        'res_model': 'product.threshold.bulk',
+        'view_mode': 'form',
+        'target': 'new',
+        'context': {
+            'active_ids': records.ids,
+            'active_model': 'product.threshold'
+        }
+    }
+else:
+    action = {
+        'type': 'ir.actions.client',
+        'tag': 'display_notification',
+        'params': {
+            'message': 'Please select at least one threshold to edit.',
+            'type': 'warning',
+        }
+    }
+    </field>
+  </record>
+
+</odoo>
