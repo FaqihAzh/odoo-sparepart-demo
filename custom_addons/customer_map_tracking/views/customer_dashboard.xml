@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="dashboard_template" name="Customer Map Dashboard">
+        <t t-call="web.layout">
+            <div class="o_content p-4">
+                <h1>Customer Map Dashboard</h1>
+                <div id="customer-map-dashboard" style="height:700px; width:100%; margin-top:10px;"></div>
+            </div>
+        </t>
+    </template>
+
+    <!-- Wizard view (form for the transient model) -->
+    <record id="action_customer_map_dashboard" model="ir.actions.act_url">
+        <field name="name">Customer Map Dashboard</field>
+        <field name="type">ir.actions.act_url</field>
+        <field name="url">/customer_map_tracking/dashboard</field>
+        <field name="target">self</field>
+    </record>
+
+    <menuitem id="menu_customer_dashboard" name="Dashboard" parent="menu_customer_root" action="action_customer_map_dashboard"/>
+
+</odoo>

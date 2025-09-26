@@ -1,0 +1,11 @@
+#customer-map-dashboard, #customer-map-picker {
+    height: 500px; width: 100%;
+}
+
+.leaflet-container {
+    background: #efefef;
+}
+
+.o_map_popup {
+    max-width: 420px;
+}
