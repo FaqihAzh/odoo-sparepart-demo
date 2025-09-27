@@ -1,7 +1,68 @@
 <odoo>
-    <record id="action_customer_map_dashboard" model="ir.actions.act_window">
-        <field name="name">Customer Map Dashboard</field>
-        <field name="res_model">customer.map</field>
-        <field name="view_mode">tree,form</field>
-    </record>
+    <!-- Actions -->
+    <data>
+        <!-- Dashboard Map Action -->
+        <record id="action_customer_map_dashboard" model="ir.actions.act_window">
+            <field name="name">Map Dashboard</field>
+            <field name="res_model">customer.map</field>
+            <field name="view_mode">geoengine,tree,form</field>
+            <field name="view_id" ref="view_customer_map_geoengine_simple"/>
+            <field name="domain">[('active', '=', True), ('shape', '!=', False)]</field>
+            <field name="context">{
+                'create': True,
+                'edit': True,
+                'delete': False
+            }</field>
+        </record>
+    </data>
+
+    <!-- Root Menu -->
+    <menuitem id="menu_customer_map_root"
+              name="Customer Tracking"
+              web_icon="customer_map_tracking,static/description/icon.png"
+              sequence="50"/>
+
+    <!-- Map Dashboard Menu -->
+    <menuitem id="menu_customer_map_dashboard"
+              name="Map Dashboard"
+              parent="menu_customer_map_root"
+              action="action_customer_map_dashboard"
+              sequence="10"/>
+
+    <!-- Customers List Menu -->
+    <menuitem id="menu_customer_map_customers"
+              name="Customers"
+              parent="menu_customer_map_root"
+              action="action_customer_map"
+              sequence="20"/>
+
+    <!-- GeoEngine Map View Menu -->
+<!--    <menuitem id="menu_customer_map_geoengine"-->
+<!--              name="Interactive Map"-->
+<!--              parent="menu_customer_map_root"-->
+<!--              action="action_customer_map_geoengine"-->
+<!--              sequence="15"/>-->
+
+    <!-- Configuration Submenu -->
+    <menuitem id="menu_customer_map_config"
+              name="Configuration"
+              parent="menu_customer_map_root"
+              sequence="90"/>
+
+    <!-- Import Wizard Menu -->
+    <!--
+    <menuitem id="menu_customer_import_wizard"
+              name="Import CSV"
+              parent="menu_customer_map_config"
+              action="action_customer_import_wizard"
+              groups="customer_map_tracking.group_customer_map_manager"
+              sequence="20"/>
+    -->
+
+    <!-- Settings Menu -->
+    <menuitem id="menu_customer_map_settings"
+              name="Settings"
+              parent="menu_customer_map_config"
+              groups="base.group_system"
+              sequence="10"/>
 </odoo>

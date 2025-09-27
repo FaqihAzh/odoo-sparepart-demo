@@ -1,0 +1,58 @@
+<odoo>
+    <!-- 1. VIEW GEOENGINE (gunakan ini saja) -->
+    <record id="customer_map_geoengine_view" model="ir.ui.view">
+        <field name="name">customer.map.geo</field>
+        <field name="model">customer.map</field>
+        <field name="arch" type="xml">
+            <geoengine editable="1">
+                <field name="display_name"/>
+                <field name="name"/>
+                <field name="phone"/>
+                <field name="email"/>
+                <field name="shape"/>
+                <templates>
+                    <t t-name="info_box">
+                        <b>Name: <field name="name"/></b>
+                        <ul>
+                            <li t-if="record.phone.value">Phone: <field name="phone"/></li>
+                            <li t-if="record.email.value">Email: <field name="email"/></li>
+                        </ul>
+                    </t>
+                </templates>
+            </geoengine>
+        </field>
+    </record>
+
+    <!-- 2. LAYER RASTER (OSM) -->
+    <record id="customer_map_raster_osm" model="geoengine.raster.layer">
+        <field name="name">Open Street Map</field>
+        <field name="raster_type">osm</field>
+        <field name="view_id" ref="customer_map_geoengine_view"/>
+        <field name="overlay" eval="0"/>
+    </record>
+
+    <!-- 3. LAYER VECTOR -->
+    <record id="customer_map_vector_layer" model="geoengine.vector.layer">
+        <field name="name">Customer Location</field>
+        <field name="geo_field_id" search="[('model','=','customer.map'),('name','=','shape')]"/>
+        <field name="view_id" ref="customer_map_geoengine_view"/>
+        <field name="geo_repr">basic</field>
+        <field name="active_on_startup">True</field>
+        <field name="classification">unique</field>
+    </record>
+
+    <!-- 4. ACTION WINDOW -->
+    <record id="action_customer_map_geoengine" model="ir.actions.act_window">
+        <field name="name">Customer Map (Geo)</field>
+        <field name="res_model">customer.map</field>
+        <field name="view_mode">geoengine,tree,form</field>
+        <field name="view_id" ref="customer_map_geoengine_view"/>
+        <field name="search_view_id" ref="view_customer_map_search"/>
+        <field name="domain">[('active', '=', True)]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a customer and set its location on the map.
+            </p>
+        </field>
+    </record>
+</odoo>

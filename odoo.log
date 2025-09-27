@@ -1,768 +1,1168 @@
-2025-09-27 04:38:54,267 2656 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:38:54] "GET /web HTTP/1.1" 200 - 12 0.006 0.016
-2025-09-27 04:38:54,666 2656 WARNING ? odoo.modules.module: Missing `license` key in manifest for 'customer_geo', defaulting to LGPL-3 
-2025-09-27 04:38:54,666 2656 ERROR ? odoo.http: Exception during request handling. 
+2025-09-27 10:02:33,234 13768 INFO ? odoo.modules.loading: loading 1 modules... 
+2025-09-27 10:02:33,242 13768 INFO ? odoo.modules.loading: 1 modules loaded in 0.00s, 0 queries (+0 extra) 
+2025-09-27 10:02:33,255 13768 INFO ? odoo.modules.loading: loading 77 modules... 
+2025-09-27 10:02:33,279 13768 INFO ? odoo.modules.loading: Loading module customer_map_tracking (28/77) 
+2025-09-27 10:02:33,380 13768 INFO ? odoo.modules.registry: module customer_map_tracking: creating or updating database tables 
+2025-09-27 10:02:33,408 13768 WARNING ? odoo.addons.base.models.ir_model: Two fields (location_display, shape) of customer.map() have the same label: Location. [Modules: customer_map_tracking and customer_map_tracking] 
+2025-09-27 10:02:33,433 13768 INFO ? odoo.modules.loading: loading customer_map_tracking/security/security.xml 
+2025-09-27 10:02:33,504 13768 INFO ? odoo.modules.loading: loading customer_map_tracking/security/ir.model.access.csv 
+2025-09-27 10:02:33,521 13768 INFO ? odoo.modules.loading: loading customer_map_tracking/views/customer_map_views.xml 
+2025-09-27 10:02:33,540 13768 WARNING ? odoo.addons.base.models.ir_ui_view: set_location_from_coordinates on customer.map has parameters and cannot be called from a button
+View error context:
+{'file': 'd:\\work-project\\ssi\\odoo_demo\\odoo\\custom_addons\\customer_map_tracking\\views\\customer_map_views.xml',
+ 'line': 59,
+ 'name': 'customer.map.form',
+ 'view': ir.ui.view(1314,),
+ 'view.model': 'customer.map',
+ 'view.parent': ir.ui.view(),
+ 'xmlid': 'view_customer_map_form'} 
+2025-09-27 10:02:33,550 13768 INFO ? odoo.modules.loading: loading customer_map_tracking/views/customer_map_geoengine_views.xml 
+2025-09-27 10:02:33,574 13768 INFO ? odoo.modules.loading: loading customer_map_tracking/views/customer_map_actions.xml 
+2025-09-27 10:02:33,580 13768 WARNING ? odoo.modules.loading: Transient module states were reset 
+2025-09-27 10:02:33,580 13768 ERROR ? odoo.modules.registry: Failed to load registry 
 Traceback (most recent call last):
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\module.py", line 349, in load_manifest
-    manifest['version'] = adapt_version(manifest['version'])
-                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\module.py", line 456, in adapt_version
-    raise ValueError(f"Invalid version {base_version!r}. Modules should have a version in format `x.y`, `x.y.z`,"
-ValueError: Invalid version '16.0.1.0.0'. Modules should have a version in format `x.y`, `x.y.z`, `17.0.x.y` or `17.0.x.y.z`.
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\http.py", line 2392, in __call__
-    if self.get_static_file(httprequest.path):
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\http.py", line 2292, in get_static_file
-    if (module not in self.statics or static != 'static' or not resource):
-                      ^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 28, in __get__
-    value = self.fget(obj)
-            ^^^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\http.py", line 2262, in statics
-    manifest = get_manifest(module)
-               ^^^^^^^^^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\module.py", line 369, in get_manifest
-    return copy.deepcopy(_get_manifest_cached(module, mod_path))
-                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\module.py", line 373, in _get_manifest_cached
-    return load_manifest(module, mod_path)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\module.py", line 352, in load_manifest
-    raise ValueError(f"Module {module}: invalid manifest") from e
-ValueError: Module customer_geo: invalid manifest
-2025-09-27 04:38:54,671 2656 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:38:54] "GET /web/assets/78aaec9/web.assets_web.min.css HTTP/1.1" 500 - 0 0.000 0.116
-2025-09-27 04:38:54,837 2656 WARNING ? odoo.modules.module: Missing `license` key in manifest for 'customer_geo', defaulting to LGPL-3 
-2025-09-27 04:38:54,837 2656 ERROR ? odoo.http: Exception during request handling. 
-Traceback (most recent call last):
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\module.py", line 349, in load_manifest
-    manifest['version'] = adapt_version(manifest['version'])
-                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\module.py", line 456, in adapt_version
-    raise ValueError(f"Invalid version {base_version!r}. Modules should have a version in format `x.y`, `x.y.z`,"
-ValueError: Invalid version '16.0.1.0.0'. Modules should have a version in format `x.y`, `x.y.z`, `17.0.x.y` or `17.0.x.y.z`.
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\http.py", line 2392, in __call__
-    if self.get_static_file(httprequest.path):
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\http.py", line 2292, in get_static_file
-    if (module not in self.statics or static != 'static' or not resource):
-                      ^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 28, in __get__
-    value = self.fget(obj)
-            ^^^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\http.py", line 2262, in statics
-    manifest = get_manifest(module)
-               ^^^^^^^^^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\module.py", line 369, in get_manifest
-    return copy.deepcopy(_get_manifest_cached(module, mod_path))
-                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\module.py", line 373, in _get_manifest_cached
-    return load_manifest(module, mod_path)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\module.py", line 352, in load_manifest
-    raise ValueError(f"Module {module}: invalid manifest") from e
-ValueError: Module customer_geo: invalid manifest
-2025-09-27 04:38:54,840 2656 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:38:54] "GET /web/assets/ec1e14e/web.assets_web.min.js HTTP/1.1" 500 - 0 0.000 0.232
-2025-09-27 04:38:54,869 2656 WARNING ? odoo.modules.module: Missing `license` key in manifest for 'customer_geo', defaulting to LGPL-3 
-2025-09-27 04:38:54,870 2656 ERROR ? odoo.http: Exception during request handling. 
-Traceback (most recent call last):
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\module.py", line 349, in load_manifest
-    manifest['version'] = adapt_version(manifest['version'])
-                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\module.py", line 456, in adapt_version
-    raise ValueError(f"Invalid version {base_version!r}. Modules should have a version in format `x.y`, `x.y.z`,"
-ValueError: Invalid version '16.0.1.0.0'. Modules should have a version in format `x.y`, `x.y.z`, `17.0.x.y` or `17.0.x.y.z`.
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\http.py", line 2392, in __call__
-    if self.get_static_file(httprequest.path):
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\http.py", line 2292, in get_static_file
-    if (module not in self.statics or static != 'static' or not resource):
-                      ^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 28, in __get__
-    value = self.fget(obj)
-            ^^^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\http.py", line 2262, in statics
-    manifest = get_manifest(module)
-               ^^^^^^^^^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\module.py", line 369, in get_manifest
-    return copy.deepcopy(_get_manifest_cached(module, mod_path))
-                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\module.py", line 373, in _get_manifest_cached
-    return load_manifest(module, mod_path)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\module.py", line 352, in load_manifest
-    raise ValueError(f"Module {module}: invalid manifest") from e
-ValueError: Module customer_geo: invalid manifest
-2025-09-27 04:38:54,873 2656 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:38:54] "GET /web/webclient/translations/b9f4aad917813e4ef558736f259f63bb29f38d63?lang=en_US HTTP/1.1" 500 - 0 0.000 0.249
-2025-09-27 04:38:54,877 2656 WARNING ? odoo.modules.module: Missing `license` key in manifest for 'customer_geo', defaulting to LGPL-3 
-2025-09-27 04:38:54,878 2656 ERROR ? odoo.http: Exception during request handling. 
-Traceback (most recent call last):
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\module.py", line 349, in load_manifest
-    manifest['version'] = adapt_version(manifest['version'])
-                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\module.py", line 456, in adapt_version
-    raise ValueError(f"Invalid version {base_version!r}. Modules should have a version in format `x.y`, `x.y.z`,"
-ValueError: Invalid version '16.0.1.0.0'. Modules should have a version in format `x.y`, `x.y.z`, `17.0.x.y` or `17.0.x.y.z`.
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\http.py", line 2392, in __call__
-    if self.get_static_file(httprequest.path):
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\http.py", line 2292, in get_static_file
-    if (module not in self.statics or static != 'static' or not resource):
-                      ^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 28, in __get__
-    value = self.fget(obj)
-            ^^^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\http.py", line 2262, in statics
-    manifest = get_manifest(module)
-               ^^^^^^^^^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\module.py", line 369, in get_manifest
-    return copy.deepcopy(_get_manifest_cached(module, mod_path))
-                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\module.py", line 373, in _get_manifest_cached
-    return load_manifest(module, mod_path)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\module.py", line 352, in load_manifest
-    raise ValueError(f"Module {module}: invalid manifest") from e
-ValueError: Module customer_geo: invalid manifest
-2025-09-27 04:38:54,883 2656 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:38:54] "GET /web/webclient/load_menus/3210ce05a3fc77aa60807a750e7928ffddb8c320389f0ca06529419791760a9a HTTP/1.1" 500 - 0 0.000 0.275
-2025-09-27 04:38:54,891 2656 WARNING ? odoo.modules.module: Missing `license` key in manifest for 'customer_geo', defaulting to LGPL-3 
-2025-09-27 04:38:54,891 2656 ERROR ? odoo.http: Exception during request handling. 
-Traceback (most recent call last):
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\module.py", line 349, in load_manifest
-    manifest['version'] = adapt_version(manifest['version'])
-                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\module.py", line 456, in adapt_version
-    raise ValueError(f"Invalid version {base_version!r}. Modules should have a version in format `x.y`, `x.y.z`,"
-ValueError: Invalid version '16.0.1.0.0'. Modules should have a version in format `x.y`, `x.y.z`, `17.0.x.y` or `17.0.x.y.z`.
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\http.py", line 2392, in __call__
-    if self.get_static_file(httprequest.path):
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\http.py", line 2292, in get_static_file
-    if (module not in self.statics or static != 'static' or not resource):
-                      ^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 28, in __get__
-    value = self.fget(obj)
-            ^^^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\http.py", line 2262, in statics
-    manifest = get_manifest(module)
-               ^^^^^^^^^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\module.py", line 369, in get_manifest
-    return copy.deepcopy(_get_manifest_cached(module, mod_path))
-                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\module.py", line 373, in _get_manifest_cached
-    return load_manifest(module, mod_path)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\module.py", line 352, in load_manifest
-    raise ValueError(f"Module {module}: invalid manifest") from e
-ValueError: Module customer_geo: invalid manifest
-2025-09-27 04:38:54,894 2656 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:38:54] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 500 - 0 0.000 0.267
-2025-09-27 04:38:55,191 2656 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:38:55] "GET /web/manifest.webmanifest HTTP/1.1" 200 - 7 0.003 0.008
-2025-09-27 04:38:55,269 2656 WARNING ? odoo.modules.module: Missing `license` key in manifest for 'customer_geo', defaulting to LGPL-3 
-2025-09-27 04:38:55,269 2656 ERROR ? odoo.http: Exception during request handling. 
-Traceback (most recent call last):
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\module.py", line 349, in load_manifest
-    manifest['version'] = adapt_version(manifest['version'])
-                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\module.py", line 456, in adapt_version
-    raise ValueError(f"Invalid version {base_version!r}. Modules should have a version in format `x.y`, `x.y.z`,"
-ValueError: Invalid version '16.0.1.0.0'. Modules should have a version in format `x.y`, `x.y.z`, `17.0.x.y` or `17.0.x.y.z`.
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\http.py", line 2392, in __call__
-    if self.get_static_file(httprequest.path):
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\http.py", line 2292, in get_static_file
-    if (module not in self.statics or static != 'static' or not resource):
-                      ^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 28, in __get__
-    value = self.fget(obj)
-            ^^^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\http.py", line 2262, in statics
-    manifest = get_manifest(module)
-               ^^^^^^^^^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\module.py", line 369, in get_manifest
-    return copy.deepcopy(_get_manifest_cached(module, mod_path))
-                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\module.py", line 373, in _get_manifest_cached
-    return load_manifest(module, mod_path)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\module.py", line 352, in load_manifest
-    raise ValueError(f"Module {module}: invalid manifest") from e
-ValueError: Module customer_geo: invalid manifest
-2025-09-27 04:38:55,271 2656 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:38:55] "GET /web/static/img/favicon.ico HTTP/1.1" 500 - 0 0.000 0.093
-2025-09-27 04:38:55,591 2656 WARNING ? odoo.modules.module: Missing `license` key in manifest for 'customer_geo', defaulting to LGPL-3 
-2025-09-27 04:38:55,591 2656 ERROR ? odoo.http: Exception during request handling. 
-Traceback (most recent call last):
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\module.py", line 349, in load_manifest
-    manifest['version'] = adapt_version(manifest['version'])
-                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\module.py", line 456, in adapt_version
-    raise ValueError(f"Invalid version {base_version!r}. Modules should have a version in format `x.y`, `x.y.z`,"
-ValueError: Invalid version '16.0.1.0.0'. Modules should have a version in format `x.y`, `x.y.z`, `17.0.x.y` or `17.0.x.y.z`.
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\http.py", line 2392, in __call__
-    if self.get_static_file(httprequest.path):
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\http.py", line 2292, in get_static_file
-    if (module not in self.statics or static != 'static' or not resource):
-                      ^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 28, in __get__
-    value = self.fget(obj)
-            ^^^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\http.py", line 2262, in statics
-    manifest = get_manifest(module)
-               ^^^^^^^^^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\module.py", line 369, in get_manifest
-    return copy.deepcopy(_get_manifest_cached(module, mod_path))
-                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\module.py", line 373, in _get_manifest_cached
-    return load_manifest(module, mod_path)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\module.py", line 352, in load_manifest
-    raise ValueError(f"Module {module}: invalid manifest") from e
-ValueError: Module customer_geo: invalid manifest
-2025-09-27 04:38:55,593 2656 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:38:55] "GET /web/static/img/odoo-icon-192x192.png HTTP/1.1" 500 - 0 0.000 0.078
-2025-09-27 04:38:56,755 2656 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:38:56] "GET /web/service-worker.js HTTP/1.1" 200 - 1 0.000 0.003
-2025-09-27 04:39:55,355 2656 INFO ssi_odoo_demo odoo.service.server: Initiating shutdown 
-2025-09-27 04:39:55,355 2656 INFO ssi_odoo_demo odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown. 
-2025-09-27 04:39:56,373 2656 INFO ssi_odoo_demo odoo.sql_db: ConnectionPool(used=0/count=0/max=64): Closed 3 connections  
-2025-09-27 04:40:15,158 16176 INFO ? odoo: Odoo version 17.0 
-2025-09-27 04:40:15,158 16176 INFO ? odoo: Using configuration file at D:\work-project\ssi\odoo_demo\odoo\odoo.conf 
-2025-09-27 04:40:15,158 16176 INFO ? odoo: addons paths: ['D:\\work-project\\ssi\\odoo_demo\\odoo\\odoo\\addons', 'd:\\work-project\\ssi\\odoo_demo\\odoo\\data\\addons\\17.0', 'd:\\work-project\\ssi\\odoo_demo\\odoo\\addons', 'd:\\work-project\\ssi\\odoo_demo\\odoo\\custom_addons', 'd:\\work-project\\ssi\\odoo_demo\\odoo\\custom_addons\\field_service', 'd:\\work-project\\ssi\\odoo_demo\\odoo\\custom_addons\\geospatial', 'd:\\work-project\\ssi\\odoo_demo\\odoo\\odoo\\addons'] 
-2025-09-27 04:40:15,163 16176 INFO ? odoo: database: odoo@localhost:5432 
-2025-09-27 04:40:15,429 16176 INFO ? odoo.addons.base.models.ir_actions_report: Will use the Wkhtmltopdf binary at C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe 
-2025-09-27 04:40:15,710 16176 INFO ? odoo.service.server: HTTP service (werkzeug) running on LAPTOP-O0EP5QSP:8069 
-2025-09-27 04:40:15,766 16176 INFO ssi_odoo_demo odoo.modules.loading: loading 1 modules... 
-2025-09-27 04:40:15,773 16176 INFO ssi_odoo_demo odoo.modules.loading: 1 modules loaded in 0.01s, 0 queries (+0 extra) 
-2025-09-27 04:40:15,793 16176 INFO ssi_odoo_demo odoo.modules.loading: updating modules list 
-2025-09-27 04:40:15,796 16176 INFO ssi_odoo_demo odoo.addons.base.models.ir_module: ALLOW access to module.update_list on [] to user __system__ #1 via n/a 
-2025-09-27 04:40:16,887 16176 WARNING ssi_odoo_demo odoo.modules.module: Missing `license` key in manifest for 'product_master', defaulting to LGPL-3 
-2025-09-27 04:40:17,043 16176 WARNING ssi_odoo_demo odoo.modules.module: Missing `license` key in manifest for 'stock_qr_tracking', defaulting to LGPL-3 
-2025-09-27 04:40:17,288 16176 INFO ssi_odoo_demo odoo.addons.base.models.ir_module: ALLOW access to module.button_install on ['Customer Geo (Odoo 17)'] to user __system__ #1 via n/a 
-2025-09-27 04:40:17,342 16176 INFO ssi_odoo_demo odoo.modules.loading: loading 77 modules... 
-2025-09-27 04:40:19,704 16176 WARNING ssi_odoo_demo odoo.api.create: The model odoo.addons.product_master.models.product_template is not overriding the create method in batch 
-2025-09-27 04:40:19,710 16176 WARNING ssi_odoo_demo odoo.api.create: The model odoo.addons.purchase_fsm_assignment_api.models.installation_checklist is not overriding the create method in batch 
-2025-09-27 04:40:19,762 16176 INFO ssi_odoo_demo odoo.modules.loading: 77 modules loaded in 2.42s, 0 queries (+0 extra) 
-2025-09-27 04:40:19,763 16176 INFO ssi_odoo_demo odoo.modules.loading: loading 78 modules... 
-2025-09-27 04:40:19,764 16176 INFO ssi_odoo_demo odoo.modules.loading: Loading module customer_geo (19/78) 
-2025-09-27 04:40:19,919 16176 WARNING ssi_odoo_demo py.warnings: D:\work-project\ssi\odoo_demo\odoo\odoo\fields.py:536: UserWarning: Property fsm.size.name.required should be a boolean (True).
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo-bin", line 8, in <module>
-    odoo.cli.main()
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\cli\command.py", line 67, in main
-    o.run(args)
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\cli\server.py", line 186, in run
-    main(args)
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\cli\server.py", line 179, in main
-    rc = odoo.service.server.start(preload=preload, stop=stop)
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\service\server.py", line 1469, in start
-    rc = server.run(preload, stop)
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\service\server.py", line 635, in run
-    rc = preload_registries(preload)
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\service\server.py", line 1369, in preload_registries
-    registry = Registry.new(dbname, update_module=update_module)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 87, in __new__
+    return cls.registries[db_name]
+           ~~~~~~~~~~~~~~^^^^^^^^^
   File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
     return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 87, in locked
     return func(inst, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\lru.py", line 34, in __getitem__
+    a = self.d[obj]
+        ~~~~~~^^^^^
+KeyError: 'ssi_odoo_demo'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\cache.py", line 99, in lookup
+    r = d[key]
+        ~^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 87, in locked
+    return func(inst, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\lru.py", line 34, in __getitem__
+    a = self.d[obj]
+        ~~~~~~^^^^^
+KeyError: ('ir.model.data', <function IrModelData._xmlid_lookup at 0x00000151A4B33920>, 'customer_map_tracking.view_customer_map_geoengine_simple')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 429, in _tag_record
+    f_val = self.id_get(f_ref, raise_if_not_found=nodeattr2bool(rec, 'forcecreate', True))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 546, in id_get
+    res = self.model_id_get(id_str, raise_if_not_found)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 552, in model_id_get
+    return self.env['ir.model.data']._xmlid_to_res_model_res_id(id_str, raise_if_not_found=raise_if_not_found)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\addons\base\models\ir_model.py", line 2205, in _xmlid_to_res_model_res_id
+    return self._xmlid_lookup(xmlid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\cache.py", line 104, in lookup
+    value = d[key] = self.method(*args, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\addons\base\models\ir_model.py", line 2198, in _xmlid_lookup
+    raise ValueError('External ID not found in the system: %s' % xmlid)
+ValueError: External ID not found in the system: customer_map_tracking.view_customer_map_geoengine_simple
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
   File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 110, in new
     odoo.modules.load_modules(registry, force_demo, status, update_module)
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 485, in load_modules
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 481, in load_modules
     processed_modules += load_marked_modules(env, graph,
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 366, in load_marked_modules
     loaded, processed = load_module_graph(
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 206, in load_module_graph
-    registry.setup_models(env.cr)
+                        ^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 229, in load_module_graph
+    load_data(env, idref, mode, kind='data', package=package)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 73, in load_data
+    tools.convert_file(env, package.name, filename, idref, mode, noupdate, kind)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 635, in convert_file
+    convert_xml_import(env, module, fp, idref, mode, noupdate)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 701, in convert_xml_import
+    obj.parse(doc.getroot())
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 621, in parse
+    self._tag_root(de)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 577, in _tag_root
+    raise ParseError('while parsing %s:%s, somewhere inside\n%s' % (
+odoo.tools.convert.ParseError: while parsing file:/d:/work-project/ssi/odoo_demo/odoo/custom_addons/customer_map_tracking/views/customer_map_actions.xml:5, somewhere inside
+<record id="action_customer_map_dashboard" model="ir.actions.act_window">
+            <field name="name">Map Dashboard</field>
+            <field name="res_model">customer.map</field>
+            <field name="view_mode">geoengine,tree,form</field>
+            <field name="view_id" ref="view_customer_map_geoengine_simple"/>
+            <field name="domain">[('active', '=', True), ('shape', '!=', False)]</field>
+            <field name="context">{
+                'create': True,
+                'edit': True,
+                'delete': False
+            }</field>
+        </record>
+2025-09-27 10:02:33,580 13768 ERROR ? odoo.http: Exception during request handling. 
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 87, in __new__
+    return cls.registries[db_name]
+           ~~~~~~~~~~~~~~^^^^^^^^^
   File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
     return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 87, in locked
     return func(inst, *args, **kwargs)
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 319, in setup_models
-    model._setup_fields()
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\models.py", line 3420, in _setup_fields
-    field.setup(self)
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\fields.py", line 536, in setup
-    warnings.warn(f'Property {self}.required should be a boolean ({self.required}).')
- 
-2025-09-27 04:40:19,971 16176 INFO ssi_odoo_demo odoo.modules.registry: module customer_geo: creating or updating database tables 
-2025-09-27 04:40:20,143 16176 INFO ssi_odoo_demo odoo.modules.loading: loading customer_geo/security/ir.model.access.csv 
-2025-09-27 04:40:20,157 16176 WARNING ssi_odoo_demo odoo.addons.base.models.ir_model: Rule customer.geo.all has no group, this is a deprecated feature. Every access-granting rule should specify a group. 
-2025-09-27 04:40:20,161 16176 INFO ssi_odoo_demo odoo.modules.loading: loading customer_geo/views/customer_view.xml 
-2025-09-27 04:40:20,234 16176 INFO ssi_odoo_demo odoo.modules.loading: loading customer_geo/views/customer_geo.xml 
-2025-09-27 04:40:20,284 16176 INFO ssi_odoo_demo odoo.modules.loading: Module customer_geo loaded in 0.52s, 121 queries (+121 other) 
-2025-09-27 04:40:20,284 16176 INFO ssi_odoo_demo odoo.modules.loading: 78 modules loaded in 0.52s, 121 queries (+121 extra) 
-2025-09-27 04:40:20,393 16176 WARNING ssi_odoo_demo py.warnings: D:\work-project\ssi\odoo_demo\odoo\odoo\fields.py:536: UserWarning: Property fsm.size.name.required should be a boolean (True).
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo-bin", line 8, in <module>
-    odoo.cli.main()
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\cli\command.py", line 67, in main
-    o.run(args)
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\cli\server.py", line 186, in run
-    main(args)
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\cli\server.py", line 179, in main
-    rc = odoo.service.server.start(preload=preload, stop=stop)
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\service\server.py", line 1469, in start
-    rc = server.run(preload, stop)
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\service\server.py", line 635, in run
-    rc = preload_registries(preload)
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\service\server.py", line 1369, in preload_registries
-    registry = Registry.new(dbname, update_module=update_module)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\lru.py", line 34, in __getitem__
+    a = self.d[obj]
+        ~~~~~~^^^^^
+KeyError: 'ssi_odoo_demo'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\cache.py", line 99, in lookup
+    r = d[key]
+        ~^^^^^
   File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
     return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 87, in locked
     return func(inst, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\lru.py", line 34, in __getitem__
+    a = self.d[obj]
+        ~~~~~~^^^^^
+KeyError: ('ir.model.data', <function IrModelData._xmlid_lookup at 0x00000151A4B33920>, 'customer_map_tracking.view_customer_map_geoengine_simple')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 429, in _tag_record
+    f_val = self.id_get(f_ref, raise_if_not_found=nodeattr2bool(rec, 'forcecreate', True))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 546, in id_get
+    res = self.model_id_get(id_str, raise_if_not_found)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 552, in model_id_get
+    return self.env['ir.model.data']._xmlid_to_res_model_res_id(id_str, raise_if_not_found=raise_if_not_found)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\addons\base\models\ir_model.py", line 2205, in _xmlid_to_res_model_res_id
+    return self._xmlid_lookup(xmlid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\cache.py", line 104, in lookup
+    value = d[key] = self.method(*args, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\addons\base\models\ir_model.py", line 2198, in _xmlid_lookup
+    raise ValueError('External ID not found in the system: %s' % xmlid)
+ValueError: External ID not found in the system: customer_map_tracking.view_customer_map_geoengine_simple
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\http.py", line 2396, in __call__
+    response = request._serve_db()
+               ^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\http.py", line 1949, in _serve_db
+    self.registry = Registry(self.db).check_signaling()
+                    ^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 89, in __new__
+    return cls.new(db_name)
+           ^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 87, in locked
+    return func(inst, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 110, in new
     odoo.modules.load_modules(registry, force_demo, status, update_module)
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 493, in load_modules
-    registry.setup_models(cr)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 481, in load_modules
+    processed_modules += load_marked_modules(env, graph,
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 366, in load_marked_modules
+    loaded, processed = load_module_graph(
+                        ^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 229, in load_module_graph
+    load_data(env, idref, mode, kind='data', package=package)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 73, in load_data
+    tools.convert_file(env, package.name, filename, idref, mode, noupdate, kind)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 635, in convert_file
+    convert_xml_import(env, module, fp, idref, mode, noupdate)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 701, in convert_xml_import
+    obj.parse(doc.getroot())
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 621, in parse
+    self._tag_root(de)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 577, in _tag_root
+    raise ParseError('while parsing %s:%s, somewhere inside\n%s' % (
+odoo.tools.convert.ParseError: while parsing file:/d:/work-project/ssi/odoo_demo/odoo/custom_addons/customer_map_tracking/views/customer_map_actions.xml:5, somewhere inside
+<record id="action_customer_map_dashboard" model="ir.actions.act_window">
+            <field name="name">Map Dashboard</field>
+            <field name="res_model">customer.map</field>
+            <field name="view_mode">geoengine,tree,form</field>
+            <field name="view_id" ref="view_customer_map_geoengine_simple"/>
+            <field name="domain">[('active', '=', True), ('shape', '!=', False)]</field>
+            <field name="context">{
+                'create': True,
+                'edit': True,
+                'delete': False
+            }</field>
+        </record>
+2025-09-27 10:02:33,595 13768 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 10:02:33] "GET /favicon.ico HTTP/1.1" 500 - 193 0.082 0.283
+2025-09-27 10:02:34,217 13768 INFO ? odoo.modules.loading: loading 1 modules... 
+2025-09-27 10:02:34,223 13768 INFO ? odoo.modules.loading: 1 modules loaded in 0.01s, 0 queries (+0 extra) 
+2025-09-27 10:02:34,273 13768 INFO ? odoo.modules.loading: loading 77 modules... 
+2025-09-27 10:02:34,295 13768 INFO ? odoo.modules.loading: Loading module customer_map_tracking (28/77) 
+2025-09-27 10:02:34,380 13768 INFO ? odoo.modules.registry: module customer_map_tracking: creating or updating database tables 
+2025-09-27 10:02:34,389 13768 WARNING ? odoo.addons.base.models.ir_model: Two fields (location_display, shape) of customer.map() have the same label: Location. [Modules: customer_map_tracking and customer_map_tracking] 
+2025-09-27 10:02:34,405 13768 INFO ? odoo.modules.loading: loading customer_map_tracking/security/security.xml 
+2025-09-27 10:02:34,473 13768 INFO ? odoo.modules.loading: loading customer_map_tracking/security/ir.model.access.csv 
+2025-09-27 10:02:34,481 13768 INFO ? odoo.modules.loading: loading customer_map_tracking/views/customer_map_views.xml 
+2025-09-27 10:02:34,498 13768 WARNING ? odoo.addons.base.models.ir_ui_view: set_location_from_coordinates on customer.map has parameters and cannot be called from a button
+View error context:
+{'file': 'd:\\work-project\\ssi\\odoo_demo\\odoo\\custom_addons\\customer_map_tracking\\views\\customer_map_views.xml',
+ 'line': 59,
+ 'name': 'customer.map.form',
+ 'view': ir.ui.view(1314,),
+ 'view.model': 'customer.map',
+ 'view.parent': ir.ui.view(),
+ 'xmlid': 'view_customer_map_form'} 
+2025-09-27 10:02:34,516 13768 INFO ? odoo.modules.loading: loading customer_map_tracking/views/customer_map_geoengine_views.xml 
+2025-09-27 10:02:34,530 13768 INFO ? odoo.modules.loading: loading customer_map_tracking/views/customer_map_actions.xml 
+2025-09-27 10:02:34,539 13768 WARNING ? odoo.modules.loading: Transient module states were reset 
+2025-09-27 10:02:34,539 13768 ERROR ? odoo.modules.registry: Failed to load registry 
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 87, in __new__
+    return cls.registries[db_name]
+           ~~~~~~~~~~~~~~^^^^^^^^^
   File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
     return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 87, in locked
     return func(inst, *args, **kwargs)
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 319, in setup_models
-    model._setup_fields()
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\models.py", line 3420, in _setup_fields
-    field.setup(self)
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\fields.py", line 536, in setup
-    warnings.warn(f'Property {self}.required should be a boolean ({self.required}).')
- 
-2025-09-27 04:40:21,570 16176 INFO ssi_odoo_demo odoo.modules.loading: Modules loaded. 
-2025-09-27 04:40:21,574 16176 INFO ssi_odoo_demo odoo.modules.registry: Registry loaded in 5.869s 
-2025-09-27 04:40:21,663 16176 INFO ssi_odoo_demo odoo.addons.base.models.ir_http: Generating routing map for key None 
-2025-09-27 04:40:21,889 16176 WARNING ssi_odoo_demo odoo.modules.module: Missing `license` key in manifest for 'product_master', defaulting to LGPL-3 
-2025-09-27 04:40:22,391 16176 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:40:22] "GET /web HTTP/1.1" 200 - 78 0.035 1.600
-2025-09-27 04:40:22,698 16176 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:40:22] "GET /web/assets/78aaec9/web.assets_web.min.css HTTP/1.1" 200 - 3 0.009 0.238
-2025-09-27 04:40:22,868 16176 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:40:22] "GET /web/webclient/load_menus/c0fec4b7b72a47d7ce04bb07549f301440d212a9b0bfc16f0913350ae9ff7d08 HTTP/1.1" 200 - 2 0.005 0.097
-2025-09-27 04:40:22,868 16176 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:40:22] "GET /web/webclient/translations/c95bd1c43b88dc5dbc3c7cef74958db0843de0ef?lang=en_US HTTP/1.1" 200 - 2 0.005 0.095
-2025-09-27 04:40:23,160 16176 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:40:23] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 - 67 0.031 0.695
-2025-09-27 04:40:23,706 16176 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:40:23] "GET /web/assets/ec1e14e/web.assets_web.min.js HTTP/1.1" 200 - 3 0.008 0.932
-2025-09-27 04:40:24,416 16176 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:40:24] "GET /web/static/lib/odoo_ui_icons/fonts/odoo_ui_icons.woff2 HTTP/1.1" 200 - 0 0.000 0.009
-2025-09-27 04:40:24,426 16176 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:40:24] "GET /web/static/src/libs/fontawesome/fonts/fontawesome-webfont.woff2?v=4.7.0 HTTP/1.1" 200 - 0 0.000 0.018
-2025-09-27 04:40:24,440 16176 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:40:24] "POST /web/action/load HTTP/1.1" 200 - 8 0.010 0.010
-2025-09-27 04:40:24,516 16176 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:40:24] "POST /mail/init_messaging HTTP/1.1" 200 - 36 0.034 0.021
-2025-09-27 04:40:24,537 16176 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:40:24] "POST /web/dataset/call_kw/res.users/systray_get_activities HTTP/1.1" 200 - 6 0.020 0.016
-2025-09-27 04:40:24,550 16176 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:40:24] "POST /web/dataset/call_kw/customer.map/get_views HTTP/1.1" 200 - 12 0.024 0.022
-2025-09-27 04:40:24,741 16176 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:40:24] "POST /mail/load_message_failures HTTP/1.1" 200 - 3 0.000 0.006
-2025-09-27 04:40:24,777 16176 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:40:24] "POST /web/dataset/call_kw/customer.map/web_read HTTP/1.1" 200 - 2 0.004 0.003
-2025-09-27 04:40:24,856 16176 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:40:24] "GET /web/image?model=res.users&field=avatar_128&id=1 HTTP/1.1" 200 - 7 0.005 0.005
-2025-09-27 04:40:24,884 16176 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:40:24] "GET /web/static/img/favicon.ico HTTP/1.1" 200 - 0 0.000 0.005
-2025-09-27 04:40:24,919 16176 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:40:24] "GET /web/manifest.webmanifest HTTP/1.1" 200 - 8 0.002 0.007
-2025-09-27 04:40:25,191 16176 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:40:25] "GET /bus/websocket_worker_bundle?v=17.0-1 HTTP/1.1" 200 - 4 0.001 0.006
-2025-09-27 04:40:25,193 16176 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:40:25] "GET /web/static/img/odoo-icon-192x192.png HTTP/1.1" 200 - 0 0.000 0.011
-2025-09-27 04:40:25,524 16176 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:40:25] "GET /websocket?version=17.0-1 HTTP/1.1" 101 - 1 0.002 0.003
-2025-09-27 04:40:25,538 16176 INFO ? odoo.addons.bus.models.bus: Bus.loop listen imbus on db postgres 
-2025-09-27 04:40:26,456 16176 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:40:26] "GET /web/service-worker.js HTTP/1.1" 200 - 1 0.000 0.004
-2025-09-27 04:40:29,932 16176 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:40:29] "POST /web/action/load HTTP/1.1" 200 - 8 0.004 0.006
-2025-09-27 04:40:30,192 16176 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:40:30] "POST /web/dataset/call_kw/customer.geo/get_views HTTP/1.1" 200 - 12 0.005 0.012
-2025-09-27 04:40:30,275 16176 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:40:30] "POST /web/dataset/call_kw/customer.geo/web_search_read HTTP/1.1" 200 - 2 0.001 0.004
-2025-09-27 04:40:30,517 16176 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:40:30] "POST /web/dataset/call_kw/res.users/has_group HTTP/1.1" 200 - 2 0.001 0.003
-2025-09-27 04:40:35,615 16176 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:40:35] "POST /web/dataset/call_kw/customer.geo/onchange HTTP/1.1" 200 - 2 0.000 0.006
-2025-09-27 04:40:36,098 16176 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:40:36] "GET /base_geoengine/static/lib/ol-7.2.2/ol.js HTTP/1.1" 200 - 0 0.000 0.155
-2025-09-27 04:40:36,256 16176 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:40:36] "GET /base_geoengine/static/lib/chromajs-2.4.2/chroma.js HTTP/1.1" 200 - 0 0.000 0.056
-2025-09-27 04:40:36,470 16176 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:40:36] "POST /web/dataset/call_kw/customer.geo/get_edit_info_for_geo_column HTTP/1.1" 200 - 8 0.005 0.006
-2025-09-27 04:40:36,489 16176 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:40:36] "GET /base_geoengine/static/lib/ol-7.2.2/ol.js.map HTTP/1.1" 200 - 0 0.000 0.031
-2025-09-27 04:41:20,995 16176 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:41:20] "POST /web/dataset/call_kw/customer.geo/web_save HTTP/1.1" 200 - 5 0.075 0.017
-2025-09-27 04:41:21,645 16176 INFO ssi_odoo_demo odoo.addons.base.models.ir_cron: Starting job `Base: Auto-vacuum internal data`. 
-2025-09-27 04:41:21,698 16176 INFO ssi_odoo_demo odoo.addons.base.models.ir_attachment: filestore gc 0 checked, 0 removed 
-2025-09-27 04:41:21,759 16176 INFO ssi_odoo_demo odoo.addons.base.models.res_users: GC'd 0 user log entries 
-2025-09-27 04:41:21,803 16176 INFO ssi_odoo_demo odoo.addons.auth_totp.models.auth_totp: GC'd 0 totp devices entries 
-2025-09-27 04:41:21,833 16176 INFO ssi_odoo_demo odoo.models.unlink: User #1 deleted bus.bus records with IDs: [255, 256, 257, 258, 259, 260] 
-2025-09-27 04:41:21,974 16176 INFO ssi_odoo_demo odoo.addons.sms.models.sms_sms: GC'd 0 sms marked for deletion 
-2025-09-27 04:41:22,149 16176 INFO ssi_odoo_demo odoo.addons.base.models.ir_cron: Job done: `Base: Auto-vacuum internal data` (0.504s). 
-2025-09-27 04:44:36,816 16176 INFO ssi_odoo_demo odoo.service.server: Initiating shutdown 
-2025-09-27 04:44:36,816 16176 INFO ssi_odoo_demo odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown. 
-2025-09-27 04:44:37,370 16176 INFO ssi_odoo_demo odoo.sql_db: ConnectionPool(used=0/count=0/max=64): Closed 6 connections  
-2025-09-27 04:44:50,561 11788 INFO ? odoo: Odoo version 17.0 
-2025-09-27 04:44:50,561 11788 INFO ? odoo: Using configuration file at D:\work-project\ssi\odoo_demo\odoo\odoo.conf 
-2025-09-27 04:44:50,561 11788 INFO ? odoo: addons paths: ['D:\\work-project\\ssi\\odoo_demo\\odoo\\odoo\\addons', 'd:\\work-project\\ssi\\odoo_demo\\odoo\\data\\addons\\17.0', 'd:\\work-project\\ssi\\odoo_demo\\odoo\\addons', 'd:\\work-project\\ssi\\odoo_demo\\odoo\\custom_addons', 'd:\\work-project\\ssi\\odoo_demo\\odoo\\custom_addons\\field_service', 'd:\\work-project\\ssi\\odoo_demo\\odoo\\custom_addons\\geospatial', 'd:\\work-project\\ssi\\odoo_demo\\odoo\\odoo\\addons'] 
-2025-09-27 04:44:50,561 11788 INFO ? odoo: database: odoo@localhost:5432 
-2025-09-27 04:44:50,774 11788 INFO ? odoo.addons.base.models.ir_actions_report: Will use the Wkhtmltopdf binary at C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe 
-2025-09-27 04:44:51,078 11788 WARNING ? odoo.service.server: 'watchdog' module not installed. Code autoreload feature is disabled 
-2025-09-27 04:44:51,083 11788 INFO ? odoo.service.server: HTTP service (werkzeug) running on LAPTOP-O0EP5QSP:8069 
-2025-09-27 04:44:51,143 11788 INFO ssi_odoo_demo odoo.modules.loading: loading 1 modules... 
-2025-09-27 04:44:51,150 11788 INFO ssi_odoo_demo odoo.modules.loading: 1 modules loaded in 0.01s, 0 queries (+0 extra) 
-2025-09-27 04:44:51,171 11788 INFO ssi_odoo_demo odoo.modules.loading: updating modules list 
-2025-09-27 04:44:51,174 11788 INFO ssi_odoo_demo odoo.addons.base.models.ir_module: ALLOW access to module.update_list on [] to user __system__ #1 via n/a 
-2025-09-27 04:44:52,273 11788 WARNING ssi_odoo_demo odoo.modules.module: Missing `license` key in manifest for 'product_master', defaulting to LGPL-3 
-2025-09-27 04:44:52,407 11788 WARNING ssi_odoo_demo odoo.modules.module: Missing `license` key in manifest for 'stock_qr_tracking', defaulting to LGPL-3 
-2025-09-27 04:44:52,612 11788 INFO ssi_odoo_demo odoo.addons.base.models.ir_module: ALLOW access to module.button_upgrade on ['Customer Geo (Odoo 17)'] to user __system__ #1 via n/a 
-2025-09-27 04:44:52,612 11788 INFO ssi_odoo_demo odoo.addons.base.models.ir_module: ALLOW access to module.update_list on ['Customer Geo (Odoo 17)'] to user __system__ #1 via n/a 
-2025-09-27 04:44:53,363 11788 INFO ssi_odoo_demo odoo.addons.base.models.ir_module: ALLOW access to module.button_install on [] to user __system__ #1 via n/a 
-2025-09-27 04:44:53,412 11788 INFO ssi_odoo_demo odoo.modules.loading: loading 78 modules... 
-2025-09-27 04:44:53,724 11788 INFO ssi_odoo_demo odoo.modules.loading: Loading module customer_geo (19/78) 
-2025-09-27 04:44:53,780 11788 INFO ssi_odoo_demo odoo.modules.registry: module customer_geo: creating or updating database tables 
-2025-09-27 04:44:53,843 11788 INFO ssi_odoo_demo odoo.modules.loading: loading customer_geo/security/ir.model.access.csv 
-2025-09-27 04:44:53,852 11788 INFO ssi_odoo_demo odoo.modules.loading: loading customer_geo/views/customer_view.xml 
-2025-09-27 04:44:53,880 11788 INFO ssi_odoo_demo odoo.modules.loading: loading customer_geo/views/customer_geo.xml 
-2025-09-27 04:44:53,915 11788 INFO ssi_odoo_demo odoo.modules.loading: Module customer_geo loaded in 0.19s, 115 queries (+115 other) 
-2025-09-27 04:44:55,450 11788 WARNING ssi_odoo_demo odoo.api.create: The model odoo.addons.product_master.models.product_template is not overriding the create method in batch 
-2025-09-27 04:44:55,461 11788 WARNING ssi_odoo_demo odoo.api.create: The model odoo.addons.purchase_fsm_assignment_api.models.installation_checklist is not overriding the create method in batch 
-2025-09-27 04:44:55,515 11788 INFO ssi_odoo_demo odoo.modules.loading: 78 modules loaded in 2.10s, 115 queries (+115 extra) 
-2025-09-27 04:44:55,708 11788 WARNING ssi_odoo_demo py.warnings: D:\work-project\ssi\odoo_demo\odoo\odoo\fields.py:536: UserWarning: Property fsm.size.name.required should be a boolean (True).
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo-bin", line 8, in <module>
-    odoo.cli.main()
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\cli\command.py", line 67, in main
-    o.run(args)
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\cli\server.py", line 186, in run
-    main(args)
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\cli\server.py", line 179, in main
-    rc = odoo.service.server.start(preload=preload, stop=stop)
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\service\server.py", line 1469, in start
-    rc = server.run(preload, stop)
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\service\server.py", line 635, in run
-    rc = preload_registries(preload)
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\service\server.py", line 1369, in preload_registries
-    registry = Registry.new(dbname, update_module=update_module)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\lru.py", line 34, in __getitem__
+    a = self.d[obj]
+        ~~~~~~^^^^^
+KeyError: 'ssi_odoo_demo'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\cache.py", line 99, in lookup
+    r = d[key]
+        ~^^^^^
   File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
     return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 87, in locked
     return func(inst, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\lru.py", line 34, in __getitem__
+    a = self.d[obj]
+        ~~~~~~^^^^^
+KeyError: ('ir.model.data', <function IrModelData._xmlid_lookup at 0x00000151A4B33920>, 'customer_map_tracking.view_customer_map_geoengine_simple')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 429, in _tag_record
+    f_val = self.id_get(f_ref, raise_if_not_found=nodeattr2bool(rec, 'forcecreate', True))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 546, in id_get
+    res = self.model_id_get(id_str, raise_if_not_found)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 552, in model_id_get
+    return self.env['ir.model.data']._xmlid_to_res_model_res_id(id_str, raise_if_not_found=raise_if_not_found)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\addons\base\models\ir_model.py", line 2205, in _xmlid_to_res_model_res_id
+    return self._xmlid_lookup(xmlid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\cache.py", line 104, in lookup
+    value = d[key] = self.method(*args, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\addons\base\models\ir_model.py", line 2198, in _xmlid_lookup
+    raise ValueError('External ID not found in the system: %s' % xmlid)
+ValueError: External ID not found in the system: customer_map_tracking.view_customer_map_geoengine_simple
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
   File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 110, in new
     odoo.modules.load_modules(registry, force_demo, status, update_module)
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 493, in load_modules
-    registry.setup_models(cr)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 481, in load_modules
+    processed_modules += load_marked_modules(env, graph,
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 366, in load_marked_modules
+    loaded, processed = load_module_graph(
+                        ^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 229, in load_module_graph
+    load_data(env, idref, mode, kind='data', package=package)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 73, in load_data
+    tools.convert_file(env, package.name, filename, idref, mode, noupdate, kind)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 635, in convert_file
+    convert_xml_import(env, module, fp, idref, mode, noupdate)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 701, in convert_xml_import
+    obj.parse(doc.getroot())
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 621, in parse
+    self._tag_root(de)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 577, in _tag_root
+    raise ParseError('while parsing %s:%s, somewhere inside\n%s' % (
+odoo.tools.convert.ParseError: while parsing file:/d:/work-project/ssi/odoo_demo/odoo/custom_addons/customer_map_tracking/views/customer_map_actions.xml:5, somewhere inside
+<record id="action_customer_map_dashboard" model="ir.actions.act_window">
+            <field name="name">Map Dashboard</field>
+            <field name="res_model">customer.map</field>
+            <field name="view_mode">geoengine,tree,form</field>
+            <field name="view_id" ref="view_customer_map_geoengine_simple"/>
+            <field name="domain">[('active', '=', True), ('shape', '!=', False)]</field>
+            <field name="context">{
+                'create': True,
+                'edit': True,
+                'delete': False
+            }</field>
+        </record>
+2025-09-27 10:02:34,541 13768 ERROR ? odoo.http: Exception during request handling. 
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 87, in __new__
+    return cls.registries[db_name]
+           ~~~~~~~~~~~~~~^^^^^^^^^
   File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
     return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 87, in locked
     return func(inst, *args, **kwargs)
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 319, in setup_models
-    model._setup_fields()
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\models.py", line 3420, in _setup_fields
-    field.setup(self)
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\fields.py", line 536, in setup
-    warnings.warn(f'Property {self}.required should be a boolean ({self.required}).')
- 
-2025-09-27 04:44:56,107 11788 INFO ssi_odoo_demo odoo.modules.registry: verifying fields for every extended model 
-2025-09-27 04:44:56,856 11788 INFO ssi_odoo_demo odoo.modules.loading: Modules loaded. 
-2025-09-27 04:44:56,879 11788 INFO ssi_odoo_demo odoo.modules.registry: Registry loaded in 5.800s 
-2025-09-27 04:44:56,955 11788 INFO ssi_odoo_demo odoo.addons.base.models.ir_http: Generating routing map for key None 
-2025-09-27 04:44:57,032 11788 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:44:57] "GET /websocket?version=17.0-1 HTTP/1.1" 101 - 5 0.003 5.152
-2025-09-27 04:44:57,367 11788 INFO ? odoo.addons.bus.models.bus: Bus.loop listen imbus on db postgres 
-2025-09-27 04:44:57,905 11788 WARNING ssi_odoo_demo odoo.modules.module: Missing `license` key in manifest for 'product_master', defaulting to LGPL-3 
-2025-09-27 04:44:58,394 11788 WARNING ssi_odoo_demo odoo.addons.base.models.ir_qweb: Found deprecated directive @t-esc="title or 'Odoo'" in template 180. Replace by @t-out 
-2025-09-27 04:44:58,395 11788 WARNING ssi_odoo_demo odoo.addons.base.models.ir_qweb: Found deprecated directive @t-esc='request.csrf_token(None)' in template 180. Replace by @t-out 
-2025-09-27 04:44:58,395 11788 WARNING ssi_odoo_demo odoo.addons.base.models.ir_qweb: Found deprecated directive @t-esc='debug' in template 180. Replace by @t-out 
-2025-09-27 04:44:58,399 11788 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:44:58] "GET /web HTTP/1.1" 200 - 76 0.050 0.667
-2025-09-27 04:44:58,714 11788 WARNING ssi_odoo_demo odoo.addons.base.models.ir_qweb: Found deprecated directive @t-esc="title or 'Odoo'" in template 181. Replace by @t-out 
-2025-09-27 04:44:58,715 11788 WARNING ssi_odoo_demo odoo.addons.base.models.ir_qweb: Found deprecated directive @t-esc='request.csrf_token(None)' in template 181. Replace by @t-out 
-2025-09-27 04:44:58,716 11788 WARNING ssi_odoo_demo odoo.addons.base.models.ir_qweb: Found deprecated directive @t-esc='debug' in template 181. Replace by @t-out 
-2025-09-27 04:44:59,112 11788 WARNING ssi_odoo_demo odoo.addons.base.models.ir_qweb: Found deprecated directive @t-esc="user_id.name[:23] + '...' if user_id.name and len(user_id.name) > 25 else user_id.name" in template 539. Replace by @t-out 
-2025-09-27 04:44:59,136 11788 WARNING ssi_odoo_demo odoo.addons.base.models.ir_qweb: Found deprecated directive @t-esc="active_lang[2].split('/').pop()" in template 538. Replace by @t-out 
-2025-09-27 04:44:59,137 11788 WARNING ssi_odoo_demo odoo.addons.base.models.ir_qweb: Found deprecated directive @t-esc="active_lang[1].split('_').pop(0).upper()" in template 538. Replace by @t-out 
-2025-09-27 04:44:59,145 11788 WARNING ssi_odoo_demo odoo.addons.base.models.ir_qweb: Found deprecated directive @t-esc="lg[2].split('/').pop()" in template 538. Replace by @t-out 
-2025-09-27 04:44:59,146 11788 WARNING ssi_odoo_demo odoo.addons.base.models.ir_qweb: Found deprecated directive @t-esc="lg[1].split('_').pop(0).upper()" in template 538. Replace by @t-out 
-2025-09-27 04:44:59,185 11788 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:44:59] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 - 79 0.032 0.703
-2025-09-27 04:44:59,210 11788 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:44:59] "POST /web/action/load HTTP/1.1" 200 - 9 0.043 0.109
-2025-09-27 04:44:59,403 11788 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:44:59] "POST /web/dataset/call_kw/res.users/systray_get_activities HTTP/1.1" 200 - 6 0.010 0.009
-2025-09-27 04:44:59,434 11788 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:44:59] "POST /mail/init_messaging HTTP/1.1" 200 - 36 0.024 0.027
-2025-09-27 04:44:59,451 11788 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:44:59] "GET /web/image?model=res.users&field=avatar_128&id=1 HTTP/1.1" 304 - 7 0.004 0.008
-2025-09-27 04:44:59,524 11788 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:44:59] "POST /web/dataset/call_kw/customer.geo/get_views HTTP/1.1" 200 - 14 0.014 0.017
-2025-09-27 04:44:59,564 11788 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:44:59] "POST /mail/load_message_failures HTTP/1.1" 200 - 3 0.000 0.012
-2025-09-27 04:44:59,777 11788 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:44:59] "POST /web/dataset/call_kw/customer.geo/web_read HTTP/1.1" 200 - 2 0.001 0.006
-2025-09-27 04:44:59,791 11788 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:44:59] "GET /web/manifest.webmanifest HTTP/1.1" 200 - 8 0.007 0.014
-2025-09-27 04:44:59,873 11788 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:44:59] "GET /bus/websocket_worker_bundle?v=17.0-1 HTTP/1.1" 304 - 4 0.000 0.009
-2025-09-27 04:45:00,205 11788 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:45:00] "GET /websocket?version=17.0-1 HTTP/1.1" 101 - 1 0.000 0.008
-2025-09-27 04:45:00,218 11788 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:45:00] "POST /web/dataset/call_kw/customer.geo/get_edit_info_for_geo_column HTTP/1.1" 200 - 8 0.009 0.011
-2025-09-27 04:45:01,471 11788 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:45:01] "GET /web/service-worker.js HTTP/1.1" 200 - 1 0.000 0.004
-2025-09-27 04:45:07,565 11788 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:45:07] "POST /web/action/load HTTP/1.1" 200 - 8 0.007 0.008
-2025-09-27 04:45:07,837 11788 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:45:07] "POST /web/dataset/call_kw/customer.map/get_views HTTP/1.1" 200 - 14 0.008 0.015
-2025-09-27 04:45:07,881 11788 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:45:07] "POST /web/dataset/call_kw/customer.map/web_search_read HTTP/1.1" 200 - 2 0.002 0.002
-2025-09-27 04:45:08,159 11788 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:45:08] "POST /web/dataset/call_kw/res.users/has_group HTTP/1.1" 200 - 2 0.001 0.003
-2025-09-27 04:45:09,515 11788 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:45:09] "POST /web/dataset/call_kw/customer.map/web_read HTTP/1.1" 200 - 2 0.002 0.003
-2025-09-27 04:45:13,709 11788 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:45:13] "POST /web/dataset/call_kw/customer.map/web_search_read HTTP/1.1" 200 - 2 0.001 0.003
-2025-09-27 04:45:14,177 11788 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:45:14] "POST /web/action/load HTTP/1.1" 200 - 8 0.002 0.011
-2025-09-27 04:45:14,512 11788 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:45:14] "POST /web/dataset/call_kw/customer.map/get_views HTTP/1.1" 200 - 11 0.003 0.016
-2025-09-27 04:45:14,763 11788 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:45:14] "POST /web/dataset/call_kw/customer.map/web_search_read HTTP/1.1" 200 - 2 0.001 0.004
-2025-09-27 04:45:15,229 11788 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:45:15] "POST /web/dataset/call_kw/customer.map/web_search_read HTTP/1.1" 200 - 2 0.001 0.004
-2025-09-27 04:45:16,897 11788 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:45:16] "POST /web/dataset/call_kw/customer.map/web_search_read HTTP/1.1" 200 - 2 0.000 0.004
-2025-09-27 04:45:19,312 11788 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:45:19] "POST /web/dataset/call_kw/customer.geo/web_search_read HTTP/1.1" 200 - 2 0.001 0.003
-2025-09-27 04:45:20,745 11788 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:45:20] "POST /web/dataset/call_kw/customer.geo/web_read HTTP/1.1" 200 - 2 0.001 0.003
-2025-09-27 04:45:21,015 11788 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:45:21] "POST /web/dataset/call_kw/customer.geo/get_edit_info_for_geo_column HTTP/1.1" 200 - 8 0.003 0.008
-2025-09-27 04:45:55,024 11788 INFO ssi_odoo_demo odoo.service.server: Initiating shutdown 
-2025-09-27 04:45:55,024 11788 INFO ssi_odoo_demo odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown. 
-2025-09-27 04:45:56,115 11788 INFO ssi_odoo_demo odoo.sql_db: ConnectionPool(used=0/count=0/max=64): Closed 4 connections  
-2025-09-27 04:46:46,356 9928 INFO ? odoo: Odoo version 17.0 
-2025-09-27 04:46:46,356 9928 INFO ? odoo: Using configuration file at D:\work-project\ssi\odoo_demo\odoo\odoo.conf 
-2025-09-27 04:46:46,356 9928 INFO ? odoo: addons paths: ['D:\\work-project\\ssi\\odoo_demo\\odoo\\odoo\\addons', 'd:\\work-project\\ssi\\odoo_demo\\odoo\\data\\addons\\17.0', 'd:\\work-project\\ssi\\odoo_demo\\odoo\\addons', 'd:\\work-project\\ssi\\odoo_demo\\odoo\\custom_addons', 'd:\\work-project\\ssi\\odoo_demo\\odoo\\custom_addons\\field_service', 'd:\\work-project\\ssi\\odoo_demo\\odoo\\custom_addons\\geospatial', 'd:\\work-project\\ssi\\odoo_demo\\odoo\\odoo\\addons'] 
-2025-09-27 04:46:46,356 9928 INFO ? odoo: database: odoo@localhost:5432 
-2025-09-27 04:46:46,612 9928 INFO ? odoo.addons.base.models.ir_actions_report: Will use the Wkhtmltopdf binary at C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe 
-2025-09-27 04:46:51,674 11244 INFO ? odoo: Odoo version 17.0 
-2025-09-27 04:46:51,675 11244 INFO ? odoo: Using configuration file at D:\work-project\ssi\odoo_demo\odoo\odoo.conf 
-2025-09-27 04:46:51,675 11244 INFO ? odoo: addons paths: ['D:\\work-project\\ssi\\odoo_demo\\odoo\\odoo\\addons', 'd:\\work-project\\ssi\\odoo_demo\\odoo\\data\\addons\\17.0', 'd:\\work-project\\ssi\\odoo_demo\\odoo\\addons', 'd:\\work-project\\ssi\\odoo_demo\\odoo\\custom_addons', 'd:\\work-project\\ssi\\odoo_demo\\odoo\\custom_addons\\field_service', 'd:\\work-project\\ssi\\odoo_demo\\odoo\\custom_addons\\geospatial', 'd:\\work-project\\ssi\\odoo_demo\\odoo\\odoo\\addons'] 
-2025-09-27 04:46:51,675 11244 INFO ? odoo: database: odoo@localhost:5432 
-2025-09-27 04:46:51,916 11244 INFO ? odoo.addons.base.models.ir_actions_report: Will use the Wkhtmltopdf binary at C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe 
-2025-09-27 04:46:52,212 11244 WARNING ? odoo.service.server: 'watchdog' module not installed. Code autoreload feature is disabled 
-2025-09-27 04:46:52,212 11244 INFO ? odoo.service.server: HTTP service (werkzeug) running on LAPTOP-O0EP5QSP:8069 
-2025-09-27 04:46:52,262 11244 INFO ssi_odoo_demo odoo.modules.loading: loading 1 modules... 
-2025-09-27 04:46:52,267 11244 INFO ssi_odoo_demo odoo.modules.loading: 1 modules loaded in 0.01s, 0 queries (+0 extra) 
-2025-09-27 04:46:52,316 11244 WARNING ssi_odoo_demo odoo.modules.graph: module customer_geo: not installable, skipped 
-2025-09-27 04:46:52,341 11244 WARNING ssi_odoo_demo odoo.modules.module: Missing `license` key in manifest for 'product_master', defaulting to LGPL-3 
-2025-09-27 04:46:52,407 11244 INFO ssi_odoo_demo odoo.modules.loading: loading 77 modules... 
-2025-09-27 04:46:54,179 11244 WARNING ssi_odoo_demo odoo.api.create: The model odoo.addons.product_master.models.product_template is not overriding the create method in batch 
-2025-09-27 04:46:54,188 11244 WARNING ssi_odoo_demo odoo.api.create: The model odoo.addons.purchase_fsm_assignment_api.models.installation_checklist is not overriding the create method in batch 
-2025-09-27 04:46:54,231 11244 INFO ssi_odoo_demo odoo.modules.loading: 77 modules loaded in 1.82s, 0 queries (+0 extra) 
-2025-09-27 04:46:54,410 11244 WARNING ssi_odoo_demo py.warnings: D:\work-project\ssi\odoo_demo\odoo\odoo\fields.py:536: UserWarning: Property fsm.size.name.required should be a boolean (True).
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo-bin", line 8, in <module>
-    odoo.cli.main()
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\cli\command.py", line 67, in main
-    o.run(args)
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\cli\server.py", line 186, in run
-    main(args)
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\cli\server.py", line 179, in main
-    rc = odoo.service.server.start(preload=preload, stop=stop)
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\service\server.py", line 1469, in start
-    rc = server.run(preload, stop)
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\service\server.py", line 635, in run
-    rc = preload_registries(preload)
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\service\server.py", line 1369, in preload_registries
-    registry = Registry.new(dbname, update_module=update_module)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\lru.py", line 34, in __getitem__
+    a = self.d[obj]
+        ~~~~~~^^^^^
+KeyError: 'ssi_odoo_demo'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\cache.py", line 99, in lookup
+    r = d[key]
+        ~^^^^^
   File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
     return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 87, in locked
     return func(inst, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\lru.py", line 34, in __getitem__
+    a = self.d[obj]
+        ~~~~~~^^^^^
+KeyError: ('ir.model.data', <function IrModelData._xmlid_lookup at 0x00000151A4B33920>, 'customer_map_tracking.view_customer_map_geoengine_simple')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 429, in _tag_record
+    f_val = self.id_get(f_ref, raise_if_not_found=nodeattr2bool(rec, 'forcecreate', True))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 546, in id_get
+    res = self.model_id_get(id_str, raise_if_not_found)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 552, in model_id_get
+    return self.env['ir.model.data']._xmlid_to_res_model_res_id(id_str, raise_if_not_found=raise_if_not_found)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\addons\base\models\ir_model.py", line 2205, in _xmlid_to_res_model_res_id
+    return self._xmlid_lookup(xmlid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\cache.py", line 104, in lookup
+    value = d[key] = self.method(*args, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\addons\base\models\ir_model.py", line 2198, in _xmlid_lookup
+    raise ValueError('External ID not found in the system: %s' % xmlid)
+ValueError: External ID not found in the system: customer_map_tracking.view_customer_map_geoengine_simple
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\http.py", line 2396, in __call__
+    response = request._serve_db()
+               ^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\http.py", line 1949, in _serve_db
+    self.registry = Registry(self.db).check_signaling()
+                    ^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 89, in __new__
+    return cls.new(db_name)
+           ^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 87, in locked
+    return func(inst, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 110, in new
     odoo.modules.load_modules(registry, force_demo, status, update_module)
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 507, in load_modules
-    registry.setup_models(cr)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 481, in load_modules
+    processed_modules += load_marked_modules(env, graph,
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 366, in load_marked_modules
+    loaded, processed = load_module_graph(
+                        ^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 229, in load_module_graph
+    load_data(env, idref, mode, kind='data', package=package)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 73, in load_data
+    tools.convert_file(env, package.name, filename, idref, mode, noupdate, kind)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 635, in convert_file
+    convert_xml_import(env, module, fp, idref, mode, noupdate)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 701, in convert_xml_import
+    obj.parse(doc.getroot())
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 621, in parse
+    self._tag_root(de)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 577, in _tag_root
+    raise ParseError('while parsing %s:%s, somewhere inside\n%s' % (
+odoo.tools.convert.ParseError: while parsing file:/d:/work-project/ssi/odoo_demo/odoo/custom_addons/customer_map_tracking/views/customer_map_actions.xml:5, somewhere inside
+<record id="action_customer_map_dashboard" model="ir.actions.act_window">
+            <field name="name">Map Dashboard</field>
+            <field name="res_model">customer.map</field>
+            <field name="view_mode">geoengine,tree,form</field>
+            <field name="view_id" ref="view_customer_map_geoengine_simple"/>
+            <field name="domain">[('active', '=', True), ('shape', '!=', False)]</field>
+            <field name="context">{
+                'create': True,
+                'edit': True,
+                'delete': False
+            }</field>
+        </record>
+2025-09-27 10:02:34,541 13768 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 10:02:34] "GET /web HTTP/1.1" 500 - 193 0.088 0.242
+2025-09-27 10:02:34,578 13768 INFO ? odoo.modules.loading: loading 1 modules... 
+2025-09-27 10:02:34,586 13768 INFO ? odoo.modules.loading: 1 modules loaded in 0.01s, 0 queries (+0 extra) 
+2025-09-27 10:02:34,593 13768 INFO ? odoo.modules.loading: loading 77 modules... 
+2025-09-27 10:02:34,613 13768 INFO ? odoo.modules.loading: Loading module customer_map_tracking (28/77) 
+2025-09-27 10:02:34,696 13768 INFO ? odoo.modules.registry: module customer_map_tracking: creating or updating database tables 
+2025-09-27 10:02:34,706 13768 WARNING ? odoo.addons.base.models.ir_model: Two fields (location_display, shape) of customer.map() have the same label: Location. [Modules: customer_map_tracking and customer_map_tracking] 
+2025-09-27 10:02:34,725 13768 INFO ? odoo.modules.loading: loading customer_map_tracking/security/security.xml 
+2025-09-27 10:02:34,787 13768 INFO ? odoo.modules.loading: loading customer_map_tracking/security/ir.model.access.csv 
+2025-09-27 10:02:34,797 13768 INFO ? odoo.modules.loading: loading customer_map_tracking/views/customer_map_views.xml 
+2025-09-27 10:02:34,813 13768 WARNING ? odoo.addons.base.models.ir_ui_view: set_location_from_coordinates on customer.map has parameters and cannot be called from a button
+View error context:
+{'file': 'd:\\work-project\\ssi\\odoo_demo\\odoo\\custom_addons\\customer_map_tracking\\views\\customer_map_views.xml',
+ 'line': 59,
+ 'name': 'customer.map.form',
+ 'view': ir.ui.view(1314,),
+ 'view.model': 'customer.map',
+ 'view.parent': ir.ui.view(),
+ 'xmlid': 'view_customer_map_form'} 
+2025-09-27 10:02:34,823 13768 INFO ? odoo.modules.loading: loading customer_map_tracking/views/customer_map_geoengine_views.xml 
+2025-09-27 10:02:34,843 13768 INFO ? odoo.modules.loading: loading customer_map_tracking/views/customer_map_actions.xml 
+2025-09-27 10:02:34,847 13768 WARNING ? odoo.modules.loading: Transient module states were reset 
+2025-09-27 10:02:34,847 13768 ERROR ? odoo.modules.registry: Failed to load registry 
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 87, in __new__
+    return cls.registries[db_name]
+           ~~~~~~~~~~~~~~^^^^^^^^^
   File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
     return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 87, in locked
     return func(inst, *args, **kwargs)
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 319, in setup_models
-    model._setup_fields()
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\models.py", line 3420, in _setup_fields
-    field.setup(self)
-  File "D:\work-project\ssi\odoo_demo\odoo\odoo\fields.py", line 536, in setup
-    warnings.warn(f'Property {self}.required should be a boolean ({self.required}).')
- 
-2025-09-27 04:46:54,471 11244 ERROR ssi_odoo_demo odoo.modules.loading: Some modules are not loaded, some dependencies or manifest may be missing: ['customer_geo'] 
-2025-09-27 04:46:54,473 11244 INFO ssi_odoo_demo odoo.modules.loading: Modules loaded. 
-2025-09-27 04:46:54,478 11244 INFO ssi_odoo_demo odoo.modules.registry: Registry loaded in 2.266s 
-2025-09-27 04:46:55,208 11244 INFO ssi_odoo_demo odoo.addons.base.models.ir_http: Generating routing map for key None 
-2025-09-27 04:46:55,247 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:46:55] "GET /websocket?version=17.0-1 HTTP/1.1" 101 - 6 0.006 0.036
-2025-09-27 04:46:55,583 11244 INFO ? odoo.addons.bus.models.bus: Bus.loop listen imbus on db postgres 
-2025-09-27 04:46:56,400 11244 WARNING ? odoo.modules.module: Missing `license` key in manifest for 'stock_qr_tracking', defaulting to LGPL-3 
-2025-09-27 04:46:56,462 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:46:56] "POST /web/dataset/call_kw/customer.map/web_search_read HTTP/1.1" 200 - 3 0.002 0.654
-2025-09-27 04:46:59,215 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:46:59] "POST /web/action/load HTTP/1.1" 200 - 10 0.007 0.020
-2025-09-27 04:46:59,687 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:46:59] "POST /web/dataset/call_kw/ir.module.module/get_views HTTP/1.1" 200 - 47 0.035 0.116
-2025-09-27 04:46:59,783 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:46:59] "POST /web/dataset/call_kw/ir.module.module/search_panel_select_range HTTP/1.1" 200 - 1 0.000 0.003
-2025-09-27 04:47:00,064 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:00] "POST /web/dataset/call_kw/ir.module.module/search_panel_select_range HTTP/1.1" 200 - 39 0.017 0.037
-2025-09-27 04:47:00,466 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:00] "POST /web/dataset/call_kw/ir.module.module/web_search_read HTTP/1.1" 200 - 3 0.007 0.445
-2025-09-27 04:47:00,680 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:00] "GET /sale_management/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
-2025-09-27 04:47:00,997 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:00] "GET /project/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.004
-2025-09-27 04:47:00,997 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:00] "GET /stock/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.006
-2025-09-27 04:47:00,999 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:00] "GET /base/static/img/icons/industry_fsm.png HTTP/1.1" 200 - 0 0.000 0.006
-2025-09-27 04:47:01,000 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:01] "GET /hr_holidays/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.008
-2025-09-27 04:47:01,003 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:01] "GET /point_of_sale/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.007
-2025-09-27 04:47:01,014 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:01] "GET /mrp/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
-2025-09-27 04:47:01,318 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:01] "GET /base/static/img/icons/account_accountant.png HTTP/1.1" 200 - 0 0.000 0.004
-2025-09-27 04:47:01,321 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:01] "GET /hr_recruitment/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.006
-2025-09-27 04:47:01,321 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:01] "GET /data_recycle/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.006
-2025-09-27 04:47:01,323 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:01] "GET /base_geoengine_demo/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.009
-2025-09-27 04:47:01,329 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:01] "GET /hr_expense/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.011
-2025-09-27 04:47:01,329 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:01] "GET /mass_mailing/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.004
-2025-09-27 04:47:01,636 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:01] "GET /base/static/img/icons/knowledge.png HTTP/1.1" 200 - 0 0.000 0.004
-2025-09-27 04:47:01,638 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:01] "GET /geoengine_base_geolocalize/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.006
-2025-09-27 04:47:01,641 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:01] "GET /fieldservice/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.006
-2025-09-27 04:47:01,644 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:01] "GET /base/static/img/icons/timesheet_grid.png HTTP/1.1" 200 - 0 0.000 0.007
-2025-09-27 04:47:01,649 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:01] "GET /purchase/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.003
-2025-09-27 04:47:01,652 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:01] "GET /website_sale/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.003
-2025-09-27 04:47:02,020 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:02] "GET /pos_restaurant/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.020
-2025-09-27 04:47:02,035 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:02] "POST /web/dataset/call_kw/ir.module.module/search_panel_select_range HTTP/1.1" 200 - 38 0.017 0.017
-2025-09-27 04:47:02,045 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:02] "GET /hr/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.003
-2025-09-27 04:47:02,046 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:02] "GET /base_territory/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.005
-2025-09-27 04:47:02,050 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:02] "GET /base/static/img/icons/web_studio.png HTTP/1.1" 200 - 0 0.000 0.006
-2025-09-27 04:47:02,112 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:02] "POST /web/dataset/call_kw/ir.module.module/web_search_read HTTP/1.1" 200 - 4 0.010 0.101
-2025-09-27 04:47:02,347 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:02] "GET /account/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.005
-2025-09-27 04:47:02,360 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:02] "GET /crm/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.005
-2025-09-27 04:47:02,371 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:02] "GET /base/static/img/icons/mrp_workorder.png HTTP/1.1" 200 - 0 0.000 0.003
-2025-09-27 04:47:02,381 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:02] "GET /website/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.005
-2025-09-27 04:47:02,395 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:02] "GET /geoengine_partner/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.004
-2025-09-27 04:47:02,432 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:02] "GET /maintenance/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.001
-2025-09-27 04:47:02,675 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:02] "GET /base/static/img/icons/sign.png HTTP/1.1" 200 - 0 0.000 0.002
-2025-09-27 04:47:02,675 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:02] "GET /base/static/img/icons/helpdesk.png HTTP/1.1" 200 - 0 0.000 0.002
-2025-09-27 04:47:02,682 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:02] "GET /base/static/img/icons/sale_subscription.png HTTP/1.1" 200 - 0 0.000 0.002
-2025-09-27 04:47:02,705 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:02] "GET /base/static/img/icons/quality_control.png HTTP/1.1" 200 - 0 0.000 0.002
-2025-09-27 04:47:02,722 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:02] "GET /website_slides/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.003
-2025-09-27 04:47:02,755 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:02] "GET /base/static/img/icons/planning.png HTTP/1.1" 200 - 0 0.000 0.002
-2025-09-27 04:47:03,000 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:03] "GET /mail/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.003
-2025-09-27 04:47:03,003 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:03] "GET /website_event/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.005
-2025-09-27 04:47:03,015 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:03] "GET /contacts/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.003
-2025-09-27 04:47:03,046 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:03] "GET /base/static/img/icons/mrp_plm.png HTTP/1.1" 200 - 0 0.000 0.003
-2025-09-27 04:47:03,062 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:03] "POST /web/dataset/call_kw/ir.module.module/search_panel_select_range HTTP/1.1" 200 - 38 0.042 0.024
-2025-09-27 04:47:03,067 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:03] "GET /calendar/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.003
-2025-09-27 04:47:03,325 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:03] "POST /web/dataset/call_kw/ir.module.module/web_search_read HTTP/1.1" 200 - 3 0.003 0.016
-2025-09-27 04:47:03,331 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:03] "GET /base/static/img/icons/social.png HTTP/1.1" 200 - 0 0.000 0.003
-2025-09-27 04:47:03,332 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:03] "GET /base/static/img/icons/hr_appraisal.png HTTP/1.1" 200 - 0 0.000 0.003
-2025-09-27 04:47:03,361 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:03] "GET /fleet/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
-2025-09-27 04:47:03,376 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:03] "GET /base/static/img/icons/marketing_automation.png HTTP/1.1" 200 - 0 0.000 0.004
-2025-09-27 04:47:03,381 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:03] "GET /im_livechat/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
-2025-09-27 04:47:03,647 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:03] "GET /base/static/img/icons/appointment.png HTTP/1.1" 200 - 0 0.000 0.005
-2025-09-27 04:47:03,648 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:03] "GET /base/static/img/icons/web_mobile.png HTTP/1.1" 200 - 0 0.000 0.004
-2025-09-27 04:47:03,649 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:03] "GET /survey/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.005
-2025-09-27 04:47:03,672 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:03] "GET /repair/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
-2025-09-27 04:47:03,697 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:03] "GET /account/static/description/l10n.png HTTP/1.1" 200 - 0 0.000 0.005
-2025-09-27 04:47:03,699 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:03] "GET /hr_attendance/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.003
-2025-09-27 04:47:03,969 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:03] "GET /base/static/img/icons/stock_barcode.png HTTP/1.1" 200 - 0 0.000 0.004
-2025-09-27 04:47:03,969 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:03] "GET /mass_mailing_sms/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.004
-2025-09-27 04:47:03,971 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:03] "GET /project_todo/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.004
-2025-09-27 04:47:03,978 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:03] "GET /hr_skills/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.003
-2025-09-27 04:47:04,006 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:04] "GET /base/static/img/icons/voip.png HTTP/1.1" 200 - 0 0.000 0.003
-2025-09-27 04:47:04,006 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:04] "GET /lunch/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
-2025-09-27 04:47:04,297 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:04] "GET /base/static/img/icons/sale_amazon.png HTTP/1.1" 200 - 0 0.000 0.003
-2025-09-27 04:47:04,301 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:04] "GET /hr_contract/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.003
-2025-09-27 04:47:04,302 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:04] "GET /website_hr_recruitment/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.007
-2025-09-27 04:47:04,303 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:04] "GET /base/static/img/icons/sale_ebay.png HTTP/1.1" 200 - 0 0.000 0.007
-2025-09-27 04:47:04,321 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:04] "GET /base/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
-2025-09-27 04:47:07,458 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:07] "POST /web/dataset/call_kw/ir.module.module/search_panel_select_range HTTP/1.1" 200 - 38 0.017 0.018
-2025-09-27 04:47:07,501 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:07] "POST /web/dataset/call_kw/ir.module.module/web_search_read HTTP/1.1" 200 - 4 0.005 0.072
-2025-09-27 04:47:09,948 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:09] "POST /web/dataset/call_kw/ir.module.module/search_panel_select_range HTTP/1.1" 200 - 38 0.045 0.019
-2025-09-27 04:47:10,297 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:10] "POST /web/dataset/call_kw/ir.module.module/web_search_read HTTP/1.1" 200 - 3 0.005 0.023
-2025-09-27 04:47:10,522 11244 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:10] "GET /website_customer/static/description/icon.png HTTP/1.1" 200 - 0 0.000 0.002
-2025-09-27 04:47:17,300 11244 INFO ssi_odoo_demo odoo.addons.base.models.ir_module: ALLOW access to module.button_uninstall_wizard on ['Customer Geo (Odoo 17)'] to user __system__ #1 via 127.0.0.1 
-2025-09-27 04:47:17,300 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:17] "POST /web/dataset/call_button HTTP/1.1" 200 - 3 0.001 0.004
-2025-09-27 04:47:17,645 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:17] "POST /web/dataset/call_kw/base.module.uninstall/get_views HTTP/1.1" 200 - 10 0.007 0.018
-2025-09-27 04:47:17,899 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:17] "POST /web/dataset/call_kw/base.module.uninstall/onchange HTTP/1.1" 200 - 8 0.011 0.011
-2025-09-27 04:47:19,627 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:19] "POST /web/dataset/call_kw/base.module.uninstall/web_save HTTP/1.1" 200 - 9 0.010 0.012
-2025-09-27 04:47:19,953 11244 INFO ssi_odoo_demo odoo.addons.base.models.ir_module: ALLOW access to module.button_immediate_uninstall on ['Customer Geo (Odoo 17)'] to user __system__ #1 via 127.0.0.1 
-2025-09-27 04:47:19,953 11244 INFO ssi_odoo_demo odoo.addons.base.models.ir_module: User #1 triggered module uninstallation 
-2025-09-27 04:47:19,956 11244 INFO ssi_odoo_demo odoo.addons.base.models.ir_module: ALLOW access to module.button_uninstall on ['Customer Geo (Odoo 17)'] to user __system__ #1 via 127.0.0.1 
-2025-09-27 04:47:19,999 11244 INFO ssi_odoo_demo odoo.modules.loading: loading 1 modules... 
-2025-09-27 04:47:20,006 11244 INFO ssi_odoo_demo odoo.modules.loading: 1 modules loaded in 0.01s, 0 queries (+0 extra) 
-2025-09-27 04:47:20,034 11244 INFO ssi_odoo_demo odoo.modules.loading: updating modules list 
-2025-09-27 04:47:20,039 11244 INFO ssi_odoo_demo odoo.addons.base.models.ir_module: ALLOW access to module.update_list on [] to user __system__ #1 via 127.0.0.1 
-2025-09-27 04:47:20,755 11244 WARNING ssi_odoo_demo odoo.modules.graph: module customer_geo: not installable, skipped 
-2025-09-27 04:47:20,761 11244 INFO ssi_odoo_demo odoo.modules.loading: loading 77 modules... 
-2025-09-27 04:47:20,821 11244 INFO ssi_odoo_demo odoo.modules.loading: 77 modules loaded in 0.06s, 0 queries (+0 extra) 
-2025-09-27 04:47:21,139 11244 INFO ssi_odoo_demo odoo.addons.base.models.ir_module: ALLOW access to module.module_uninstall on ['Customer Geo (Odoo 17)'] to user __system__ #1 via 127.0.0.1 
-2025-09-27 04:47:21,142 11244 INFO ssi_odoo_demo odoo.addons.base.models.ir_model: Deleting ir.ui.menu(440,) 
-2025-09-27 04:47:21,178 11244 INFO ssi_odoo_demo odoo.models.unlink: User #1 deleted ir.model.data records with IDs: [39657] 
-2025-09-27 04:47:21,178 11244 INFO ssi_odoo_demo odoo.models.unlink: User #1 deleted ir.ui.menu records with IDs: [440] 
-2025-09-27 04:47:21,179 11244 INFO ssi_odoo_demo odoo.addons.base.models.ir_model: Deleting ir.actions.act_window(497,) 
-2025-09-27 04:47:21,220 11244 INFO ssi_odoo_demo odoo.models.unlink: User #1 deleted ir.model.data records with IDs: [39656] 
-2025-09-27 04:47:21,220 11244 INFO ssi_odoo_demo odoo.models.unlink: User #1 deleted ir.actions.act_window records with IDs: [497] 
-2025-09-27 04:47:21,221 11244 INFO ssi_odoo_demo odoo.addons.base.models.ir_model: Deleting geoengine.raster.layer(7,) 
-2025-09-27 04:47:21,231 11244 INFO ssi_odoo_demo odoo.models.unlink: User #1 deleted ir.model.data records with IDs: [39655] 
-2025-09-27 04:47:21,231 11244 INFO ssi_odoo_demo odoo.models.unlink: User #1 deleted geoengine.raster.layer records with IDs: [7] 
-2025-09-27 04:47:21,232 11244 INFO ssi_odoo_demo odoo.addons.base.models.ir_model: Deleting geoengine.vector.layer(9,) 
-2025-09-27 04:47:21,239 11244 INFO ssi_odoo_demo odoo.models.unlink: User #1 deleted ir.model.data records with IDs: [39654] 
-2025-09-27 04:47:21,242 11244 INFO ssi_odoo_demo odoo.models.unlink: User #1 deleted geoengine.vector.layer records with IDs: [9] 
-2025-09-27 04:47:21,243 11244 INFO ssi_odoo_demo odoo.addons.base.models.ir_model: Deleting ir.ui.view(1325,) 
-2025-09-27 04:47:21,264 11244 INFO ssi_odoo_demo odoo.models.unlink: User #1 deleted ir.model.data records with IDs: [39653] 
-2025-09-27 04:47:21,264 11244 INFO ssi_odoo_demo odoo.models.unlink: User #1 deleted ir.ui.view records with IDs: [1325] 
-2025-09-27 04:47:21,265 11244 INFO ssi_odoo_demo odoo.addons.base.models.ir_model: Deleting ir.ui.menu(439, 438) 
-2025-09-27 04:47:21,275 11244 INFO ssi_odoo_demo odoo.models.unlink: User #1 deleted ir.model.data records with IDs: [39652, 39651] 
-2025-09-27 04:47:21,275 11244 INFO ssi_odoo_demo odoo.models.unlink: User #1 deleted ir.ui.menu records with IDs: [439, 438] 
-2025-09-27 04:47:21,275 11244 INFO ssi_odoo_demo odoo.addons.base.models.ir_model: Deleting ir.actions.act_window(496,) 
-2025-09-27 04:47:21,283 11244 INFO ssi_odoo_demo odoo.models.unlink: User #1 deleted ir.model.data records with IDs: [39650] 
-2025-09-27 04:47:21,283 11244 INFO ssi_odoo_demo odoo.models.unlink: User #1 deleted ir.actions.act_window records with IDs: [496] 
-2025-09-27 04:47:21,283 11244 INFO ssi_odoo_demo odoo.addons.base.models.ir_model: Deleting ir.ui.view(1324, 1323) 
-2025-09-27 04:47:21,291 11244 INFO ssi_odoo_demo odoo.models.unlink: User #1 deleted ir.model.data records with IDs: [39649, 39648] 
-2025-09-27 04:47:21,291 11244 INFO ssi_odoo_demo odoo.models.unlink: User #1 deleted ir.ui.view records with IDs: [1324, 1323] 
-2025-09-27 04:47:21,292 11244 INFO ssi_odoo_demo odoo.addons.base.models.ir_model: Deleting ir.model.access(851,) 
-2025-09-27 04:47:21,299 11244 INFO ssi_odoo_demo odoo.models.unlink: User #1 deleted ir.model.data records with IDs: [39647] 
-2025-09-27 04:47:21,299 11244 INFO ssi_odoo_demo odoo.models.unlink: User #1 deleted ir.model.access records with IDs: [851] 
-2025-09-27 04:47:21,299 11244 INFO ssi_odoo_demo odoo.addons.base.models.ir_model: Deleting ir.model.fields(9360, 9359, 9358, 9357, 9356, 9354, 9353, 9352, 9351, 9350, 9349) 
-2025-09-27 04:47:21,364 11244 INFO ssi_odoo_demo odoo.models.unlink: User #1 deleted ir.model.data records with IDs: [39644, 39643, 39642, 39637, 39639, 39640, 39635, 39636, 39638, 39646, 39645] 
-2025-09-27 04:47:21,364 11244 INFO ssi_odoo_demo odoo.models.unlink: User #1 deleted ir.model.fields records with IDs: [9360, 9359, 9358, 9357, 9356, 9354, 9353, 9352, 9351, 9350, 9349] 
-2025-09-27 04:47:21,368 11244 INFO ssi_odoo_demo odoo.addons.base.models.ir_model: Deleting ir.model(699,) 
-2025-09-27 04:47:21,384 11244 INFO ssi_odoo_demo odoo.addons.base.models.ir_model: The model customer.geo could not be dropped because it did not exist in the registry. 
-2025-09-27 04:47:21,409 11244 INFO ssi_odoo_demo odoo.models.unlink: User #1 deleted ir.model.data records with IDs: [39634] 
-2025-09-27 04:47:21,409 11244 INFO ssi_odoo_demo odoo.models.unlink: User #1 deleted ir.model records with IDs: [699] 
-2025-09-27 04:47:21,409 11244 INFO ssi_odoo_demo odoo.addons.base.models.ir_model: ir.model.data could not be deleted ([]) 
-2025-09-27 04:47:21,409 11244 INFO ssi_odoo_demo odoo.models.unlink: User #1 deleted ir.model.data records with IDs: [39657, 39656, 39655, 39654, 39653, 39652, 39651, 39650, 39649, 39648, 39647, 39646, 39645, 39644, 39643, 39642, 39641, 39640, 39639, 39638, 39637, 39636, 39635, 39634] 
-2025-09-27 04:47:21,409 11244 INFO ssi_odoo_demo odoo.modules.loading: Reloading registry once more after uninstalling modules 
-2025-09-27 04:47:21,474 11244 INFO ssi_odoo_demo odoo.modules.loading: loading 1 modules... 
-2025-09-27 04:47:21,481 11244 INFO ssi_odoo_demo odoo.modules.loading: 1 modules loaded in 0.01s, 0 queries (+0 extra) 
-2025-09-27 04:47:21,508 11244 INFO ssi_odoo_demo odoo.modules.loading: updating modules list 
-2025-09-27 04:47:21,511 11244 INFO ssi_odoo_demo odoo.addons.base.models.ir_module: ALLOW access to module.update_list on [] to user __system__ #1 via 127.0.0.1 
-2025-09-27 04:47:22,171 11244 INFO ssi_odoo_demo odoo.modules.loading: loading 77 modules... 
-2025-09-27 04:47:22,225 11244 INFO ssi_odoo_demo odoo.modules.loading: 77 modules loaded in 0.05s, 0 queries (+0 extra) 
-2025-09-27 04:47:23,342 11244 INFO ssi_odoo_demo odoo.modules.loading: Modules loaded. 
-2025-09-27 04:47:23,360 11244 INFO ssi_odoo_demo odoo.modules.registry: Registry loaded in 1.950s 
-2025-09-27 04:47:23,364 11244 INFO ssi_odoo_demo odoo.modules.registry: Registry loaded in 3.382s 
-2025-09-27 04:47:23,365 11244 INFO ssi_odoo_demo odoo.addons.base.models.ir_module: getting next ir.actions.todo() 
-2025-09-27 04:47:23,368 11244 INFO ssi_odoo_demo odoo.modules.registry: Registry changed, signaling through the database 
-2025-09-27 04:47:23,368 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:23] "POST /web/dataset/call_button HTTP/1.1" 200 - 4183 1.559 1.863
-2025-09-27 04:47:23,386 11244 INFO ssi_odoo_demo odoo.addons.base.models.ir_http: Generating routing map for key None 
-2025-09-27 04:47:23,680 11244 WARNING ssi_odoo_demo odoo.modules.module: Missing `license` key in manifest for 'product_master', defaulting to LGPL-3 
-2025-09-27 04:47:24,163 11244 WARNING ssi_odoo_demo odoo.addons.base.models.ir_qweb: Found deprecated directive @t-esc="title or 'Odoo'" in template 180. Replace by @t-out 
-2025-09-27 04:47:24,164 11244 WARNING ssi_odoo_demo odoo.addons.base.models.ir_qweb: Found deprecated directive @t-esc='request.csrf_token(None)' in template 180. Replace by @t-out 
-2025-09-27 04:47:24,164 11244 WARNING ssi_odoo_demo odoo.addons.base.models.ir_qweb: Found deprecated directive @t-esc='debug' in template 180. Replace by @t-out 
-2025-09-27 04:47:24,170 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:24] "GET /web HTTP/1.1" 200 - 81 0.051 0.735
-2025-09-27 04:47:24,290 11244 WARNING ssi_odoo_demo odoo.addons.base.models.ir_qweb: Found deprecated directive @t-esc="title or 'Odoo'" in template 181. Replace by @t-out 
-2025-09-27 04:47:24,293 11244 WARNING ssi_odoo_demo odoo.addons.base.models.ir_qweb: Found deprecated directive @t-esc='request.csrf_token(None)' in template 181. Replace by @t-out 
-2025-09-27 04:47:24,293 11244 WARNING ssi_odoo_demo odoo.addons.base.models.ir_qweb: Found deprecated directive @t-esc='debug' in template 181. Replace by @t-out 
-2025-09-27 04:47:24,566 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:24] "GET /web/webclient/load_menus/3210ce05a3fc77aa60807a750e7928ffddb8c320389f0ca06529419791760a9a HTTP/1.1" 200 - 2 0.001 0.007
-2025-09-27 04:47:24,566 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:24] "GET /web/webclient/translations/b9f4aad917813e4ef558736f259f63bb29f38d63?lang=en_US HTTP/1.1" 200 - 2 0.002 0.005
-2025-09-27 04:47:24,697 11244 WARNING ssi_odoo_demo odoo.addons.base.models.ir_qweb: Found deprecated directive @t-esc="user_id.name[:23] + '...' if user_id.name and len(user_id.name) > 25 else user_id.name" in template 539. Replace by @t-out 
-2025-09-27 04:47:24,724 11244 WARNING ssi_odoo_demo odoo.addons.base.models.ir_qweb: Found deprecated directive @t-esc="active_lang[2].split('/').pop()" in template 538. Replace by @t-out 
-2025-09-27 04:47:24,726 11244 WARNING ssi_odoo_demo odoo.addons.base.models.ir_qweb: Found deprecated directive @t-esc="active_lang[1].split('_').pop(0).upper()" in template 538. Replace by @t-out 
-2025-09-27 04:47:24,732 11244 WARNING ssi_odoo_demo odoo.addons.base.models.ir_qweb: Found deprecated directive @t-esc="lg[2].split('/').pop()" in template 538. Replace by @t-out 
-2025-09-27 04:47:24,733 11244 WARNING ssi_odoo_demo odoo.addons.base.models.ir_qweb: Found deprecated directive @t-esc="lg[1].split('_').pop(0).upper()" in template 538. Replace by @t-out 
-2025-09-27 04:47:24,765 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:24] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 - 79 0.041 0.506
-2025-09-27 04:47:24,855 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:24] "POST /mail/init_messaging HTTP/1.1" 200 - 36 0.018 0.015
-2025-09-27 04:47:24,896 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:24] "POST /web/dataset/call_kw/res.users/systray_get_activities HTTP/1.1" 200 - 6 0.004 0.007
-2025-09-27 04:47:24,908 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:24] "POST /web/action/load HTTP/1.1" 200 - 6 0.003 0.007
-2025-09-27 04:47:24,977 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:24] "GET /web/image?model=res.users&field=avatar_128&id=1 HTTP/1.1" 304 - 7 0.005 0.010
-2025-09-27 04:47:25,012 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:25] "POST /mail/load_message_failures HTTP/1.1" 200 - 3 0.002 0.009
-2025-09-27 04:47:25,087 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:25] "POST /mail/inbox/messages HTTP/1.1" 200 - 4 0.002 0.004
-2025-09-27 04:47:25,185 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:25] "GET /web/manifest.webmanifest HTTP/1.1" 200 - 8 0.004 0.006
-2025-09-27 04:47:25,275 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:25] "GET /bus/websocket_worker_bundle?v=17.0-1 HTTP/1.1" 304 - 4 0.004 0.002
-2025-09-27 04:47:25,599 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:25] "GET /websocket?version=17.0-1 HTTP/1.1" 101 - 1 0.001 0.003
-2025-09-27 04:47:26,895 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:26] "GET /web/service-worker.js HTTP/1.1" 200 - 1 0.002 0.002
-2025-09-27 04:47:29,745 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:29] "POST /web/action/load HTTP/1.1" 200 - 8 0.001 0.010
-2025-09-27 04:47:30,093 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:30] "POST /web/dataset/call_kw/customer.map/get_views HTTP/1.1" 200 - 14 0.005 0.017
-2025-09-27 04:47:30,338 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:30] "POST /web/dataset/call_kw/customer.map/web_search_read HTTP/1.1" 200 - 2 0.001 0.003
-2025-09-27 04:47:30,416 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:30] "POST /web/dataset/call_kw/res.users/has_group HTTP/1.1" 200 - 2 0.000 0.003
-2025-09-27 04:47:40,439 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:40] "POST /web/dataset/call_kw/customer.map/web_read HTTP/1.1" 200 - 2 0.001 0.004
-2025-09-27 04:47:54,542 11244 INFO ssi_odoo_demo odoo.addons.base.models.ir_cron: Starting job `Base: Auto-vacuum internal data`. 
-2025-09-27 04:47:54,587 11244 INFO ssi_odoo_demo odoo.addons.base.models.ir_attachment: filestore gc 0 checked, 0 removed 
-2025-09-27 04:47:54,651 11244 INFO ssi_odoo_demo odoo.addons.base.models.res_users: GC'd 0 user log entries 
-2025-09-27 04:47:54,677 11244 INFO ssi_odoo_demo odoo.addons.auth_totp.models.auth_totp: GC'd 0 totp devices entries 
-2025-09-27 04:47:54,701 11244 INFO ssi_odoo_demo odoo.models.unlink: User #1 deleted bus.bus records with IDs: [261, 262, 263, 264, 265] 
-2025-09-27 04:47:54,811 11244 INFO ssi_odoo_demo odoo.addons.sms.models.sms_sms: GC'd 0 sms marked for deletion 
-2025-09-27 04:47:54,940 11244 INFO ssi_odoo_demo odoo.addons.base.models.ir_cron: Job done: `Base: Auto-vacuum internal data` (0.397s). 
-2025-09-27 04:47:57,972 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:57] "POST /web/action/load HTTP/1.1" 200 - 9 0.003 0.010
-2025-09-27 04:47:58,436 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:58] "POST /web/dataset/call_kw/fsm.order/get_views HTTP/1.1" 200 - 67 0.029 0.179
-2025-09-27 04:47:58,455 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:58] "POST /web/dataset/call_kw/fsm.order/web_read_group HTTP/1.1" 200 - 4 0.008 0.002
-2025-09-27 04:47:58,794 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:58] "POST /web/dataset/call_kw/fsm.order/web_search_read HTTP/1.1" 200 - 7 0.017 0.012
-2025-09-27 04:47:58,802 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:58] "POST /web/dataset/call_kw/fsm.order/web_search_read HTTP/1.1" 200 - 7 0.023 0.013
-2025-09-27 04:47:59,060 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:47:59] "GET /web/image/fsm.person/5/avatar_128 HTTP/1.1" 200 - 6 0.002 0.019
-2025-09-27 04:48:02,143 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:48:02] "POST /web/action/load HTTP/1.1" 200 - 10 0.005 0.009
-2025-09-27 04:48:02,648 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:48:02] "POST /web/dataset/call_kw/fsm.location/get_views HTTP/1.1" 200 - 49 0.018 0.166
-2025-09-27 04:48:02,742 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:48:02] "POST /web/dataset/call_kw/fsm.location/web_search_read HTTP/1.1" 200 - 5 0.008 0.005
-2025-09-27 04:48:04,050 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:48:04] "POST /web/dataset/call_kw/fsm.location/web_read HTTP/1.1" 200 - 18 0.028 0.016
-2025-09-27 04:48:04,421 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:48:04] "POST /web/dataset/call_kw/fsm.stage/search_read HTTP/1.1" 200 - 2 0.000 0.005
-2025-09-27 04:48:04,492 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:48:04] "GET /web/bundle/web_editor.backend_assets_wysiwyg?lang=en_US&debug=1 HTTP/1.1" 200 - 7 0.000 0.068
-2025-09-27 04:48:04,678 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:48:04] "GET /web/assets/9e6b13d/web_editor.backend_assets_wysiwyg.min.css HTTP/1.1" 200 - 3 0.004 0.023
-2025-09-27 04:48:04,923 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:48:04] "GET /web/assets/654c10b/web_editor.backend_assets_wysiwyg.min.js HTTP/1.1" 200 - 3 0.001 0.122
-2025-09-27 04:48:05,024 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:48:05] "POST /web/dataset/call_kw/ir.ui.view/render_public_asset HTTP/1.1" 200 - 9 0.006 0.035
-2025-09-27 04:48:05,500 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:48:05] "POST /mail/thread/data HTTP/1.1" 200 - 12 0.025 0.043
-2025-09-27 04:48:05,572 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:48:05] "POST /mail/thread/messages HTTP/1.1" 200 - 19 0.029 0.027
-2025-09-27 04:48:05,945 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:48:05] "GET /web/image?field=avatar_128&id=2&model=res.partner&unique=2025-09-25%2014%3A02%3A14 HTTP/1.1" 200 - 6 0.003 0.011
-2025-09-27 04:48:07,481 11244 INFO ssi_odoo_demo werkzeug: 127.0.0.1 - - [27/Sep/2025 04:48:07] "POST /web/dataset/call_kw/fsm.location/get_edit_info_for_geo_column HTTP/1.1" 200 - 8 0.003 0.008
-2025-09-27 04:49:36,785 11244 INFO ssi_odoo_demo odoo.service.server: Initiating shutdown 
-2025-09-27 04:49:36,785 11244 INFO ssi_odoo_demo odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown. 
-2025-09-27 04:49:37,183 11244 INFO ssi_odoo_demo odoo.sql_db: ConnectionPool(used=0/count=0/max=64): Closed 5 connections  
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\lru.py", line 34, in __getitem__
+    a = self.d[obj]
+        ~~~~~~^^^^^
+KeyError: 'ssi_odoo_demo'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\cache.py", line 99, in lookup
+    r = d[key]
+        ~^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 87, in locked
+    return func(inst, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\lru.py", line 34, in __getitem__
+    a = self.d[obj]
+        ~~~~~~^^^^^
+KeyError: ('ir.model.data', <function IrModelData._xmlid_lookup at 0x00000151A4B33920>, 'customer_map_tracking.view_customer_map_geoengine_simple')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 429, in _tag_record
+    f_val = self.id_get(f_ref, raise_if_not_found=nodeattr2bool(rec, 'forcecreate', True))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 546, in id_get
+    res = self.model_id_get(id_str, raise_if_not_found)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 552, in model_id_get
+    return self.env['ir.model.data']._xmlid_to_res_model_res_id(id_str, raise_if_not_found=raise_if_not_found)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\addons\base\models\ir_model.py", line 2205, in _xmlid_to_res_model_res_id
+    return self._xmlid_lookup(xmlid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\cache.py", line 104, in lookup
+    value = d[key] = self.method(*args, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\addons\base\models\ir_model.py", line 2198, in _xmlid_lookup
+    raise ValueError('External ID not found in the system: %s' % xmlid)
+ValueError: External ID not found in the system: customer_map_tracking.view_customer_map_geoengine_simple
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 110, in new
+    odoo.modules.load_modules(registry, force_demo, status, update_module)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 481, in load_modules
+    processed_modules += load_marked_modules(env, graph,
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 366, in load_marked_modules
+    loaded, processed = load_module_graph(
+                        ^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 229, in load_module_graph
+    load_data(env, idref, mode, kind='data', package=package)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 73, in load_data
+    tools.convert_file(env, package.name, filename, idref, mode, noupdate, kind)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 635, in convert_file
+    convert_xml_import(env, module, fp, idref, mode, noupdate)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 701, in convert_xml_import
+    obj.parse(doc.getroot())
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 621, in parse
+    self._tag_root(de)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 577, in _tag_root
+    raise ParseError('while parsing %s:%s, somewhere inside\n%s' % (
+odoo.tools.convert.ParseError: while parsing file:/d:/work-project/ssi/odoo_demo/odoo/custom_addons/customer_map_tracking/views/customer_map_actions.xml:5, somewhere inside
+<record id="action_customer_map_dashboard" model="ir.actions.act_window">
+            <field name="name">Map Dashboard</field>
+            <field name="res_model">customer.map</field>
+            <field name="view_mode">geoengine,tree,form</field>
+            <field name="view_id" ref="view_customer_map_geoengine_simple"/>
+            <field name="domain">[('active', '=', True), ('shape', '!=', False)]</field>
+            <field name="context">{
+                'create': True,
+                'edit': True,
+                'delete': False
+            }</field>
+        </record>
+2025-09-27 10:02:34,847 13768 ERROR ? odoo.http: Exception during request handling. 
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 87, in __new__
+    return cls.registries[db_name]
+           ~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 87, in locked
+    return func(inst, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\lru.py", line 34, in __getitem__
+    a = self.d[obj]
+        ~~~~~~^^^^^
+KeyError: 'ssi_odoo_demo'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\cache.py", line 99, in lookup
+    r = d[key]
+        ~^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 87, in locked
+    return func(inst, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\lru.py", line 34, in __getitem__
+    a = self.d[obj]
+        ~~~~~~^^^^^
+KeyError: ('ir.model.data', <function IrModelData._xmlid_lookup at 0x00000151A4B33920>, 'customer_map_tracking.view_customer_map_geoengine_simple')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 429, in _tag_record
+    f_val = self.id_get(f_ref, raise_if_not_found=nodeattr2bool(rec, 'forcecreate', True))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 546, in id_get
+    res = self.model_id_get(id_str, raise_if_not_found)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 552, in model_id_get
+    return self.env['ir.model.data']._xmlid_to_res_model_res_id(id_str, raise_if_not_found=raise_if_not_found)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\addons\base\models\ir_model.py", line 2205, in _xmlid_to_res_model_res_id
+    return self._xmlid_lookup(xmlid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\cache.py", line 104, in lookup
+    value = d[key] = self.method(*args, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\addons\base\models\ir_model.py", line 2198, in _xmlid_lookup
+    raise ValueError('External ID not found in the system: %s' % xmlid)
+ValueError: External ID not found in the system: customer_map_tracking.view_customer_map_geoengine_simple
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\http.py", line 2396, in __call__
+    response = request._serve_db()
+               ^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\http.py", line 1949, in _serve_db
+    self.registry = Registry(self.db).check_signaling()
+                    ^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 89, in __new__
+    return cls.new(db_name)
+           ^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 87, in locked
+    return func(inst, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 110, in new
+    odoo.modules.load_modules(registry, force_demo, status, update_module)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 481, in load_modules
+    processed_modules += load_marked_modules(env, graph,
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 366, in load_marked_modules
+    loaded, processed = load_module_graph(
+                        ^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 229, in load_module_graph
+    load_data(env, idref, mode, kind='data', package=package)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 73, in load_data
+    tools.convert_file(env, package.name, filename, idref, mode, noupdate, kind)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 635, in convert_file
+    convert_xml_import(env, module, fp, idref, mode, noupdate)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 701, in convert_xml_import
+    obj.parse(doc.getroot())
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 621, in parse
+    self._tag_root(de)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 577, in _tag_root
+    raise ParseError('while parsing %s:%s, somewhere inside\n%s' % (
+odoo.tools.convert.ParseError: while parsing file:/d:/work-project/ssi/odoo_demo/odoo/custom_addons/customer_map_tracking/views/customer_map_actions.xml:5, somewhere inside
+<record id="action_customer_map_dashboard" model="ir.actions.act_window">
+            <field name="name">Map Dashboard</field>
+            <field name="res_model">customer.map</field>
+            <field name="view_mode">geoengine,tree,form</field>
+            <field name="view_id" ref="view_customer_map_geoengine_simple"/>
+            <field name="domain">[('active', '=', True), ('shape', '!=', False)]</field>
+            <field name="context">{
+                'create': True,
+                'edit': True,
+                'delete': False
+            }</field>
+        </record>
+2025-09-27 10:02:34,847 13768 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 10:02:34] "GET /favicon.ico HTTP/1.1" 500 - 193 0.102 0.176
+2025-09-27 10:02:34,923 13768 INFO ? odoo.modules.loading: loading 1 modules... 
+2025-09-27 10:02:34,928 13768 INFO ? odoo.modules.loading: 1 modules loaded in 0.00s, 0 queries (+0 extra) 
+2025-09-27 10:02:34,941 13768 INFO ? odoo.modules.loading: loading 77 modules... 
+2025-09-27 10:02:34,960 13768 INFO ? odoo.modules.loading: Loading module customer_map_tracking (28/77) 
+2025-09-27 10:02:35,030 13768 INFO ? odoo.modules.registry: module customer_map_tracking: creating or updating database tables 
+2025-09-27 10:02:35,038 13768 WARNING ? odoo.addons.base.models.ir_model: Two fields (location_display, shape) of customer.map() have the same label: Location. [Modules: customer_map_tracking and customer_map_tracking] 
+2025-09-27 10:02:35,055 13768 INFO ? odoo.modules.loading: loading customer_map_tracking/security/security.xml 
+2025-09-27 10:02:35,114 13768 INFO ? odoo.modules.loading: loading customer_map_tracking/security/ir.model.access.csv 
+2025-09-27 10:02:35,124 13768 INFO ? odoo.modules.loading: loading customer_map_tracking/views/customer_map_views.xml 
+2025-09-27 10:02:35,137 13768 WARNING ? odoo.addons.base.models.ir_ui_view: set_location_from_coordinates on customer.map has parameters and cannot be called from a button
+View error context:
+{'file': 'd:\\work-project\\ssi\\odoo_demo\\odoo\\custom_addons\\customer_map_tracking\\views\\customer_map_views.xml',
+ 'line': 59,
+ 'name': 'customer.map.form',
+ 'view': ir.ui.view(1314,),
+ 'view.model': 'customer.map',
+ 'view.parent': ir.ui.view(),
+ 'xmlid': 'view_customer_map_form'} 
+2025-09-27 10:02:35,147 13768 INFO ? odoo.modules.loading: loading customer_map_tracking/views/customer_map_geoengine_views.xml 
+2025-09-27 10:02:35,167 13768 INFO ? odoo.modules.loading: loading customer_map_tracking/views/customer_map_actions.xml 
+2025-09-27 10:02:35,172 13768 WARNING ? odoo.modules.loading: Transient module states were reset 
+2025-09-27 10:02:35,172 13768 ERROR ? odoo.modules.registry: Failed to load registry 
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 87, in __new__
+    return cls.registries[db_name]
+           ~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 87, in locked
+    return func(inst, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\lru.py", line 34, in __getitem__
+    a = self.d[obj]
+        ~~~~~~^^^^^
+KeyError: 'ssi_odoo_demo'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\cache.py", line 99, in lookup
+    r = d[key]
+        ~^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 87, in locked
+    return func(inst, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\lru.py", line 34, in __getitem__
+    a = self.d[obj]
+        ~~~~~~^^^^^
+KeyError: ('ir.model.data', <function IrModelData._xmlid_lookup at 0x00000151A4B33920>, 'customer_map_tracking.view_customer_map_geoengine_simple')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 429, in _tag_record
+    f_val = self.id_get(f_ref, raise_if_not_found=nodeattr2bool(rec, 'forcecreate', True))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 546, in id_get
+    res = self.model_id_get(id_str, raise_if_not_found)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 552, in model_id_get
+    return self.env['ir.model.data']._xmlid_to_res_model_res_id(id_str, raise_if_not_found=raise_if_not_found)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\addons\base\models\ir_model.py", line 2205, in _xmlid_to_res_model_res_id
+    return self._xmlid_lookup(xmlid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\cache.py", line 104, in lookup
+    value = d[key] = self.method(*args, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\addons\base\models\ir_model.py", line 2198, in _xmlid_lookup
+    raise ValueError('External ID not found in the system: %s' % xmlid)
+ValueError: External ID not found in the system: customer_map_tracking.view_customer_map_geoengine_simple
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 110, in new
+    odoo.modules.load_modules(registry, force_demo, status, update_module)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 481, in load_modules
+    processed_modules += load_marked_modules(env, graph,
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 366, in load_marked_modules
+    loaded, processed = load_module_graph(
+                        ^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 229, in load_module_graph
+    load_data(env, idref, mode, kind='data', package=package)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 73, in load_data
+    tools.convert_file(env, package.name, filename, idref, mode, noupdate, kind)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 635, in convert_file
+    convert_xml_import(env, module, fp, idref, mode, noupdate)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 701, in convert_xml_import
+    obj.parse(doc.getroot())
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 621, in parse
+    self._tag_root(de)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 577, in _tag_root
+    raise ParseError('while parsing %s:%s, somewhere inside\n%s' % (
+odoo.tools.convert.ParseError: while parsing file:/d:/work-project/ssi/odoo_demo/odoo/custom_addons/customer_map_tracking/views/customer_map_actions.xml:5, somewhere inside
+<record id="action_customer_map_dashboard" model="ir.actions.act_window">
+            <field name="name">Map Dashboard</field>
+            <field name="res_model">customer.map</field>
+            <field name="view_mode">geoengine,tree,form</field>
+            <field name="view_id" ref="view_customer_map_geoengine_simple"/>
+            <field name="domain">[('active', '=', True), ('shape', '!=', False)]</field>
+            <field name="context">{
+                'create': True,
+                'edit': True,
+                'delete': False
+            }</field>
+        </record>
+2025-09-27 10:02:35,174 13768 ERROR ? odoo.http: Exception during request handling. 
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 87, in __new__
+    return cls.registries[db_name]
+           ~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 87, in locked
+    return func(inst, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\lru.py", line 34, in __getitem__
+    a = self.d[obj]
+        ~~~~~~^^^^^
+KeyError: 'ssi_odoo_demo'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\cache.py", line 99, in lookup
+    r = d[key]
+        ~^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 87, in locked
+    return func(inst, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\lru.py", line 34, in __getitem__
+    a = self.d[obj]
+        ~~~~~~^^^^^
+KeyError: ('ir.model.data', <function IrModelData._xmlid_lookup at 0x00000151A4B33920>, 'customer_map_tracking.view_customer_map_geoengine_simple')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 429, in _tag_record
+    f_val = self.id_get(f_ref, raise_if_not_found=nodeattr2bool(rec, 'forcecreate', True))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 546, in id_get
+    res = self.model_id_get(id_str, raise_if_not_found)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 552, in model_id_get
+    return self.env['ir.model.data']._xmlid_to_res_model_res_id(id_str, raise_if_not_found=raise_if_not_found)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\addons\base\models\ir_model.py", line 2205, in _xmlid_to_res_model_res_id
+    return self._xmlid_lookup(xmlid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\cache.py", line 104, in lookup
+    value = d[key] = self.method(*args, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\addons\base\models\ir_model.py", line 2198, in _xmlid_lookup
+    raise ValueError('External ID not found in the system: %s' % xmlid)
+ValueError: External ID not found in the system: customer_map_tracking.view_customer_map_geoengine_simple
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\http.py", line 2396, in __call__
+    response = request._serve_db()
+               ^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\http.py", line 1949, in _serve_db
+    self.registry = Registry(self.db).check_signaling()
+                    ^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 89, in __new__
+    return cls.new(db_name)
+           ^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 87, in locked
+    return func(inst, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 110, in new
+    odoo.modules.load_modules(registry, force_demo, status, update_module)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 481, in load_modules
+    processed_modules += load_marked_modules(env, graph,
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 366, in load_marked_modules
+    loaded, processed = load_module_graph(
+                        ^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 229, in load_module_graph
+    load_data(env, idref, mode, kind='data', package=package)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 73, in load_data
+    tools.convert_file(env, package.name, filename, idref, mode, noupdate, kind)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 635, in convert_file
+    convert_xml_import(env, module, fp, idref, mode, noupdate)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 701, in convert_xml_import
+    obj.parse(doc.getroot())
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 621, in parse
+    self._tag_root(de)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 577, in _tag_root
+    raise ParseError('while parsing %s:%s, somewhere inside\n%s' % (
+odoo.tools.convert.ParseError: while parsing file:/d:/work-project/ssi/odoo_demo/odoo/custom_addons/customer_map_tracking/views/customer_map_actions.xml:5, somewhere inside
+<record id="action_customer_map_dashboard" model="ir.actions.act_window">
+            <field name="name">Map Dashboard</field>
+            <field name="res_model">customer.map</field>
+            <field name="view_mode">geoengine,tree,form</field>
+            <field name="view_id" ref="view_customer_map_geoengine_simple"/>
+            <field name="domain">[('active', '=', True), ('shape', '!=', False)]</field>
+            <field name="context">{
+                'create': True,
+                'edit': True,
+                'delete': False
+            }</field>
+        </record>
+2025-09-27 10:02:35,178 13768 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 10:02:35] "GET /web/service-worker.js HTTP/1.1" 500 - 193 0.081 0.185
+2025-09-27 10:02:36,477 13768 INFO ? odoo.modules.loading: loading 1 modules... 
+2025-09-27 10:02:36,480 13768 INFO ? odoo.modules.loading: 1 modules loaded in 0.00s, 0 queries (+0 extra) 
+2025-09-27 10:02:36,491 13768 INFO ? odoo.modules.loading: loading 77 modules... 
+2025-09-27 10:02:36,516 13768 INFO ? odoo.modules.loading: Loading module customer_map_tracking (28/77) 
+2025-09-27 10:02:36,626 13768 INFO ? odoo.modules.registry: module customer_map_tracking: creating or updating database tables 
+2025-09-27 10:02:36,634 13768 WARNING ? odoo.addons.base.models.ir_model: Two fields (location_display, shape) of customer.map() have the same label: Location. [Modules: customer_map_tracking and customer_map_tracking] 
+2025-09-27 10:02:36,661 13768 INFO ? odoo.modules.loading: loading customer_map_tracking/security/security.xml 
+2025-09-27 10:02:36,709 13768 INFO ? odoo.modules.loading: loading customer_map_tracking/security/ir.model.access.csv 
+2025-09-27 10:02:36,727 13768 INFO ? odoo.modules.loading: loading customer_map_tracking/views/customer_map_views.xml 
+2025-09-27 10:02:36,751 13768 WARNING ? odoo.addons.base.models.ir_ui_view: set_location_from_coordinates on customer.map has parameters and cannot be called from a button
+View error context:
+{'file': 'd:\\work-project\\ssi\\odoo_demo\\odoo\\custom_addons\\customer_map_tracking\\views\\customer_map_views.xml',
+ 'line': 59,
+ 'name': 'customer.map.form',
+ 'view': ir.ui.view(1314,),
+ 'view.model': 'customer.map',
+ 'view.parent': ir.ui.view(),
+ 'xmlid': 'view_customer_map_form'} 
+2025-09-27 10:02:36,768 13768 INFO ? odoo.modules.loading: loading customer_map_tracking/views/customer_map_geoengine_views.xml 
+2025-09-27 10:02:36,791 13768 INFO ? odoo.modules.loading: loading customer_map_tracking/views/customer_map_actions.xml 
+2025-09-27 10:02:36,795 13768 WARNING ? odoo.modules.loading: Transient module states were reset 
+2025-09-27 10:02:36,795 13768 ERROR ? odoo.modules.registry: Failed to load registry 
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 87, in __new__
+    return cls.registries[db_name]
+           ~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 87, in locked
+    return func(inst, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\lru.py", line 34, in __getitem__
+    a = self.d[obj]
+        ~~~~~~^^^^^
+KeyError: 'ssi_odoo_demo'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\cache.py", line 99, in lookup
+    r = d[key]
+        ~^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 87, in locked
+    return func(inst, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\lru.py", line 34, in __getitem__
+    a = self.d[obj]
+        ~~~~~~^^^^^
+KeyError: ('ir.model.data', <function IrModelData._xmlid_lookup at 0x00000151A4B33920>, 'customer_map_tracking.view_customer_map_geoengine_simple')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 429, in _tag_record
+    f_val = self.id_get(f_ref, raise_if_not_found=nodeattr2bool(rec, 'forcecreate', True))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 546, in id_get
+    res = self.model_id_get(id_str, raise_if_not_found)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 552, in model_id_get
+    return self.env['ir.model.data']._xmlid_to_res_model_res_id(id_str, raise_if_not_found=raise_if_not_found)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\addons\base\models\ir_model.py", line 2205, in _xmlid_to_res_model_res_id
+    return self._xmlid_lookup(xmlid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\cache.py", line 104, in lookup
+    value = d[key] = self.method(*args, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\addons\base\models\ir_model.py", line 2198, in _xmlid_lookup
+    raise ValueError('External ID not found in the system: %s' % xmlid)
+ValueError: External ID not found in the system: customer_map_tracking.view_customer_map_geoengine_simple
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 110, in new
+    odoo.modules.load_modules(registry, force_demo, status, update_module)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 481, in load_modules
+    processed_modules += load_marked_modules(env, graph,
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 366, in load_marked_modules
+    loaded, processed = load_module_graph(
+                        ^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 229, in load_module_graph
+    load_data(env, idref, mode, kind='data', package=package)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 73, in load_data
+    tools.convert_file(env, package.name, filename, idref, mode, noupdate, kind)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 635, in convert_file
+    convert_xml_import(env, module, fp, idref, mode, noupdate)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 701, in convert_xml_import
+    obj.parse(doc.getroot())
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 621, in parse
+    self._tag_root(de)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 577, in _tag_root
+    raise ParseError('while parsing %s:%s, somewhere inside\n%s' % (
+odoo.tools.convert.ParseError: while parsing file:/d:/work-project/ssi/odoo_demo/odoo/custom_addons/customer_map_tracking/views/customer_map_actions.xml:5, somewhere inside
+<record id="action_customer_map_dashboard" model="ir.actions.act_window">
+            <field name="name">Map Dashboard</field>
+            <field name="res_model">customer.map</field>
+            <field name="view_mode">geoengine,tree,form</field>
+            <field name="view_id" ref="view_customer_map_geoengine_simple"/>
+            <field name="domain">[('active', '=', True), ('shape', '!=', False)]</field>
+            <field name="context">{
+                'create': True,
+                'edit': True,
+                'delete': False
+            }</field>
+        </record>
+2025-09-27 10:02:36,802 13768 ERROR ? odoo.http: Exception during request handling. 
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 87, in __new__
+    return cls.registries[db_name]
+           ~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 87, in locked
+    return func(inst, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\lru.py", line 34, in __getitem__
+    a = self.d[obj]
+        ~~~~~~^^^^^
+KeyError: 'ssi_odoo_demo'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\cache.py", line 99, in lookup
+    r = d[key]
+        ~^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 87, in locked
+    return func(inst, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\lru.py", line 34, in __getitem__
+    a = self.d[obj]
+        ~~~~~~^^^^^
+KeyError: ('ir.model.data', <function IrModelData._xmlid_lookup at 0x00000151A4B33920>, 'customer_map_tracking.view_customer_map_geoengine_simple')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 429, in _tag_record
+    f_val = self.id_get(f_ref, raise_if_not_found=nodeattr2bool(rec, 'forcecreate', True))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 546, in id_get
+    res = self.model_id_get(id_str, raise_if_not_found)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 552, in model_id_get
+    return self.env['ir.model.data']._xmlid_to_res_model_res_id(id_str, raise_if_not_found=raise_if_not_found)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\addons\base\models\ir_model.py", line 2205, in _xmlid_to_res_model_res_id
+    return self._xmlid_lookup(xmlid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\cache.py", line 104, in lookup
+    value = d[key] = self.method(*args, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\addons\base\models\ir_model.py", line 2198, in _xmlid_lookup
+    raise ValueError('External ID not found in the system: %s' % xmlid)
+ValueError: External ID not found in the system: customer_map_tracking.view_customer_map_geoengine_simple
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\http.py", line 2396, in __call__
+    response = request._serve_db()
+               ^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\http.py", line 1949, in _serve_db
+    self.registry = Registry(self.db).check_signaling()
+                    ^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 89, in __new__
+    return cls.new(db_name)
+           ^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 87, in locked
+    return func(inst, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 110, in new
+    odoo.modules.load_modules(registry, force_demo, status, update_module)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 481, in load_modules
+    processed_modules += load_marked_modules(env, graph,
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 366, in load_marked_modules
+    loaded, processed = load_module_graph(
+                        ^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 229, in load_module_graph
+    load_data(env, idref, mode, kind='data', package=package)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 73, in load_data
+    tools.convert_file(env, package.name, filename, idref, mode, noupdate, kind)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 635, in convert_file
+    convert_xml_import(env, module, fp, idref, mode, noupdate)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 701, in convert_xml_import
+    obj.parse(doc.getroot())
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 621, in parse
+    self._tag_root(de)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 577, in _tag_root
+    raise ParseError('while parsing %s:%s, somewhere inside\n%s' % (
+odoo.tools.convert.ParseError: while parsing file:/d:/work-project/ssi/odoo_demo/odoo/custom_addons/customer_map_tracking/views/customer_map_actions.xml:5, somewhere inside
+<record id="action_customer_map_dashboard" model="ir.actions.act_window">
+            <field name="name">Map Dashboard</field>
+            <field name="res_model">customer.map</field>
+            <field name="view_mode">geoengine,tree,form</field>
+            <field name="view_id" ref="view_customer_map_geoengine_simple"/>
+            <field name="domain">[('active', '=', True), ('shape', '!=', False)]</field>
+            <field name="context">{
+                'create': True,
+                'edit': True,
+                'delete': False
+            }</field>
+        </record>
+2025-09-27 10:02:36,805 13768 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 10:02:36] "GET /web/service-worker.js HTTP/1.1" 500 - 193 0.068 0.265
+2025-09-27 10:02:45,051 13768 INFO ssi_odoo_demo odoo.service.server: Initiating shutdown 
+2025-09-27 10:02:45,051 13768 INFO ssi_odoo_demo odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown. 
+2025-09-27 10:02:46,116 13768 INFO ssi_odoo_demo odoo.sql_db: ConnectionPool(used=0/count=0/max=64): Closed 3 connections  
