@@ -1,10 +1,44 @@
 <odoo>
-    <!-- Root menu -->
-    <menuitem id="menu_customer_map_root" name="Customer Map Tracking"/>
+    <!-- Root Menu -->
+    <menuitem id="menu_customer_map_root"
+              name="Customer Tracking"
+              web_icon="customer_map_tracking,static/description/icon.png"
+              sequence="50"/>
 
-    <!-- Dashboard menu -->
+    <!-- Dashboard Menu -->
     <menuitem id="menu_customer_map_dashboard"
-              name="Dashboard"
+              name="Map Dashboard"
               parent="menu_customer_map_root"
-              action="customer_map_tracking.action_customer_map_dashboard"/>
+              action="action_customer_map_dashboard"
+              sequence="10"/>
+
+    <!-- Customers Menu -->
+    <menuitem id="menu_customer_map_customers"
+              name="Customers"
+              parent="menu_customer_map_root"
+              action="action_customer_map"
+              sequence="20"/>
+
+    <!-- Configuration Submenu -->
+    <menuitem id="menu_customer_map_config"
+              name="Configuration"
+              parent="menu_customer_map_root"
+              sequence="90"/>
+
+    <!-- Import Wizard Menu - Commented out until wizard is implemented -->
+    <!--
+    <menuitem id="menu_customer_import_wizard"
+              name="Import CSV"
+              parent="menu_customer_map_config"
+              action="action_customer_import_wizard"
+              groups="group_customer_map_manager"
+              sequence="20"/>
+    -->
+
+    <!-- Settings Menu -->
+    <menuitem id="menu_customer_map_settings"
+              name="Settings"
+              parent="menu_customer_map_config"
+              groups="base.group_system"
+              sequence="10"/>
 </odoo>

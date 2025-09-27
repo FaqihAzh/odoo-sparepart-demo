@@ -1,2 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_customer_map_user,access_customer_map_user,model_customer_map,base.group_user,1,1,1,1
+access_geoengine_vector_layer_user,geoengine.vector.layer.user,base_geoengine.model_geoengine_vector_layer,group_customer_map_user,1,0,0,0
+access_geoengine_raster_layer_user,geoengine.raster.layer.user,base_geoengine.model_geoengine_raster_layer,group_customer_map_user,1,0,0,0

@@ -14,26 +14,44 @@
         'base_geoengine',
     ],
     'data': [
+        # Security
         'security/security.xml',
         'security/ir.model.access.csv',
+
         'views/customer_map_actions.xml',
-        'views/customer_map_menus.xml',
+
+        # Views
         'views/customer_map_views.xml',
-        # 'views/assets.xml',
+        # 'views/customer_map_geoengine.xml',
+        'views/customer_map_menus.xml',
+
+        # Wizard
+        # 'wizard/customer_import_wizard_view.xml',
+
+        # Data
+        # 'data/customer_map_demo.xml',
     ],
     'assets': {
         'web.assets_backend': [
-            # Leaflet CDN
+            # Leaflet CDN (CSS first, then JS)
             "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css",
             "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js",
 
-            # Custom JS/XML
-            'customer_map_tracking/static/src/js/map_dashboard.js',
-            'customer_map_tracking/static/src/js/map_picker_field.js',
-            'customer_map_tracking/static/src/xml/map_picker_templates.xml',
+            # Marker Clustering (optional but recommended)
+            "https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css",
+            "https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css",
+            "https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js",
+
+            # Custom Assets
             'customer_map_tracking/static/src/css/map_styles.css',
+            'customer_map_tracking/static/src/js/map_picker_field.js',
+            'customer_map_tracking/static/src/js/map_dashboard.js',
+            'customer_map_tracking/static/src/xml/map_picker_templates.xml',
         ],
     },
+    'demo': [
+        'demo/customer_map_demo.xml',
+    ],
     'installable': True,
     'application': False,
 }

@@ -1,7 +1,224 @@
-.o_map_picker {
-    border: 1px solid #e6e6e6; border-radius: 6px;
+/* Map Picker Styles */
+.o_map_picker_container {
+    margin-bottom: 15px;
 }
 
-#customer_map_canvas {
+.o_map_picker {
+    border: 2px solid #e6e6e6;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.map-picker-canvas {
     width: 100%;
+    height: 400px;
+    min-height: 400px;
+}
+
+.map-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.current-coordinates {
+    background-color: #f8f9fa;
+    padding: 5px 10px;
+    border-radius: 4px;
+    border-left: 3px solid #17a2b8;
+}
+
+.map-help {
+    background-color: #fff3cd;
+    padding: 8px 12px;
+    border-radius: 4px;
+    border-left: 3px solid #ffc107;
+}
+
+/* Dashboard Map Styles */
+.o_customer_map_dashboard {
+    padding: 20px;
+    height: 100vh;
+    overflow: auto;
+}
+
+.customer-map-canvas {
+    width: 100%;
+    height: 600px;
+    min-height: 600px;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.map-container {
+    position: relative;
+}
+
+.map-legend {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+}
+
+.map-legend h6 {
+    color: #495057;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+/* Custom Marker Styles */
+.custom-customer-marker {
+    background-color: white;
+    border: 2px solid #1f77b4;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.custom-customer-marker:hover {
+    transform: scale(1.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.marker-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* Popup Styles */
+.customer-popup-container .leaflet-popup-content {
+    margin: 15px;
+    line-height: 1.4;
+}
+
+.customer-popup h4 {
+    border-bottom: 2px solid #1f77b4;
+    padding-bottom: 8px;
+    margin-bottom: 12px !important;
+}
+
+.customer-popup p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.customer-popup .btn {
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+/* Search Control Styles */
+.leaflet-control input[type="text"] {
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+}
+
+.leaflet-control button {
+    border: 1px solid #ccc;
+    border-left: none;
+    border-radius: 0 4px 4px 0;
+    background: white;
+    cursor: pointer;
+}
+
+.leaflet-control button:hover {
+    background: #f5f5f5;
+}
+
+/* Loading Spinner */
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .o_customer_map_dashboard {
+        padding: 10px;
+    }
+    
+    .customer-map-canvas {
+        height: 400px;
+    }
+    
+    .map-picker-canvas {
+        height: 300px;
+    }
+    
+    .map-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .map-controls .btn-group {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    .map-controls .btn {
+        flex: 1;
+    }
+}
+
+/* Form Field Integration */
+.o_field_widget.o_field_map_picker {
+    width: 100%;
+}
+
+/* Coordinate Input Fields */
+.coordinate-inputs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.coordinate-inputs .form-group {
+    flex: 1;
+}
+
+.coordinate-inputs input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.coordinate-inputs label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #495057;
+}
+
+/* Location display field */
+.location-display {
+    background-color: #e9ecef;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 13px;
+    color: #6c757d;
+    border: 1px solid #ced4da;
+}
+
+/* Validation styles */
+.has-error input {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+.error-message {
+    color: #dc3545;
+    font-size: 12px;
+    margin-top: 5px;
 }

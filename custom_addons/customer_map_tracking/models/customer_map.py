@@ -1,27 +1,51 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api, _
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 import logging
 
 _logger = logging.getLogger(__name__)
 
+
 class CustomerMap(models.Model):
     _name = 'customer.map'
     _description = 'Customer / Worker with Map Tracking'
+    _rec_name = 'name'
 
     name = fields.Char(string='Name', required=True)
     description = fields.Text(string='Description')
     phone = fields.Char(string='Phone')
     email = fields.Char(string='Email')
+    shape = fields.GeoPoint('Location')
 
+    # Location fields
     latitude = fields.Float(string='Latitude', digits=(16, 6))
     longitude = fields.Float(string='Longitude', digits=(16, 6))
+
+    # Virtual field for map picker widget
+    location_picker = fields.Char(string='Pick Location on Map', compute='_compute_location_picker', store=False)
+
+    # Computed field for display
+    location_display = fields.Char(string='Location', compute='_compute_location_display', store=True)
 
     # interoperable geometry: store WKT POINT(lon lat) to integrate with other systems
     geo_wkt = fields.Char(string='Geometry (WKT)', compute='_compute_geo_wkt', store=True)
 
-    # Optional: if you want a database geometry column for PostGIS, create it manually in DB
-    # and use sync_to_postgis() to populate.
+    @api.depends('latitude', 'longitude')
+    def _compute_location_picker(self):
+        # This is just a dummy computation for the widget
+        for rec in self:
+            if rec.latitude and rec.longitude:
+                rec.location_picker = f"{rec.latitude},{rec.longitude}"
+            else:
+                rec.location_picker = ""
+
+    @api.depends('latitude', 'longitude')
+    def _compute_location_display(self):
+        for rec in self:
+            if rec.latitude is not None and rec.longitude is not None:
+                rec.location_display = f"Lat: {rec.latitude:.6f}, Lng: {rec.longitude:.6f}"
+            else:
+                rec.location_display = "No location set"
 
     @api.depends('latitude', 'longitude')
     def _compute_geo_wkt(self):
@@ -31,12 +55,35 @@ class CustomerMap(models.Model):
             else:
                 rec.geo_wkt = False
 
+    @api.constrains('latitude', 'longitude')
+    def _check_coordinates(self):
+        for rec in self:
+            if rec.latitude is not None and (rec.latitude < -90 or rec.latitude > 90):
+                raise ValidationError(_('Latitude must be between -90 and 90 degrees.'))
+            if rec.longitude is not None and (rec.longitude < -180 or rec.longitude > 180):
+                raise ValidationError(_('Longitude must be between -180 and 180 degrees.'))
+
+    def set_location(self, lat, lng):
+        """Method to set location from map picker"""
+        self.ensure_one()
+        self.write({
+            'latitude': lat,
+            'longitude': lng
+        })
+        return True
+
+    def action_clear_location(self):
+        """Clear the location coordinates"""
+        self.write({
+            'latitude': False,
+            'longitude': False
+        })
+        return True
+
     def sync_to_postgis(self):
         """
         Optional: synchronize `geo_wkt` into a real PostGIS geometry column named `geom` (type geometry)
         in the `customer_map` table. This method will only run when the current db has PostGIS.
-
-        NOTE: You must create the column `geom geometry` in PostgreSQL beforehand, or adapt the SQL.
         """
         self.flush()
         cr = self.env.cr

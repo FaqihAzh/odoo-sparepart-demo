@@ -1,0 +1,40 @@
+<odoo>
+    <data>
+        <!-- Additional demo data for development/testing -->
+        <record id="customer_demo_bandung" model="customer.map">
+            <field name="name">Bandung Tech Hub</field>
+            <field name="description">Technology company in Bandung</field>
+            <field name="phone">+62-22-1234567</field>
+            <field name="email">info@bandungtech.co.id</field>
+            <field name="latitude">-6.917464</field>
+            <field name="longitude">107.619123</field>
+        </record>
+
+        <record id="customer_demo_surabaya" model="customer.map">
+            <field name="name">Surabaya Marine Services</field>
+            <field name="description">Marine services in Surabaya port</field>
+            <field name="phone">+62-31-2345678</field>
+            <field name="email">marine@surabaya.co.id</field>
+            <field name="latitude">-7.257472</field>
+            <field name="longitude">112.752090</field>
+        </record>
+
+        <record id="customer_demo_medan" model="customer.map">
+            <field name="name">Medan Palm Oil</field>
+            <field name="description">Palm oil processing in Medan</field>
+            <field name="phone">+62-61-3456789</field>
+            <field name="email">palmoil@medan.id</field>
+            <field name="latitude">3.595196</field>
+            <field name="longitude">98.672226</field>
+        </record>
+
+        <record id="customer_demo_makassar" model="customer.map">
+            <field name="name">Makassar Fishing Co</field>
+            <field name="description">Fishing company in Makassar</field>
+            <field name="phone">+62-411-4567890</field>
+            <field name="email">fishing@makassar.com</field>
+            <field name="latitude">-5.147665</field>
+            <field name="longitude">119.432732</field>
+        </record>
+    </data>
+</odoo>
