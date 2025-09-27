@@ -4,7 +4,7 @@
         <record id="customer_map_vector_layer" model="geoengine.vector.layer">
             <field name="name">Customer Locations</field>
             <field name="geo_field_id" search="[('model','=','customer.map'),('name','=','shape')]"/>
-            <field name="view_id" ref="view_customer_map_geoengine_simple"/>
+            <field name="view_id" ref="customer_map_geoengine_view"/>
             <field name="geo_repr">basic</field>
             <field name="active_on_startup" eval="True"/>
             <field name="classification">unique</field>
@@ -12,23 +12,11 @@
             <field name="sequence">10</field>
         </record>
 
-        <!-- Alternative Vector Layer with clustering -->
-        <record id="customer_map_vector_layer_clustered" model="geoengine.vector.layer">
-            <field name="name">Customer Locations (Clustered)</field>
-            <field name="geo_field_id" search="[('model','=','customer.map'),('name','=','shape')]"/>
-            <field name="view_id" ref="view_customer_map_geoengine"/>
-            <field name="geo_repr">basic</field>
-            <field name="active_on_startup" eval="False"/>
-            <field name="classification">unique</field>
-            <field name="opacity">1.0</field>
-            <field name="sequence">20</field>
-        </record>
-
         <!-- Base Raster Layer - OpenStreetMap -->
         <record id="customer_map_raster_osm" model="geoengine.raster.layer">
             <field name="name">OpenStreetMap</field>
             <field name="raster_type">osm</field>
-            <field name="view_id" ref="view_customer_map_geoengine_simple"/>
+            <field name="view_id" ref="customer_map_geoengine_view"/>
             <field name="overlay" eval="False"/>
             <field name="opacity">1.0</field>
             <field name="sequence">1</field>
@@ -38,7 +26,7 @@
         <record id="customer_map_raster_bing" model="geoengine.raster.layer">
             <field name="name">Bing Satellite</field>
             <field name="raster_type">bing</field>
-            <field name="view_id" ref="view_customer_map_geoengine_simple"/>
+            <field name="view_id" ref="customer_map_geoengine_view"/>
             <field name="overlay" eval="False"/>
             <field name="opacity">1.0</field>
             <field name="sequence">2</field>
@@ -49,25 +37,11 @@
         <record id="customer_map_raster_google" model="geoengine.raster.layer">
             <field name="name">Google Maps</field>
             <field name="raster_type">google</field>
-            <field name="view_id" ref="view_customer_map_geoengine_simple"/>
+            <field name="view_id" ref="customer_map_geoengine_view"/>
             <field name="overlay" eval="False"/>
             <field name="opacity">1.0</field>
             <field name="sequence">3</field>
             <field name="active_on_startup" eval="False"/>
         </record>
-
-        <!-- Overlay Layer for Regions/Boundaries (example) -->
-        <!-- Uncomment if you have boundary data
-        <record id="customer_map_overlay_regions" model="geoengine.raster.layer">
-            <field name="name">Administrative Boundaries</field>
-            <field name="raster_type">wms</field>
-            <field name="url">https://your-wms-server.com/service</field>
-            <field name="view_id" ref="view_customer_map_geoengine_simple"/>
-            <field name="overlay" eval="True"/>
-            <field name="opacity">0.5</field>
-            <field name="sequence">100</field>
-            <field name="active_on_startup" eval="False"/>
-        </record>
-        -->
     </data>
 </odoo>

@@ -25,16 +25,6 @@
               parent="menu_customer_map_root"
               sequence="90"/>
 
-    <!-- Import Wizard Menu - Commented out until wizard is implemented -->
-    <!--
-    <menuitem id="menu_customer_import_wizard"
-              name="Import CSV"
-              parent="menu_customer_map_config"
-              action="action_customer_import_wizard"
-              groups="group_customer_map_manager"
-              sequence="20"/>
-    -->
-
     <!-- Settings Menu -->
     <menuitem id="menu_customer_map_settings"
               name="Settings"

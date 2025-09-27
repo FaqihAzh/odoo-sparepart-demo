@@ -25,8 +25,7 @@
                             string="View on Map"
                             type="object"
                             class="btn-primary"
-                            icon="fa-map"
-                            invisible="1"/>
+                            icon="fa-map"/>
                     <button name="action_geocode_address"
                             string="Geocode Address"
                             type="object"
@@ -90,7 +89,7 @@
 
                                 <group>
                                     <button string="Update Map from Coordinates"
-                                            name="set_location_from_coordinates"
+                                            name="action_set_location_from_coordinates"
                                             type="object"
                                             class="btn-info"
                                             icon="fa-map-marker"/>
@@ -180,8 +179,7 @@
         <field name="view_mode">tree,form</field>
         <field name="search_view_id" ref="view_customer_map_search"/>
         <field name="context">{
-            'search_default_active': 1,
-            'search_default_has_postgis_location': 1
+            'search_default_active': 1
         }</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">

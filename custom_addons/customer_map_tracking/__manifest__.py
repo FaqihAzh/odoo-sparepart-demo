@@ -37,20 +37,24 @@ Requirements:
         'python': [],
     },
     'data': [
-        # Security
+        # Security (must come first)
         'security/security.xml',
         'security/ir.model.access.csv',
 
-        # Views
+        # Base Views (define views before referencing them)
         'views/customer_map_views.xml',
         'views/customer_map_geoengine_views.xml',
-        'views/customer_map_actions.xml',
-        'views/customer_map_menus.xml',
 
-        # GeoEngine Data (layers, etc)
+        # GeoEngine Data (layers, etc) - after views are defined
         'data/geoengine_data.xml',
 
-        # Demo data
+        # Actions (reference views defined above)
+        'views/customer_map_actions.xml',
+
+        # Menus (reference actions defined above)
+        'views/customer_map_menus.xml',
+
+        # Demo data (last)
         'demo/customer_map_demo.xml',
     ],
     'demo': [

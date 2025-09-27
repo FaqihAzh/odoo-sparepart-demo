@@ -108,35 +108,69 @@ class CustomerMap(models.Model):
             if rec.email and '@' not in rec.email:
                 raise ValidationError(_('Please enter a valid email address.'))
 
+    def action_set_location_from_coordinates(self):
+        """Set PostGIS geometry from latitude/longitude coordinates - Button method without parameters"""
+        self.ensure_one()
+
+        if not self.latitude or not self.longitude:
+            raise ValidationError(_('Please enter both latitude and longitude coordinates.'))
+
+        if not (-90 <= self.latitude <= 90) or not (-180 <= self.longitude <= 180):
+            raise ValidationError(
+                _('Invalid coordinates. Latitude must be between -90 and 90, longitude between -180 and 180.'))
+
+        # Create PostGIS POINT geometry
+        try:
+            # Use raw SQL to create PostGIS geometry
+            self._cr.execute("""
+                UPDATE customer_map 
+                SET shape = ST_SetSRID(ST_MakePoint(%s, %s), 4326)
+                WHERE id = %s
+            """, (self.longitude, self.latitude, self.id))
+
+            # Trigger recompute of computed fields
+            self.invalidate_recordset(['location_display', 'geo_wkt'])
+
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': _('Location Updated'),
+                    'message': _('PostGIS geometry created from coordinates: Lat %s, Lng %s') % (
+                    self.latitude, self.longitude),
+                    'type': 'success',
+                }
+            }
+
+        except Exception as e:
+            _logger.error("Failed to create PostGIS geometry: %s", e)
+            raise ValidationError(_('Failed to create PostGIS geometry. Please check your PostGIS installation.'))
+
     def set_location_from_coordinates(self, lat, lng):
-        """Set PostGIS geometry from latitude/longitude coordinates"""
+        """Internal method to set PostGIS geometry from coordinates - Used by code, not buttons"""
         self.ensure_one()
 
         if not (-90 <= lat <= 90) or not (-180 <= lng <= 180):
             raise ValidationError(
                 _('Invalid coordinates. Latitude must be between -90 and 90, longitude between -180 and 180.'))
 
-        # Create PostGIS POINT geometry
-        from shapely.geometry import Point
         try:
-            point = Point(lng, lat)  # Note: PostGIS uses (longitude, latitude)
-            self.write({
-                'shape': point,
-                'latitude': lat,
-                'longitude': lng
-            })
-        except ImportError:
-            # Fallback if shapely is not available
-            self.write({
-                'latitude': lat,
-                'longitude': lng
-            })
             # Use raw SQL to create PostGIS geometry
             self._cr.execute("""
                 UPDATE customer_map 
                 SET shape = ST_SetSRID(ST_MakePoint(%s, %s), 4326)
                 WHERE id = %s
             """, (lng, lat, self.id))
+
+            # Update coordinate fields
+            self.write({
+                'latitude': lat,
+                'longitude': lng
+            })
+
+        except Exception as e:
+            _logger.error("Failed to create PostGIS geometry: %s", e)
+            raise ValidationError(_('Failed to create PostGIS geometry. Please check your PostGIS installation.'))
 
         return True
 
