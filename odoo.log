@@ -1,3 +1,1235 @@
-2025-09-27 12:14:21,632 13220 INFO ssi_odoo_demo odoo.service.server: Initiating shutdown 
-2025-09-27 12:14:21,634 13220 INFO ssi_odoo_demo odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown. 
-2025-09-27 12:14:21,769 13220 INFO ssi_odoo_demo odoo.sql_db: ConnectionPool(used=0/count=0/max=64): Closed 3 connections  
+2025-09-27 13:08:33,509 5364 INFO ? odoo.modules.loading: loading 1 modules... 
+2025-09-27 13:08:33,512 5364 INFO ? odoo.modules.loading: 1 modules loaded in 0.00s, 0 queries (+0 extra) 
+2025-09-27 13:08:33,523 5364 INFO ? odoo.modules.loading: loading 77 modules... 
+2025-09-27 13:08:33,541 5364 INFO ? odoo.modules.loading: Loading module customer_map_tracking (28/77) 
+2025-09-27 13:08:33,627 5364 INFO ? odoo.modules.registry: module customer_map_tracking: creating or updating database tables 
+2025-09-27 13:08:33,669 5364 INFO ? odoo.modules.loading: loading customer_map_tracking/security/security.xml 
+2025-09-27 13:08:33,735 5364 INFO ? odoo.modules.loading: loading customer_map_tracking/security/ir.model.access.csv 
+2025-09-27 13:08:33,749 5364 INFO ? odoo.modules.loading: loading customer_map_tracking/views/customer_map_views.xml 
+2025-09-27 13:08:33,775 5364 INFO ? odoo.modules.loading: loading customer_map_tracking/views/customer_map_geoengine_views.xml 
+2025-09-27 13:08:33,799 5364 INFO ? odoo.modules.loading: loading customer_map_tracking/views/customer_map_actions.xml 
+2025-09-27 13:08:33,808 5364 INFO ? odoo.modules.loading: loading customer_map_tracking/views/customer_map_menus.xml 
+2025-09-27 13:08:33,828 5364 INFO ? odoo.modules.loading: loading customer_map_tracking/demo/customer_map_demo.xml 
+2025-09-27 13:08:33,846 5364 ERROR ? odoo.sql_db: bad query: 
+            UPDATE customer_map
+            SET shape = ST_Transform(ST_SetSRID(ST_MakePoint(106.816666,  -6.2), 4326), 3857)
+            WHERE id = 46
+        
+ERROR: Geometry SRID (3857) does not match column SRID (4326)
+ 
+2025-09-27 13:08:33,848 5364 WARNING ? odoo.modules.loading: Transient module states were reset 
+2025-09-27 13:08:33,849 5364 ERROR ? odoo.modules.registry: Failed to load registry 
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 87, in __new__
+    return cls.registries[db_name]
+           ~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 87, in locked
+    return func(inst, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\lru.py", line 34, in __getitem__
+    a = self.d[obj]
+        ~~~~~~^^^^^
+KeyError: 'ssi_odoo_demo'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 464, in _tag_record
+    record = model._load_records([data], self.mode == 'update')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\models.py", line 5116, in _load_records
+    records = self._load_records_create([data['values'] for data in to_create])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\models.py", line 5027, in _load_records_create
+    return self.create(values)
+           ^^^^^^^^^^^^^^^^^^^
+  File "<decorator-gen-66>", line 2, in create
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\api.py", line 410, in _model_create_single
+    return self.browse().concat(*(create(self, vals) for vals in arg))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\api.py", line 410, in <genexpr>
+    return self.browse().concat(*(create(self, vals) for vals in arg))
+                                  ^^^^^^^^^^^^^^^^^^
+  File "<decorator-gen-65>", line 2, in create
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\api.py", line 407, in _model_create_single
+    return create(self, arg)
+           ^^^^^^^^^^^^^^^^^
+  File "d:\work-project\ssi\odoo_demo\odoo\custom_addons\customer_map_tracking\models\customer_map.py", line 170, in create
+    res.set_location_from_coordinates(vals['latitude'], vals['longitude'])
+  File "d:\work-project\ssi\odoo_demo\odoo\custom_addons\customer_map_tracking\models\customer_map.py", line 156, in set_location_from_coordinates
+    self._cr.execute("""
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\sql_db.py", line 335, in execute
+    res = self._obj.execute(query, params)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.InvalidParameterValue: Geometry SRID (3857) does not match column SRID (4326)
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 110, in new
+    odoo.modules.load_modules(registry, force_demo, status, update_module)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 481, in load_modules
+    processed_modules += load_marked_modules(env, graph,
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 366, in load_marked_modules
+    loaded, processed = load_module_graph(
+                        ^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 229, in load_module_graph
+    load_data(env, idref, mode, kind='data', package=package)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 73, in load_data
+    tools.convert_file(env, package.name, filename, idref, mode, noupdate, kind)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 635, in convert_file
+    convert_xml_import(env, module, fp, idref, mode, noupdate)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 701, in convert_xml_import
+    obj.parse(doc.getroot())
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 621, in parse
+    self._tag_root(de)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 577, in _tag_root
+    raise ParseError('while parsing %s:%s, somewhere inside\n%s' % (
+odoo.tools.convert.ParseError: while parsing file:/d:/work-project/ssi/odoo_demo/odoo/custom_addons/customer_map_tracking/demo/customer_map_demo.xml:4, somewhere inside
+<record id="customer_demo_jakarta_1" model="customer.map">
+            <field name="name">Jakarta Tech Center</field>
+            <field name="description">Main technology hub in Jakarta</field>
+            <field name="phone">+62-21-1234567</field>
+            <field name="email">info@jakartaTech.co.id</field>
+            <field name="latitude">-6.200000</field>
+            <field name="longitude">106.816666</field>
+        </record>
+2025-09-27 13:08:33,850 5364 ERROR ? odoo.http: Exception during request handling. 
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 87, in __new__
+    return cls.registries[db_name]
+           ~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 87, in locked
+    return func(inst, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\lru.py", line 34, in __getitem__
+    a = self.d[obj]
+        ~~~~~~^^^^^
+KeyError: 'ssi_odoo_demo'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 464, in _tag_record
+    record = model._load_records([data], self.mode == 'update')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\models.py", line 5116, in _load_records
+    records = self._load_records_create([data['values'] for data in to_create])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\models.py", line 5027, in _load_records_create
+    return self.create(values)
+           ^^^^^^^^^^^^^^^^^^^
+  File "<decorator-gen-66>", line 2, in create
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\api.py", line 410, in _model_create_single
+    return self.browse().concat(*(create(self, vals) for vals in arg))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\api.py", line 410, in <genexpr>
+    return self.browse().concat(*(create(self, vals) for vals in arg))
+                                  ^^^^^^^^^^^^^^^^^^
+  File "<decorator-gen-65>", line 2, in create
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\api.py", line 407, in _model_create_single
+    return create(self, arg)
+           ^^^^^^^^^^^^^^^^^
+  File "d:\work-project\ssi\odoo_demo\odoo\custom_addons\customer_map_tracking\models\customer_map.py", line 170, in create
+    res.set_location_from_coordinates(vals['latitude'], vals['longitude'])
+  File "d:\work-project\ssi\odoo_demo\odoo\custom_addons\customer_map_tracking\models\customer_map.py", line 156, in set_location_from_coordinates
+    self._cr.execute("""
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\sql_db.py", line 335, in execute
+    res = self._obj.execute(query, params)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.InvalidParameterValue: Geometry SRID (3857) does not match column SRID (4326)
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\http.py", line 2396, in __call__
+    response = request._serve_db()
+               ^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\http.py", line 1949, in _serve_db
+    self.registry = Registry(self.db).check_signaling()
+                    ^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 89, in __new__
+    return cls.new(db_name)
+           ^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 87, in locked
+    return func(inst, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 110, in new
+    odoo.modules.load_modules(registry, force_demo, status, update_module)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 481, in load_modules
+    processed_modules += load_marked_modules(env, graph,
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 366, in load_marked_modules
+    loaded, processed = load_module_graph(
+                        ^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 229, in load_module_graph
+    load_data(env, idref, mode, kind='data', package=package)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 73, in load_data
+    tools.convert_file(env, package.name, filename, idref, mode, noupdate, kind)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 635, in convert_file
+    convert_xml_import(env, module, fp, idref, mode, noupdate)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 701, in convert_xml_import
+    obj.parse(doc.getroot())
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 621, in parse
+    self._tag_root(de)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 577, in _tag_root
+    raise ParseError('while parsing %s:%s, somewhere inside\n%s' % (
+odoo.tools.convert.ParseError: while parsing file:/d:/work-project/ssi/odoo_demo/odoo/custom_addons/customer_map_tracking/demo/customer_map_demo.xml:4, somewhere inside
+<record id="customer_demo_jakarta_1" model="customer.map">
+            <field name="name">Jakarta Tech Center</field>
+            <field name="description">Main technology hub in Jakarta</field>
+            <field name="phone">+62-21-1234567</field>
+            <field name="email">info@jakartaTech.co.id</field>
+            <field name="latitude">-6.200000</field>
+            <field name="longitude">106.816666</field>
+        </record>
+2025-09-27 13:08:33,853 5364 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 13:08:33] "GET / HTTP/1.1" 500 - 261 0.128 0.223
+2025-09-27 13:08:33,892 5364 INFO ? odoo.modules.loading: loading 1 modules... 
+2025-09-27 13:08:33,898 5364 INFO ? odoo.modules.loading: 1 modules loaded in 0.01s, 0 queries (+0 extra) 
+2025-09-27 13:08:33,908 5364 INFO ? odoo.modules.loading: loading 77 modules... 
+2025-09-27 13:08:33,929 5364 INFO ? odoo.modules.loading: Loading module customer_map_tracking (28/77) 
+2025-09-27 13:08:34,017 5364 INFO ? odoo.modules.registry: module customer_map_tracking: creating or updating database tables 
+2025-09-27 13:08:34,046 5364 INFO ? odoo.modules.loading: loading customer_map_tracking/security/security.xml 
+2025-09-27 13:08:34,105 5364 INFO ? odoo.modules.loading: loading customer_map_tracking/security/ir.model.access.csv 
+2025-09-27 13:08:34,118 5364 INFO ? odoo.modules.loading: loading customer_map_tracking/views/customer_map_views.xml 
+2025-09-27 13:08:34,141 5364 INFO ? odoo.modules.loading: loading customer_map_tracking/views/customer_map_geoengine_views.xml 
+2025-09-27 13:08:34,163 5364 INFO ? odoo.modules.loading: loading customer_map_tracking/views/customer_map_actions.xml 
+2025-09-27 13:08:34,169 5364 INFO ? odoo.modules.loading: loading customer_map_tracking/views/customer_map_menus.xml 
+2025-09-27 13:08:34,185 5364 INFO ? odoo.modules.loading: loading customer_map_tracking/demo/customer_map_demo.xml 
+2025-09-27 13:08:34,200 5364 ERROR ? odoo.sql_db: bad query: 
+            UPDATE customer_map
+            SET shape = ST_Transform(ST_SetSRID(ST_MakePoint(106.816666,  -6.2), 4326), 3857)
+            WHERE id = 47
+        
+ERROR: Geometry SRID (3857) does not match column SRID (4326)
+ 
+2025-09-27 13:08:34,201 5364 WARNING ? odoo.modules.loading: Transient module states were reset 
+2025-09-27 13:08:34,201 5364 ERROR ? odoo.modules.registry: Failed to load registry 
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 87, in __new__
+    return cls.registries[db_name]
+           ~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 87, in locked
+    return func(inst, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\lru.py", line 34, in __getitem__
+    a = self.d[obj]
+        ~~~~~~^^^^^
+KeyError: 'ssi_odoo_demo'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 464, in _tag_record
+    record = model._load_records([data], self.mode == 'update')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\models.py", line 5116, in _load_records
+    records = self._load_records_create([data['values'] for data in to_create])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\models.py", line 5027, in _load_records_create
+    return self.create(values)
+           ^^^^^^^^^^^^^^^^^^^
+  File "<decorator-gen-66>", line 2, in create
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\api.py", line 410, in _model_create_single
+    return self.browse().concat(*(create(self, vals) for vals in arg))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\api.py", line 410, in <genexpr>
+    return self.browse().concat(*(create(self, vals) for vals in arg))
+                                  ^^^^^^^^^^^^^^^^^^
+  File "<decorator-gen-65>", line 2, in create
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\api.py", line 407, in _model_create_single
+    return create(self, arg)
+           ^^^^^^^^^^^^^^^^^
+  File "d:\work-project\ssi\odoo_demo\odoo\custom_addons\customer_map_tracking\models\customer_map.py", line 170, in create
+    res.set_location_from_coordinates(vals['latitude'], vals['longitude'])
+  File "d:\work-project\ssi\odoo_demo\odoo\custom_addons\customer_map_tracking\models\customer_map.py", line 156, in set_location_from_coordinates
+    self._cr.execute("""
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\sql_db.py", line 335, in execute
+    res = self._obj.execute(query, params)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.InvalidParameterValue: Geometry SRID (3857) does not match column SRID (4326)
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 110, in new
+    odoo.modules.load_modules(registry, force_demo, status, update_module)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 481, in load_modules
+    processed_modules += load_marked_modules(env, graph,
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 366, in load_marked_modules
+    loaded, processed = load_module_graph(
+                        ^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 229, in load_module_graph
+    load_data(env, idref, mode, kind='data', package=package)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 73, in load_data
+    tools.convert_file(env, package.name, filename, idref, mode, noupdate, kind)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 635, in convert_file
+    convert_xml_import(env, module, fp, idref, mode, noupdate)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 701, in convert_xml_import
+    obj.parse(doc.getroot())
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 621, in parse
+    self._tag_root(de)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 577, in _tag_root
+    raise ParseError('while parsing %s:%s, somewhere inside\n%s' % (
+odoo.tools.convert.ParseError: while parsing file:/d:/work-project/ssi/odoo_demo/odoo/custom_addons/customer_map_tracking/demo/customer_map_demo.xml:4, somewhere inside
+<record id="customer_demo_jakarta_1" model="customer.map">
+            <field name="name">Jakarta Tech Center</field>
+            <field name="description">Main technology hub in Jakarta</field>
+            <field name="phone">+62-21-1234567</field>
+            <field name="email">info@jakartaTech.co.id</field>
+            <field name="latitude">-6.200000</field>
+            <field name="longitude">106.816666</field>
+        </record>
+2025-09-27 13:08:34,203 5364 ERROR ? odoo.http: Exception during request handling. 
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 87, in __new__
+    return cls.registries[db_name]
+           ~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 87, in locked
+    return func(inst, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\lru.py", line 34, in __getitem__
+    a = self.d[obj]
+        ~~~~~~^^^^^
+KeyError: 'ssi_odoo_demo'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 464, in _tag_record
+    record = model._load_records([data], self.mode == 'update')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\models.py", line 5116, in _load_records
+    records = self._load_records_create([data['values'] for data in to_create])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\models.py", line 5027, in _load_records_create
+    return self.create(values)
+           ^^^^^^^^^^^^^^^^^^^
+  File "<decorator-gen-66>", line 2, in create
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\api.py", line 410, in _model_create_single
+    return self.browse().concat(*(create(self, vals) for vals in arg))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\api.py", line 410, in <genexpr>
+    return self.browse().concat(*(create(self, vals) for vals in arg))
+                                  ^^^^^^^^^^^^^^^^^^
+  File "<decorator-gen-65>", line 2, in create
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\api.py", line 407, in _model_create_single
+    return create(self, arg)
+           ^^^^^^^^^^^^^^^^^
+  File "d:\work-project\ssi\odoo_demo\odoo\custom_addons\customer_map_tracking\models\customer_map.py", line 170, in create
+    res.set_location_from_coordinates(vals['latitude'], vals['longitude'])
+  File "d:\work-project\ssi\odoo_demo\odoo\custom_addons\customer_map_tracking\models\customer_map.py", line 156, in set_location_from_coordinates
+    self._cr.execute("""
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\sql_db.py", line 335, in execute
+    res = self._obj.execute(query, params)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.InvalidParameterValue: Geometry SRID (3857) does not match column SRID (4326)
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\http.py", line 2396, in __call__
+    response = request._serve_db()
+               ^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\http.py", line 1949, in _serve_db
+    self.registry = Registry(self.db).check_signaling()
+                    ^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 89, in __new__
+    return cls.new(db_name)
+           ^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 87, in locked
+    return func(inst, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 110, in new
+    odoo.modules.load_modules(registry, force_demo, status, update_module)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 481, in load_modules
+    processed_modules += load_marked_modules(env, graph,
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 366, in load_marked_modules
+    loaded, processed = load_module_graph(
+                        ^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 229, in load_module_graph
+    load_data(env, idref, mode, kind='data', package=package)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 73, in load_data
+    tools.convert_file(env, package.name, filename, idref, mode, noupdate, kind)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 635, in convert_file
+    convert_xml_import(env, module, fp, idref, mode, noupdate)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 701, in convert_xml_import
+    obj.parse(doc.getroot())
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 621, in parse
+    self._tag_root(de)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 577, in _tag_root
+    raise ParseError('while parsing %s:%s, somewhere inside\n%s' % (
+odoo.tools.convert.ParseError: while parsing file:/d:/work-project/ssi/odoo_demo/odoo/custom_addons/customer_map_tracking/demo/customer_map_demo.xml:4, somewhere inside
+<record id="customer_demo_jakarta_1" model="customer.map">
+            <field name="name">Jakarta Tech Center</field>
+            <field name="description">Main technology hub in Jakarta</field>
+            <field name="phone">+62-21-1234567</field>
+            <field name="email">info@jakartaTech.co.id</field>
+            <field name="latitude">-6.200000</field>
+            <field name="longitude">106.816666</field>
+        </record>
+2025-09-27 13:08:34,206 5364 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 13:08:34] "GET /favicon.ico HTTP/1.1" 500 - 261 0.100 0.224
+2025-09-27 13:08:57,679 5364 INFO ? odoo.modules.loading: loading 1 modules... 
+2025-09-27 13:08:57,679 5364 INFO ? odoo.modules.loading: 1 modules loaded in 0.00s, 0 queries (+0 extra) 
+2025-09-27 13:08:57,695 5364 INFO ? odoo.modules.loading: loading 77 modules... 
+2025-09-27 13:08:57,712 5364 INFO ? odoo.modules.loading: Loading module customer_map_tracking (28/77) 
+2025-09-27 13:08:57,797 5364 INFO ? odoo.modules.registry: module customer_map_tracking: creating or updating database tables 
+2025-09-27 13:08:57,842 5364 INFO ? odoo.modules.loading: loading customer_map_tracking/security/security.xml 
+2025-09-27 13:08:57,895 5364 INFO ? odoo.modules.loading: loading customer_map_tracking/security/ir.model.access.csv 
+2025-09-27 13:08:57,909 5364 INFO ? odoo.modules.loading: loading customer_map_tracking/views/customer_map_views.xml 
+2025-09-27 13:08:57,929 5364 INFO ? odoo.modules.loading: loading customer_map_tracking/views/customer_map_geoengine_views.xml 
+2025-09-27 13:08:57,956 5364 INFO ? odoo.modules.loading: loading customer_map_tracking/views/customer_map_actions.xml 
+2025-09-27 13:08:57,962 5364 INFO ? odoo.modules.loading: loading customer_map_tracking/views/customer_map_menus.xml 
+2025-09-27 13:08:57,982 5364 INFO ? odoo.modules.loading: loading customer_map_tracking/demo/customer_map_demo.xml 
+2025-09-27 13:08:58,001 5364 ERROR ? odoo.sql_db: bad query: 
+            UPDATE customer_map
+            SET shape = ST_Transform(ST_SetSRID(ST_MakePoint(106.816666,  -6.2), 4326), 3857)
+            WHERE id = 48
+        
+ERROR: Geometry SRID (3857) does not match column SRID (4326)
+ 
+2025-09-27 13:08:58,001 5364 WARNING ? odoo.modules.loading: Transient module states were reset 
+2025-09-27 13:08:58,001 5364 ERROR ? odoo.modules.registry: Failed to load registry 
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 87, in __new__
+    return cls.registries[db_name]
+           ~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 87, in locked
+    return func(inst, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\lru.py", line 34, in __getitem__
+    a = self.d[obj]
+        ~~~~~~^^^^^
+KeyError: 'ssi_odoo_demo'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 464, in _tag_record
+    record = model._load_records([data], self.mode == 'update')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\models.py", line 5116, in _load_records
+    records = self._load_records_create([data['values'] for data in to_create])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\models.py", line 5027, in _load_records_create
+    return self.create(values)
+           ^^^^^^^^^^^^^^^^^^^
+  File "<decorator-gen-66>", line 2, in create
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\api.py", line 410, in _model_create_single
+    return self.browse().concat(*(create(self, vals) for vals in arg))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\api.py", line 410, in <genexpr>
+    return self.browse().concat(*(create(self, vals) for vals in arg))
+                                  ^^^^^^^^^^^^^^^^^^
+  File "<decorator-gen-65>", line 2, in create
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\api.py", line 407, in _model_create_single
+    return create(self, arg)
+           ^^^^^^^^^^^^^^^^^
+  File "d:\work-project\ssi\odoo_demo\odoo\custom_addons\customer_map_tracking\models\customer_map.py", line 170, in create
+    res.set_location_from_coordinates(vals['latitude'], vals['longitude'])
+  File "d:\work-project\ssi\odoo_demo\odoo\custom_addons\customer_map_tracking\models\customer_map.py", line 156, in set_location_from_coordinates
+    self._cr.execute("""
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\sql_db.py", line 335, in execute
+    res = self._obj.execute(query, params)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.InvalidParameterValue: Geometry SRID (3857) does not match column SRID (4326)
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 110, in new
+    odoo.modules.load_modules(registry, force_demo, status, update_module)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 481, in load_modules
+    processed_modules += load_marked_modules(env, graph,
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 366, in load_marked_modules
+    loaded, processed = load_module_graph(
+                        ^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 229, in load_module_graph
+    load_data(env, idref, mode, kind='data', package=package)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 73, in load_data
+    tools.convert_file(env, package.name, filename, idref, mode, noupdate, kind)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 635, in convert_file
+    convert_xml_import(env, module, fp, idref, mode, noupdate)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 701, in convert_xml_import
+    obj.parse(doc.getroot())
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 621, in parse
+    self._tag_root(de)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 577, in _tag_root
+    raise ParseError('while parsing %s:%s, somewhere inside\n%s' % (
+odoo.tools.convert.ParseError: while parsing file:/d:/work-project/ssi/odoo_demo/odoo/custom_addons/customer_map_tracking/demo/customer_map_demo.xml:4, somewhere inside
+<record id="customer_demo_jakarta_1" model="customer.map">
+            <field name="name">Jakarta Tech Center</field>
+            <field name="description">Main technology hub in Jakarta</field>
+            <field name="phone">+62-21-1234567</field>
+            <field name="email">info@jakartaTech.co.id</field>
+            <field name="latitude">-6.200000</field>
+            <field name="longitude">106.816666</field>
+        </record>
+2025-09-27 13:08:58,006 5364 ERROR ? odoo.http: Exception during request handling. 
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 87, in __new__
+    return cls.registries[db_name]
+           ~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 87, in locked
+    return func(inst, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\lru.py", line 34, in __getitem__
+    a = self.d[obj]
+        ~~~~~~^^^^^
+KeyError: 'ssi_odoo_demo'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 464, in _tag_record
+    record = model._load_records([data], self.mode == 'update')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\models.py", line 5116, in _load_records
+    records = self._load_records_create([data['values'] for data in to_create])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\models.py", line 5027, in _load_records_create
+    return self.create(values)
+           ^^^^^^^^^^^^^^^^^^^
+  File "<decorator-gen-66>", line 2, in create
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\api.py", line 410, in _model_create_single
+    return self.browse().concat(*(create(self, vals) for vals in arg))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\api.py", line 410, in <genexpr>
+    return self.browse().concat(*(create(self, vals) for vals in arg))
+                                  ^^^^^^^^^^^^^^^^^^
+  File "<decorator-gen-65>", line 2, in create
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\api.py", line 407, in _model_create_single
+    return create(self, arg)
+           ^^^^^^^^^^^^^^^^^
+  File "d:\work-project\ssi\odoo_demo\odoo\custom_addons\customer_map_tracking\models\customer_map.py", line 170, in create
+    res.set_location_from_coordinates(vals['latitude'], vals['longitude'])
+  File "d:\work-project\ssi\odoo_demo\odoo\custom_addons\customer_map_tracking\models\customer_map.py", line 156, in set_location_from_coordinates
+    self._cr.execute("""
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\sql_db.py", line 335, in execute
+    res = self._obj.execute(query, params)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.InvalidParameterValue: Geometry SRID (3857) does not match column SRID (4326)
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\http.py", line 2396, in __call__
+    response = request._serve_db()
+               ^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\http.py", line 1949, in _serve_db
+    self.registry = Registry(self.db).check_signaling()
+                    ^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 89, in __new__
+    return cls.new(db_name)
+           ^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 87, in locked
+    return func(inst, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 110, in new
+    odoo.modules.load_modules(registry, force_demo, status, update_module)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 481, in load_modules
+    processed_modules += load_marked_modules(env, graph,
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 366, in load_marked_modules
+    loaded, processed = load_module_graph(
+                        ^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 229, in load_module_graph
+    load_data(env, idref, mode, kind='data', package=package)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 73, in load_data
+    tools.convert_file(env, package.name, filename, idref, mode, noupdate, kind)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 635, in convert_file
+    convert_xml_import(env, module, fp, idref, mode, noupdate)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 701, in convert_xml_import
+    obj.parse(doc.getroot())
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 621, in parse
+    self._tag_root(de)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 577, in _tag_root
+    raise ParseError('while parsing %s:%s, somewhere inside\n%s' % (
+odoo.tools.convert.ParseError: while parsing file:/d:/work-project/ssi/odoo_demo/odoo/custom_addons/customer_map_tracking/demo/customer_map_demo.xml:4, somewhere inside
+<record id="customer_demo_jakarta_1" model="customer.map">
+            <field name="name">Jakarta Tech Center</field>
+            <field name="description">Main technology hub in Jakarta</field>
+            <field name="phone">+62-21-1234567</field>
+            <field name="email">info@jakartaTech.co.id</field>
+            <field name="latitude">-6.200000</field>
+            <field name="longitude">106.816666</field>
+        </record>
+2025-09-27 13:08:58,010 5364 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 13:08:58] "GET /websocket?version=17.0-1 HTTP/1.1" 500 - 261 0.078 0.257
+2025-09-27 13:09:58,367 5364 INFO ? odoo.modules.loading: loading 1 modules... 
+2025-09-27 13:09:58,371 5364 INFO ? odoo.modules.loading: 1 modules loaded in 0.00s, 0 queries (+0 extra) 
+2025-09-27 13:09:58,378 5364 INFO ? odoo.modules.loading: loading 77 modules... 
+2025-09-27 13:09:58,391 5364 INFO ? odoo.modules.loading: Loading module customer_map_tracking (28/77) 
+2025-09-27 13:09:58,518 5364 INFO ? odoo.modules.registry: module customer_map_tracking: creating or updating database tables 
+2025-09-27 13:09:58,557 5364 INFO ? odoo.modules.loading: loading customer_map_tracking/security/security.xml 
+2025-09-27 13:09:58,617 5364 INFO ? odoo.modules.loading: loading customer_map_tracking/security/ir.model.access.csv 
+2025-09-27 13:09:58,630 5364 INFO ? odoo.modules.loading: loading customer_map_tracking/views/customer_map_views.xml 
+2025-09-27 13:09:58,656 5364 INFO ? odoo.modules.loading: loading customer_map_tracking/views/customer_map_geoengine_views.xml 
+2025-09-27 13:09:58,678 5364 INFO ? odoo.modules.loading: loading customer_map_tracking/views/customer_map_actions.xml 
+2025-09-27 13:09:58,678 5364 INFO ? odoo.modules.loading: loading customer_map_tracking/views/customer_map_menus.xml 
+2025-09-27 13:09:58,705 5364 INFO ? odoo.modules.loading: loading customer_map_tracking/demo/customer_map_demo.xml 
+2025-09-27 13:09:58,707 5364 ERROR ? odoo.sql_db: bad query: 
+            UPDATE customer_map
+            SET shape = ST_Transform(ST_SetSRID(ST_MakePoint(106.816666,  -6.2), 4326), 3857)
+            WHERE id = 49
+        
+ERROR: Geometry SRID (3857) does not match column SRID (4326)
+ 
+2025-09-27 13:09:58,721 5364 WARNING ? odoo.modules.loading: Transient module states were reset 
+2025-09-27 13:09:58,721 5364 ERROR ? odoo.modules.registry: Failed to load registry 
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 87, in __new__
+    return cls.registries[db_name]
+           ~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 87, in locked
+    return func(inst, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\lru.py", line 34, in __getitem__
+    a = self.d[obj]
+        ~~~~~~^^^^^
+KeyError: 'ssi_odoo_demo'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 464, in _tag_record
+    record = model._load_records([data], self.mode == 'update')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\models.py", line 5116, in _load_records
+    records = self._load_records_create([data['values'] for data in to_create])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\models.py", line 5027, in _load_records_create
+    return self.create(values)
+           ^^^^^^^^^^^^^^^^^^^
+  File "<decorator-gen-66>", line 2, in create
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\api.py", line 410, in _model_create_single
+    return self.browse().concat(*(create(self, vals) for vals in arg))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\api.py", line 410, in <genexpr>
+    return self.browse().concat(*(create(self, vals) for vals in arg))
+                                  ^^^^^^^^^^^^^^^^^^
+  File "<decorator-gen-65>", line 2, in create
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\api.py", line 407, in _model_create_single
+    return create(self, arg)
+           ^^^^^^^^^^^^^^^^^
+  File "d:\work-project\ssi\odoo_demo\odoo\custom_addons\customer_map_tracking\models\customer_map.py", line 170, in create
+    res.set_location_from_coordinates(vals['latitude'], vals['longitude'])
+  File "d:\work-project\ssi\odoo_demo\odoo\custom_addons\customer_map_tracking\models\customer_map.py", line 156, in set_location_from_coordinates
+    self._cr.execute("""
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\sql_db.py", line 335, in execute
+    res = self._obj.execute(query, params)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.InvalidParameterValue: Geometry SRID (3857) does not match column SRID (4326)
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 110, in new
+    odoo.modules.load_modules(registry, force_demo, status, update_module)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 481, in load_modules
+    processed_modules += load_marked_modules(env, graph,
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 366, in load_marked_modules
+    loaded, processed = load_module_graph(
+                        ^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 229, in load_module_graph
+    load_data(env, idref, mode, kind='data', package=package)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 73, in load_data
+    tools.convert_file(env, package.name, filename, idref, mode, noupdate, kind)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 635, in convert_file
+    convert_xml_import(env, module, fp, idref, mode, noupdate)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 701, in convert_xml_import
+    obj.parse(doc.getroot())
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 621, in parse
+    self._tag_root(de)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 577, in _tag_root
+    raise ParseError('while parsing %s:%s, somewhere inside\n%s' % (
+odoo.tools.convert.ParseError: while parsing file:/d:/work-project/ssi/odoo_demo/odoo/custom_addons/customer_map_tracking/demo/customer_map_demo.xml:4, somewhere inside
+<record id="customer_demo_jakarta_1" model="customer.map">
+            <field name="name">Jakarta Tech Center</field>
+            <field name="description">Main technology hub in Jakarta</field>
+            <field name="phone">+62-21-1234567</field>
+            <field name="email">info@jakartaTech.co.id</field>
+            <field name="latitude">-6.200000</field>
+            <field name="longitude">106.816666</field>
+        </record>
+2025-09-27 13:09:58,723 5364 ERROR ? odoo.http: Exception during request handling. 
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 87, in __new__
+    return cls.registries[db_name]
+           ~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 87, in locked
+    return func(inst, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\lru.py", line 34, in __getitem__
+    a = self.d[obj]
+        ~~~~~~^^^^^
+KeyError: 'ssi_odoo_demo'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 464, in _tag_record
+    record = model._load_records([data], self.mode == 'update')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\models.py", line 5116, in _load_records
+    records = self._load_records_create([data['values'] for data in to_create])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\models.py", line 5027, in _load_records_create
+    return self.create(values)
+           ^^^^^^^^^^^^^^^^^^^
+  File "<decorator-gen-66>", line 2, in create
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\api.py", line 410, in _model_create_single
+    return self.browse().concat(*(create(self, vals) for vals in arg))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\api.py", line 410, in <genexpr>
+    return self.browse().concat(*(create(self, vals) for vals in arg))
+                                  ^^^^^^^^^^^^^^^^^^
+  File "<decorator-gen-65>", line 2, in create
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\api.py", line 407, in _model_create_single
+    return create(self, arg)
+           ^^^^^^^^^^^^^^^^^
+  File "d:\work-project\ssi\odoo_demo\odoo\custom_addons\customer_map_tracking\models\customer_map.py", line 170, in create
+    res.set_location_from_coordinates(vals['latitude'], vals['longitude'])
+  File "d:\work-project\ssi\odoo_demo\odoo\custom_addons\customer_map_tracking\models\customer_map.py", line 156, in set_location_from_coordinates
+    self._cr.execute("""
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\sql_db.py", line 335, in execute
+    res = self._obj.execute(query, params)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.InvalidParameterValue: Geometry SRID (3857) does not match column SRID (4326)
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\http.py", line 2396, in __call__
+    response = request._serve_db()
+               ^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\http.py", line 1949, in _serve_db
+    self.registry = Registry(self.db).check_signaling()
+                    ^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 89, in __new__
+    return cls.new(db_name)
+           ^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 87, in locked
+    return func(inst, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 110, in new
+    odoo.modules.load_modules(registry, force_demo, status, update_module)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 481, in load_modules
+    processed_modules += load_marked_modules(env, graph,
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 366, in load_marked_modules
+    loaded, processed = load_module_graph(
+                        ^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 229, in load_module_graph
+    load_data(env, idref, mode, kind='data', package=package)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 73, in load_data
+    tools.convert_file(env, package.name, filename, idref, mode, noupdate, kind)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 635, in convert_file
+    convert_xml_import(env, module, fp, idref, mode, noupdate)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 701, in convert_xml_import
+    obj.parse(doc.getroot())
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 621, in parse
+    self._tag_root(de)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 577, in _tag_root
+    raise ParseError('while parsing %s:%s, somewhere inside\n%s' % (
+odoo.tools.convert.ParseError: while parsing file:/d:/work-project/ssi/odoo_demo/odoo/custom_addons/customer_map_tracking/demo/customer_map_demo.xml:4, somewhere inside
+<record id="customer_demo_jakarta_1" model="customer.map">
+            <field name="name">Jakarta Tech Center</field>
+            <field name="description">Main technology hub in Jakarta</field>
+            <field name="phone">+62-21-1234567</field>
+            <field name="email">info@jakartaTech.co.id</field>
+            <field name="latitude">-6.200000</field>
+            <field name="longitude">106.816666</field>
+        </record>
+2025-09-27 13:09:58,723 5364 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 13:09:58] "GET /websocket?version=17.0-1 HTTP/1.1" 500 - 261 0.140 0.222
+2025-09-27 13:10:59,099 5364 INFO ? odoo.modules.loading: loading 1 modules... 
+2025-09-27 13:10:59,104 5364 INFO ? odoo.modules.loading: 1 modules loaded in 0.00s, 0 queries (+0 extra) 
+2025-09-27 13:10:59,111 5364 INFO ? odoo.modules.loading: loading 77 modules... 
+2025-09-27 13:10:59,127 5364 INFO ? odoo.modules.loading: Loading module customer_map_tracking (28/77) 
+2025-09-27 13:10:59,211 5364 INFO ? odoo.modules.registry: module customer_map_tracking: creating or updating database tables 
+2025-09-27 13:10:59,254 5364 INFO ? odoo.modules.loading: loading customer_map_tracking/security/security.xml 
+2025-09-27 13:10:59,318 5364 INFO ? odoo.modules.loading: loading customer_map_tracking/security/ir.model.access.csv 
+2025-09-27 13:10:59,332 5364 INFO ? odoo.modules.loading: loading customer_map_tracking/views/customer_map_views.xml 
+2025-09-27 13:10:59,357 5364 INFO ? odoo.modules.loading: loading customer_map_tracking/views/customer_map_geoengine_views.xml 
+2025-09-27 13:10:59,379 5364 INFO ? odoo.modules.loading: loading customer_map_tracking/views/customer_map_actions.xml 
+2025-09-27 13:10:59,379 5364 INFO ? odoo.modules.loading: loading customer_map_tracking/views/customer_map_menus.xml 
+2025-09-27 13:10:59,405 5364 INFO ? odoo.modules.loading: loading customer_map_tracking/demo/customer_map_demo.xml 
+2025-09-27 13:10:59,423 5364 ERROR ? odoo.sql_db: bad query: 
+            UPDATE customer_map
+            SET shape = ST_Transform(ST_SetSRID(ST_MakePoint(106.816666,  -6.2), 4326), 3857)
+            WHERE id = 50
+        
+ERROR: Geometry SRID (3857) does not match column SRID (4326)
+ 
+2025-09-27 13:10:59,427 5364 WARNING ? odoo.modules.loading: Transient module states were reset 
+2025-09-27 13:10:59,427 5364 ERROR ? odoo.modules.registry: Failed to load registry 
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 87, in __new__
+    return cls.registries[db_name]
+           ~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 87, in locked
+    return func(inst, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\lru.py", line 34, in __getitem__
+    a = self.d[obj]
+        ~~~~~~^^^^^
+KeyError: 'ssi_odoo_demo'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 464, in _tag_record
+    record = model._load_records([data], self.mode == 'update')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\models.py", line 5116, in _load_records
+    records = self._load_records_create([data['values'] for data in to_create])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\models.py", line 5027, in _load_records_create
+    return self.create(values)
+           ^^^^^^^^^^^^^^^^^^^
+  File "<decorator-gen-66>", line 2, in create
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\api.py", line 410, in _model_create_single
+    return self.browse().concat(*(create(self, vals) for vals in arg))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\api.py", line 410, in <genexpr>
+    return self.browse().concat(*(create(self, vals) for vals in arg))
+                                  ^^^^^^^^^^^^^^^^^^
+  File "<decorator-gen-65>", line 2, in create
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\api.py", line 407, in _model_create_single
+    return create(self, arg)
+           ^^^^^^^^^^^^^^^^^
+  File "d:\work-project\ssi\odoo_demo\odoo\custom_addons\customer_map_tracking\models\customer_map.py", line 170, in create
+    res.set_location_from_coordinates(vals['latitude'], vals['longitude'])
+  File "d:\work-project\ssi\odoo_demo\odoo\custom_addons\customer_map_tracking\models\customer_map.py", line 156, in set_location_from_coordinates
+    self._cr.execute("""
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\sql_db.py", line 335, in execute
+    res = self._obj.execute(query, params)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.InvalidParameterValue: Geometry SRID (3857) does not match column SRID (4326)
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 110, in new
+    odoo.modules.load_modules(registry, force_demo, status, update_module)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 481, in load_modules
+    processed_modules += load_marked_modules(env, graph,
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 366, in load_marked_modules
+    loaded, processed = load_module_graph(
+                        ^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 229, in load_module_graph
+    load_data(env, idref, mode, kind='data', package=package)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 73, in load_data
+    tools.convert_file(env, package.name, filename, idref, mode, noupdate, kind)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 635, in convert_file
+    convert_xml_import(env, module, fp, idref, mode, noupdate)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 701, in convert_xml_import
+    obj.parse(doc.getroot())
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 621, in parse
+    self._tag_root(de)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 577, in _tag_root
+    raise ParseError('while parsing %s:%s, somewhere inside\n%s' % (
+odoo.tools.convert.ParseError: while parsing file:/d:/work-project/ssi/odoo_demo/odoo/custom_addons/customer_map_tracking/demo/customer_map_demo.xml:4, somewhere inside
+<record id="customer_demo_jakarta_1" model="customer.map">
+            <field name="name">Jakarta Tech Center</field>
+            <field name="description">Main technology hub in Jakarta</field>
+            <field name="phone">+62-21-1234567</field>
+            <field name="email">info@jakartaTech.co.id</field>
+            <field name="latitude">-6.200000</field>
+            <field name="longitude">106.816666</field>
+        </record>
+2025-09-27 13:10:59,429 5364 ERROR ? odoo.http: Exception during request handling. 
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 87, in __new__
+    return cls.registries[db_name]
+           ~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 87, in locked
+    return func(inst, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\lru.py", line 34, in __getitem__
+    a = self.d[obj]
+        ~~~~~~^^^^^
+KeyError: 'ssi_odoo_demo'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 464, in _tag_record
+    record = model._load_records([data], self.mode == 'update')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\models.py", line 5116, in _load_records
+    records = self._load_records_create([data['values'] for data in to_create])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\models.py", line 5027, in _load_records_create
+    return self.create(values)
+           ^^^^^^^^^^^^^^^^^^^
+  File "<decorator-gen-66>", line 2, in create
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\api.py", line 410, in _model_create_single
+    return self.browse().concat(*(create(self, vals) for vals in arg))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\api.py", line 410, in <genexpr>
+    return self.browse().concat(*(create(self, vals) for vals in arg))
+                                  ^^^^^^^^^^^^^^^^^^
+  File "<decorator-gen-65>", line 2, in create
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\api.py", line 407, in _model_create_single
+    return create(self, arg)
+           ^^^^^^^^^^^^^^^^^
+  File "d:\work-project\ssi\odoo_demo\odoo\custom_addons\customer_map_tracking\models\customer_map.py", line 170, in create
+    res.set_location_from_coordinates(vals['latitude'], vals['longitude'])
+  File "d:\work-project\ssi\odoo_demo\odoo\custom_addons\customer_map_tracking\models\customer_map.py", line 156, in set_location_from_coordinates
+    self._cr.execute("""
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\sql_db.py", line 335, in execute
+    res = self._obj.execute(query, params)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.InvalidParameterValue: Geometry SRID (3857) does not match column SRID (4326)
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\http.py", line 2396, in __call__
+    response = request._serve_db()
+               ^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\http.py", line 1949, in _serve_db
+    self.registry = Registry(self.db).check_signaling()
+                    ^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 89, in __new__
+    return cls.new(db_name)
+           ^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 87, in locked
+    return func(inst, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 110, in new
+    odoo.modules.load_modules(registry, force_demo, status, update_module)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 481, in load_modules
+    processed_modules += load_marked_modules(env, graph,
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 366, in load_marked_modules
+    loaded, processed = load_module_graph(
+                        ^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 229, in load_module_graph
+    load_data(env, idref, mode, kind='data', package=package)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 73, in load_data
+    tools.convert_file(env, package.name, filename, idref, mode, noupdate, kind)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 635, in convert_file
+    convert_xml_import(env, module, fp, idref, mode, noupdate)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 701, in convert_xml_import
+    obj.parse(doc.getroot())
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 621, in parse
+    self._tag_root(de)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 577, in _tag_root
+    raise ParseError('while parsing %s:%s, somewhere inside\n%s' % (
+odoo.tools.convert.ParseError: while parsing file:/d:/work-project/ssi/odoo_demo/odoo/custom_addons/customer_map_tracking/demo/customer_map_demo.xml:4, somewhere inside
+<record id="customer_demo_jakarta_1" model="customer.map">
+            <field name="name">Jakarta Tech Center</field>
+            <field name="description">Main technology hub in Jakarta</field>
+            <field name="phone">+62-21-1234567</field>
+            <field name="email">info@jakartaTech.co.id</field>
+            <field name="latitude">-6.200000</field>
+            <field name="longitude">106.816666</field>
+        </record>
+2025-09-27 13:10:59,432 5364 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 13:10:59] "GET /websocket?version=17.0-1 HTTP/1.1" 500 - 261 0.118 0.221
+2025-09-27 13:11:59,996 5364 INFO ? odoo.modules.loading: loading 1 modules... 
+2025-09-27 13:12:00,005 5364 INFO ? odoo.modules.loading: 1 modules loaded in 0.01s, 0 queries (+0 extra) 
+2025-09-27 13:12:00,015 5364 INFO ? odoo.modules.loading: loading 77 modules... 
+2025-09-27 13:12:00,027 5364 INFO ? odoo.modules.loading: Loading module customer_map_tracking (28/77) 
+2025-09-27 13:12:00,105 5364 INFO ? odoo.modules.registry: module customer_map_tracking: creating or updating database tables 
+2025-09-27 13:12:00,146 5364 INFO ? odoo.modules.loading: loading customer_map_tracking/security/security.xml 
+2025-09-27 13:12:00,216 5364 INFO ? odoo.modules.loading: loading customer_map_tracking/security/ir.model.access.csv 
+2025-09-27 13:12:00,229 5364 INFO ? odoo.modules.loading: loading customer_map_tracking/views/customer_map_views.xml 
+2025-09-27 13:12:00,255 5364 INFO ? odoo.modules.loading: loading customer_map_tracking/views/customer_map_geoengine_views.xml 
+2025-09-27 13:12:00,277 5364 INFO ? odoo.modules.loading: loading customer_map_tracking/views/customer_map_actions.xml 
+2025-09-27 13:12:00,285 5364 INFO ? odoo.modules.loading: loading customer_map_tracking/views/customer_map_menus.xml 
+2025-09-27 13:12:00,305 5364 INFO ? odoo.modules.loading: loading customer_map_tracking/demo/customer_map_demo.xml 
+2025-09-27 13:12:00,317 5364 ERROR ? odoo.sql_db: bad query: 
+            UPDATE customer_map
+            SET shape = ST_Transform(ST_SetSRID(ST_MakePoint(106.816666,  -6.2), 4326), 3857)
+            WHERE id = 51
+        
+ERROR: Geometry SRID (3857) does not match column SRID (4326)
+ 
+2025-09-27 13:12:00,321 5364 WARNING ? odoo.modules.loading: Transient module states were reset 
+2025-09-27 13:12:00,321 5364 ERROR ? odoo.modules.registry: Failed to load registry 
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 87, in __new__
+    return cls.registries[db_name]
+           ~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 87, in locked
+    return func(inst, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\lru.py", line 34, in __getitem__
+    a = self.d[obj]
+        ~~~~~~^^^^^
+KeyError: 'ssi_odoo_demo'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 464, in _tag_record
+    record = model._load_records([data], self.mode == 'update')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\models.py", line 5116, in _load_records
+    records = self._load_records_create([data['values'] for data in to_create])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\models.py", line 5027, in _load_records_create
+    return self.create(values)
+           ^^^^^^^^^^^^^^^^^^^
+  File "<decorator-gen-66>", line 2, in create
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\api.py", line 410, in _model_create_single
+    return self.browse().concat(*(create(self, vals) for vals in arg))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\api.py", line 410, in <genexpr>
+    return self.browse().concat(*(create(self, vals) for vals in arg))
+                                  ^^^^^^^^^^^^^^^^^^
+  File "<decorator-gen-65>", line 2, in create
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\api.py", line 407, in _model_create_single
+    return create(self, arg)
+           ^^^^^^^^^^^^^^^^^
+  File "d:\work-project\ssi\odoo_demo\odoo\custom_addons\customer_map_tracking\models\customer_map.py", line 170, in create
+  File "d:\work-project\ssi\odoo_demo\odoo\custom_addons\customer_map_tracking\models\customer_map.py", line 156, in set_location_from_coordinates
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\sql_db.py", line 335, in execute
+    res = self._obj.execute(query, params)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.InvalidParameterValue: Geometry SRID (3857) does not match column SRID (4326)
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 110, in new
+    odoo.modules.load_modules(registry, force_demo, status, update_module)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 481, in load_modules
+    processed_modules += load_marked_modules(env, graph,
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 366, in load_marked_modules
+    loaded, processed = load_module_graph(
+                        ^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 229, in load_module_graph
+    load_data(env, idref, mode, kind='data', package=package)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 73, in load_data
+    tools.convert_file(env, package.name, filename, idref, mode, noupdate, kind)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 635, in convert_file
+    convert_xml_import(env, module, fp, idref, mode, noupdate)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 701, in convert_xml_import
+    obj.parse(doc.getroot())
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 621, in parse
+    self._tag_root(de)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 577, in _tag_root
+    raise ParseError('while parsing %s:%s, somewhere inside\n%s' % (
+odoo.tools.convert.ParseError: while parsing file:/d:/work-project/ssi/odoo_demo/odoo/custom_addons/customer_map_tracking/demo/customer_map_demo.xml:4, somewhere inside
+<record id="customer_demo_jakarta_1" model="customer.map">
+            <field name="name">Jakarta Tech Center</field>
+            <field name="description">Main technology hub in Jakarta</field>
+            <field name="phone">+62-21-1234567</field>
+            <field name="email">info@jakartaTech.co.id</field>
+            <field name="latitude">-6.200000</field>
+            <field name="longitude">106.816666</field>
+        </record>
+2025-09-27 13:12:00,323 5364 ERROR ? odoo.http: Exception during request handling. 
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 87, in __new__
+    return cls.registries[db_name]
+           ~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 87, in locked
+    return func(inst, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\lru.py", line 34, in __getitem__
+    a = self.d[obj]
+        ~~~~~~^^^^^
+KeyError: 'ssi_odoo_demo'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 464, in _tag_record
+    record = model._load_records([data], self.mode == 'update')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\models.py", line 5116, in _load_records
+    records = self._load_records_create([data['values'] for data in to_create])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\models.py", line 5027, in _load_records_create
+    return self.create(values)
+           ^^^^^^^^^^^^^^^^^^^
+  File "<decorator-gen-66>", line 2, in create
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\api.py", line 410, in _model_create_single
+    return self.browse().concat(*(create(self, vals) for vals in arg))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\api.py", line 410, in <genexpr>
+    return self.browse().concat(*(create(self, vals) for vals in arg))
+                                  ^^^^^^^^^^^^^^^^^^
+  File "<decorator-gen-65>", line 2, in create
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\api.py", line 407, in _model_create_single
+    return create(self, arg)
+           ^^^^^^^^^^^^^^^^^
+  File "d:\work-project\ssi\odoo_demo\odoo\custom_addons\customer_map_tracking\models\customer_map.py", line 170, in create
+  File "d:\work-project\ssi\odoo_demo\odoo\custom_addons\customer_map_tracking\models\customer_map.py", line 156, in set_location_from_coordinates
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\sql_db.py", line 335, in execute
+    res = self._obj.execute(query, params)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.InvalidParameterValue: Geometry SRID (3857) does not match column SRID (4326)
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\http.py", line 2396, in __call__
+    response = request._serve_db()
+               ^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\http.py", line 1949, in _serve_db
+    self.registry = Registry(self.db).check_signaling()
+                    ^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 89, in __new__
+    return cls.new(db_name)
+           ^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\venv\Lib\site-packages\decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\func.py", line 87, in locked
+    return func(inst, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\registry.py", line 110, in new
+    odoo.modules.load_modules(registry, force_demo, status, update_module)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 481, in load_modules
+    processed_modules += load_marked_modules(env, graph,
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 366, in load_marked_modules
+    loaded, processed = load_module_graph(
+                        ^^^^^^^^^^^^^^^^^^
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 229, in load_module_graph
+    load_data(env, idref, mode, kind='data', package=package)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\modules\loading.py", line 73, in load_data
+    tools.convert_file(env, package.name, filename, idref, mode, noupdate, kind)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 635, in convert_file
+    convert_xml_import(env, module, fp, idref, mode, noupdate)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 701, in convert_xml_import
+    obj.parse(doc.getroot())
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 621, in parse
+    self._tag_root(de)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 564, in _tag_root
+    f(rec)
+  File "D:\work-project\ssi\odoo_demo\odoo\odoo\tools\convert.py", line 577, in _tag_root
+    raise ParseError('while parsing %s:%s, somewhere inside\n%s' % (
+odoo.tools.convert.ParseError: while parsing file:/d:/work-project/ssi/odoo_demo/odoo/custom_addons/customer_map_tracking/demo/customer_map_demo.xml:4, somewhere inside
+<record id="customer_demo_jakarta_1" model="customer.map">
+            <field name="name">Jakarta Tech Center</field>
+            <field name="description">Main technology hub in Jakarta</field>
+            <field name="phone">+62-21-1234567</field>
+            <field name="email">info@jakartaTech.co.id</field>
+            <field name="latitude">-6.200000</field>
+            <field name="longitude">106.816666</field>
+        </record>
+2025-09-27 13:12:00,323 5364 INFO ? werkzeug: 127.0.0.1 - - [27/Sep/2025 13:12:00] "GET /websocket?version=17.0-1 HTTP/1.1" 500 - 261 0.099 0.227
+2025-09-27 13:12:58,205 5364 INFO ssi_odoo_demo odoo.service.server: Initiating shutdown 
+2025-09-27 13:12:58,205 5364 INFO ssi_odoo_demo odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown. 
+2025-09-27 13:12:58,507 5364 INFO ssi_odoo_demo odoo.sql_db: ConnectionPool(used=0/count=0/max=64): Closed 3 connections  

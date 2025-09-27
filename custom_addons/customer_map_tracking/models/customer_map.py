@@ -19,7 +19,7 @@ class CustomerMap(models.Model):
 
     # PostGIS Geometry field - this is the main field like in Field Service
     shape = fields.GeoPoint(
-        string='Location',
+        string='Map Location',  # Changed from 'Location' to avoid conflict
         help='Location coordinates using PostGIS geometry'
     )
 

@@ -6,7 +6,7 @@
             <field name="name">Map Dashboard</field>
             <field name="res_model">customer.map</field>
             <field name="view_mode">geoengine,tree,form</field>
-            <field name="view_id" ref="customer_map_geoengine_view"/>
+            <field name="view_id" ref="view_customer_map_geoengine_simple"/>
             <field name="domain">[('active', '=', True)]</field>
             <field name="context">{
                 'create': True,

@@ -45,9 +45,6 @@ Requirements:
         'views/customer_map_views.xml',
         'views/customer_map_geoengine_views.xml',
 
-        # GeoEngine Data (layers, etc) - after views are defined
-        'data/geoengine_data.xml',
-
         # Actions (reference views defined above)
         'views/customer_map_actions.xml',
 

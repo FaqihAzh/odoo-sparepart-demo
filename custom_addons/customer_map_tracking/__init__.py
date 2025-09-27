@@ -8,13 +8,15 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
-def post_init_hook(cr, registry):
+def post_init_hook(env):
     """
     Post-installation hook to set up PostGIS integration
     """
     _logger.info("Setting up Customer Map Tracking with PostGIS...")
 
     try:
+        cr = env.cr
+
         # Check PostGIS availability
         cr.execute("SELECT EXISTS (SELECT 1 FROM pg_extension WHERE extname = 'postgis');")
         postgis_available = cr.fetchone()[0]
@@ -36,6 +38,18 @@ def post_init_hook(cr, registry):
         version_info = cr.fetchone()
         _logger.info("PostGIS version: %s", version_info[0] if version_info else "Unknown")
 
+        # Check if shape column exists, if not create it
+        cr.execute("""
+            SELECT column_name 
+            FROM information_schema.columns 
+            WHERE table_name = 'customer_map' AND column_name = 'shape'
+        """)
+        shape_exists = cr.fetchone()
+
+        if not shape_exists:
+            _logger.info("Creating shape column...")
+            cr.execute("ALTER TABLE customer_map ADD COLUMN shape geometry(POINT, 4326);")
+
         # Update demo data with PostGIS geometries
         _logger.info("Converting demo data coordinates to PostGIS geometries...")
         cr.execute("""
@@ -43,7 +57,7 @@ def post_init_hook(cr, registry):
             SET shape = ST_SetSRID(ST_MakePoint(longitude, latitude), 4326)
             WHERE latitude IS NOT NULL 
             AND longitude IS NOT NULL 
-            AND shape IS NULL
+            AND (shape IS NULL OR ST_IsEmpty(shape))
         """)
 
         updated_count = cr.rowcount
@@ -77,13 +91,15 @@ def post_init_hook(cr, registry):
         """)
 
 
-def uninstall_hook(cr, registry):
+def uninstall_hook(env):
     """
     Pre-uninstallation hook to clean up PostGIS data
     """
     _logger.info("Cleaning up Customer Map Tracking PostGIS data...")
 
     try:
+        cr = env.cr
+
         # Drop spatial indexes
         cr.execute("DROP INDEX IF EXISTS idx_customer_map_shape_gist;")
         _logger.info("Dropped spatial indexes")
