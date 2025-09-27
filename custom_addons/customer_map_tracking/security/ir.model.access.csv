@@ -1,3 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_customer_worker,access_customer_worker,model_customer_worker,base.group_user,1,1,1,1
-access_customer_detail_wizard,access_customer_detail_wizard,model_customer_detail_wizard,base.group_user,1,0,0,0
+access_customer_map_user,access_customer_map_user,model_customer_map,base.group_user,1,1,1,1

@@ -1,49 +1,50 @@
+# -*- coding: utf-8 -*-
 from odoo import http
 from odoo.http import request
 
-
 class CustomerMapController(http.Controller):
+    @http.route('/customer_map_tracking/customers_geojson', type='json', auth='user')
+    def customers_geojson(self):
+        records = request.env['customer.map.tracking'].sudo().search([])
+        return [
+            {
+                'id': rec.id,
+                'name': rec.name,
+                'address': rec.address or '',
+                'geo_point': rec.geo_point and rec.geo_point.geojson and rec.geo_point.geojson['coordinates'] or None,
+            }
+            for rec in records if rec.geo_point
+        ]
 
-    # 1. Menyajikan halaman dashboard (opsional, kalau Anda pakai QWeb)
-    @http.route('/customer_map_tracking/dashboard', type='http', auth='user', website=True)
-    def dashboard(self, **kw):
-        return request.render('customer_map_tracking.dashboard_template', {})
+    @http.route('/customer_map_tracking/customers', type='json', auth='user')
+    def customers_json(self):
+        records = request.env['customer.map'].sudo().search([])
+        data = []
+        for r in records:
+            if r.latitude is None or r.longitude is None:
+                continue
+            data.append({
+                'id': r.id,
+                'name': r.name,
+                'description': r.description or '',
+                'phone': r.phone or '',
+                'email': r.email or '',
+                'latitude': float(r.latitude),
+                'longitude': float(r.longitude),
+            })
+        return data
 
-    # 2. Endpoint data JSON untuk peta
-    @http.route('/customer_map_tracking/data', type='json', auth='user')
-    def data(self, **kw):
-        customers = request.env['customer.worker'].search([])   # sudo() hapus jika tidak perlu
-        result = []
-        for c in customers:
-            try:
-                lat = float(c.latitude) if c.latitude else None
-                lng = float(c.longitude) if c.longitude else None
-            except (TypeError, ValueError):
-                lat = lng = None
-            if lat is not None and lng is not None:
-                result.append({
-                    'id': c.id,
-                    'name': c.name,
-                    'latitude': lat,
-                    'longitude': lng,
-                    'email': c.email or '',
-                    'phone': c.phone or '',
-                    'description': c.description or '',
-                })
-        return result
-
-    # 3. Detail single customer (pop-up)
-    @http.route('/customer_map_tracking/get/<int:customer_id>', type='json', auth='user')
-    def get_customer(self, customer_id, **kw):
-        c = request.env['customer.worker'].browse(customer_id)  # sudo() kalau perlu
-        if not c.exists():
+    @http.route('/customer_map_tracking/customer/<int:rec_id>', type='json', auth='user')
+    def customer_single(self, rec_id):
+        r = request.env['customer.map'].sudo().browse(rec_id)
+        if not r.exists():
             return {'error': 'Not found'}
         return {
-            'id': c.id,
-            'name': c.name or '',
-            'description': c.description or '',
-            'email': c.email or '',
-            'phone': c.phone or '',
-            'latitude': float(c.latitude) if c.latitude else None,
-            'longitude': float(c.longitude) if c.longitude else None,
+            'id': r.id,
+            'name': r.name,
+            'description': r.description,
+            'phone': r.phone,
+            'email': r.email,
+            'latitude': r.latitude,
+            'longitude': r.longitude,
         }

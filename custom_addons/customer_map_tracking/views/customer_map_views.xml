@@ -1,0 +1,56 @@
+<odoo>
+    <!-- Tree View -->
+    <record id="view_customer_map_tree" model="ir.ui.view">
+        <field name="name">customer.map.tree</field>
+        <field name="model">customer.map</field>
+        <field name="arch" type="xml">
+            <tree string="Customer Map">
+                <field name="name"/>
+                <field name="phone"/>
+                <field name="email"/>
+                <field name="latitude"/>
+                <field name="longitude"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_customer_map_form" model="ir.ui.view">
+        <field name="name">customer.map.form</field>
+        <field name="model">customer.map</field>
+        <field name="arch" type="xml">
+            <form string="Customer Map">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="description"/>
+                            <field name="phone"/>
+                            <field name="email"/>
+                        </group>
+
+                        <!-- Bagian Lokasi -->
+                        <group string="Location">
+                            <field name="latitude"/>
+                            <field name="longitude"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_customer_map" model="ir.actions.act_window">
+        <field name="name">Customer Map</field>
+        <field name="res_model">customer.map</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu -->
+    <menuitem id="menu_customer_map_root" name="Customer Map"/>
+    <menuitem id="menu_customer_map"
+              name="Dashboard"
+              parent="menu_customer_map_root"
+              action="action_customer_map"/>
+</odoo>

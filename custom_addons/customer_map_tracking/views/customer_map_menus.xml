@@ -1,0 +1,10 @@
+<odoo>
+    <!-- Root menu -->
+    <menuitem id="menu_customer_map_root" name="Customer Map Tracking"/>
+
+    <!-- Dashboard menu -->
+    <menuitem id="menu_customer_map_dashboard"
+              name="Dashboard"
+              parent="menu_customer_map_root"
+              action="customer_map_tracking.action_customer_map_dashboard"/>
+</odoo>

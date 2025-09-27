@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="group_customer_map_user" model="res.groups">
+        <field name="name">Customer Map User</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+    </record>
+</odoo>

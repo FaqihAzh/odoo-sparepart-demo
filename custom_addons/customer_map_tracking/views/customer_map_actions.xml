@@ -1,0 +1,7 @@
+<odoo>
+    <record id="action_customer_map_dashboard" model="ir.actions.act_window">
+        <field name="name">Customer Map Dashboard</field>
+        <field name="res_model">customer.map</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+    <!-- Dashboard Map Template -->
+    <t t-name="customer_map_tracking.CustomerMapDashboard" owl="1">
+        <div class="o_customer_map_dashboard" style="height:600px;">
+            <div id="customer_map" style="height:100%;"></div>
+        </div>
+    </t>
+
+    <!-- Pick on Map Field -->
+    <t t-name="customer_map_tracking.MapPickerField" owl="1">
+        <div class="o_map_picker" style="height:400px;">
+            <div id="map_picker" style="height:100%;"></div>
+        </div>
+    </t>
+</templates>

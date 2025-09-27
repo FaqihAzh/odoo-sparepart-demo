@@ -1,0 +1,7 @@
+.o_map_picker {
+    border: 1px solid #e6e6e6; border-radius: 6px;
+}
+
+#customer_map_canvas {
+    width: 100%;
+}
