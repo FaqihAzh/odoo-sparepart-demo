@@ -17,10 +17,11 @@ class CustomerMap(models.Model):
     phone = fields.Char(string='Phone', tracking=True)
     email = fields.Char(string='Email', tracking=True)
 
-    # PostGIS Geometry field - this is the main field like in Field Service
+    # PostGIS Geometry field - Using SRID 4326 (WGS84) for compatibility
     shape = fields.GeoPoint(
-        string='Map Location',  # Changed from 'Location' to avoid conflict
-        help='Location coordinates using PostGIS geometry'
+        string='Map Location',
+        help='Location coordinates using PostGIS geometry (SRID 4326)',
+        srid=4326  # Explicitly set SRID to 4326
     )
 
     # Backup coordinate fields for compatibility and manual entry
@@ -109,7 +110,7 @@ class CustomerMap(models.Model):
                 raise ValidationError(_('Please enter a valid email address.'))
 
     def action_set_location_from_coordinates(self):
-        """Set PostGIS geometry from latitude/longitude coordinates - Button method without parameters"""
+        """Set PostGIS geometry from latitude/longitude coordinates"""
         self.ensure_one()
 
         if not self.latitude or not self.longitude:
@@ -119,9 +120,9 @@ class CustomerMap(models.Model):
             raise ValidationError(
                 _('Invalid coordinates. Latitude must be between -90 and 90, longitude between -180 and 180.'))
 
-        # Create PostGIS POINT geometry
+        # Create PostGIS POINT geometry with correct SRID
         try:
-            # Use raw SQL to create PostGIS geometry
+            # Use raw SQL to create PostGIS geometry with SRID 4326
             self._cr.execute("""
                 UPDATE customer_map 
                 SET shape = ST_SetSRID(ST_MakePoint(%s, %s), 4326)
@@ -147,7 +148,7 @@ class CustomerMap(models.Model):
             raise ValidationError(_('Failed to create PostGIS geometry. Please check your PostGIS installation.'))
 
     def set_location_from_coordinates(self, lat, lng):
-        """Internal method to set PostGIS geometry from coordinates - Used by code, not buttons"""
+        """Internal method to set PostGIS geometry from coordinates"""
         self.ensure_one()
 
         if not (-90 <= lat <= 90) or not (-180 <= lng <= 180):
@@ -155,7 +156,7 @@ class CustomerMap(models.Model):
                 _('Invalid coordinates. Latitude must be between -90 and 90, longitude between -180 and 180.'))
 
         try:
-            # Use raw SQL to create PostGIS geometry
+            # Use raw SQL to create PostGIS geometry with SRID 4326
             self._cr.execute("""
                 UPDATE customer_map 
                 SET shape = ST_SetSRID(ST_MakePoint(%s, %s), 4326)
@@ -181,7 +182,10 @@ class CustomerMap(models.Model):
 
         # Sync coordinates to PostGIS if provided
         if vals.get('latitude') and vals.get('longitude') and not vals.get('shape'):
-            result.set_location_from_coordinates(vals['latitude'], vals['longitude'])
+            try:
+                result.set_location_from_coordinates(vals['latitude'], vals['longitude'])
+            except Exception as e:
+                _logger.warning("Could not set PostGIS geometry on create: %s", e)
 
         # Log creation
         if result.shape or (vals.get('latitude') and vals.get('longitude')):
@@ -206,7 +210,10 @@ class CustomerMap(models.Model):
         if 'latitude' in vals and 'longitude' in vals and vals['latitude'] and vals['longitude']:
             for rec in self:
                 if not vals.get('shape'):  # Only sync if shape wasn't explicitly set
-                    rec.set_location_from_coordinates(vals['latitude'], vals['longitude'])
+                    try:
+                        rec.set_location_from_coordinates(vals['latitude'], vals['longitude'])
+                    except Exception as e:
+                        _logger.warning("Could not sync coordinates to PostGIS: %s", e)
 
         # Log location changes
         if any(field in vals for field in ['latitude', 'longitude', 'shape']):
