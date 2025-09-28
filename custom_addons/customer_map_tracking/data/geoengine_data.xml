@@ -20,6 +20,7 @@
             <field name="overlay" eval="False"/>
             <field name="opacity">1.0</field>
             <field name="sequence">1</field>
+            <field name="active_on_startup" eval="True"/>
         </record>
 
         <!-- Alternative Raster Layer - Bing Maps (if you have API key) -->

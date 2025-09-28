@@ -170,8 +170,6 @@
         </field>
     </record>
 
-    <!-- Actions -->
-
     <!-- Main List/Form Action -->
     <record id="action_customer_map" model="ir.actions.act_window">
         <field name="name">Customer Locations</field>

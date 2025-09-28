@@ -82,37 +82,16 @@
             </field>
         </record>
 
-        <!-- Vector Layer for Simple View -->
-<!--        <record id="customer_map_vector_layer" model="geoengine.vector.layer">-->
-<!--            <field name="name">Customer Locations</field>-->
-<!--            <field name="geo_field_id" search="[('model','=','customer.map'),('name','=','shape')]"/>-->
-<!--            <field name="view_id" ref="view_customer_map_geoengine_simple"/>-->
-<!--            <field name="geo_repr">basic</field>-->
-<!--            <field name="active_on_startup" eval="True"/>-->
-<!--            <field name="classification">unique</field>-->
-<!--            <field name="sequence">10</field>-->
-<!--        </record>-->
-
         <!-- Vector Layer for Detailed View -->
         <record id="customer_map_vector_layer_detailed" model="geoengine.vector.layer">
             <field name="name">Customer Details</field>
             <field name="geo_field_id" search="[('model','=','customer.map'),('name','=','shape')]"/>
             <field name="view_id" ref="view_customer_map_geoengine"/>
             <field name="geo_repr">basic</field>
-<!--            <field name="active_on_startup" eval="True"/>-->
+            <field name="active_on_startup" eval="True"/>
             <field name="classification">unique</field>
             <field name="sequence">20</field>
         </record>
-
-        <!-- Base Raster Layer - OpenStreetMap for Simple View -->
-<!--        <record id="customer_map_raster_osm" model="geoengine.raster.layer">-->
-<!--            <field name="name">OpenStreetMap</field>-->
-<!--            <field name="raster_type">osm</field>-->
-<!--            <field name="view_id" ref="view_customer_map_geoengine_simple"/>-->
-<!--            <field name="overlay" eval="False"/>-->
-<!--            <field name="sequence">1</field>-->
-<!--            <field name="active_on_startup" eval="True"/>-->
-<!--        </record>-->
 
         <!-- OSM Raster for Detailed View -->
         <record id="customer_map_raster_osm_detailed" model="geoengine.raster.layer">
