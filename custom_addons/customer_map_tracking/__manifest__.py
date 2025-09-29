@@ -12,6 +12,7 @@ This module allows you to:
 * Track customer locations using PostGIS geometry fields
 * Set locations using geoengine map picker
 * View all customers on a geoengine map
+* Interactive JavaScript dashboard with Leaflet maps
 * Full PostGIS integration like Field Service
 
 Features:
@@ -19,6 +20,8 @@ Features:
 * GeoEngine map views
 * Interactive map editing
 * Spatial queries support
+* JavaScript dashboard with clustering
+* Mobile-responsive design
 
 Requirements:
 * PostgreSQL with PostGIS extension
@@ -48,7 +51,7 @@ Requirements:
         # Actions (reference views defined above)
         'views/customer_map_actions.xml',
 
-        # Menus (reference actions defined above)
+        # Menus (reference actions defined above) - Use safe menu file
         'views/customer_map_menus.xml',
 
         # Demo data (last)
@@ -57,6 +60,19 @@ Requirements:
     'demo': [
         'demo/customer_map_demo.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+            # CSS Files
+            'customer_map_tracking/static/src/css/map_styles.css',
+
+            # JavaScript Files
+            'customer_map_tracking/static/src/js/map_dashboard.js',
+            'customer_map_tracking/static/src/js/map_picker_field.js',
+
+            # XML Templates
+            'customer_map_tracking/static/src/xml/map_picker_templates.xml',
+        ],
+    },
     'installable': True,
     'auto_install': False,
     'application': True,

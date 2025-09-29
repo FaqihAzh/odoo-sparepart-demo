@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api, _
-from odoo.exceptions import UserError, ValidationError
+from odoo.exceptions import ValidationError
 import logging
 
 _logger = logging.getLogger(__name__)
@@ -17,14 +17,14 @@ class CustomerMap(models.Model):
     phone = fields.Char(string='Phone', tracking=True)
     email = fields.Char(string='Email', tracking=True)
 
-    # PostGIS Geometry field - Using SRID 4326 (WGS84) for compatibility
+    # PostGIS geometry field
     shape = fields.GeoPoint(
         string='Map Location',
         help='Location coordinates using PostGIS geometry (SRID 4326)',
-        srid=4326  # Explicitly set SRID to 4326
+        srid=4326
     )
 
-    # Backup coordinate fields for compatibility and manual entry
+    # Coordinate fields
     latitude = fields.Float(
         string='Latitude',
         digits=(16, 6),
@@ -38,204 +38,114 @@ class CustomerMap(models.Model):
         help='Longitude coordinate (manual entry)'
     )
 
-    # Computed field for display
+    # Display fields
     location_display = fields.Char(
         string='Location',
         compute='_compute_location_display',
         store=True
     )
-
-    # WKT geometry field for display/export
     geo_wkt = fields.Char(
         string='Geometry (WKT)',
         compute='_compute_geo_wkt',
         store=True
     )
 
-    # Status field
     active = fields.Boolean(default=True, tracking=True)
+
+    # =====================================================================
+    # ONCHANGE: sync dua arah di form view (belum berhasil gesssss)
+    # =====================================================================
+    @api.onchange('shape')
+    def _onchange_shape(self):
+        """Kalau user pilih lokasi di map, isi latitude/longitude"""
+        for rec in self:
+            if rec.shape and hasattr(rec.shape, 'coords'):
+                try:
+                    lon, lat = rec.shape.coords[0], rec.shape.coords[1]
+                    rec.latitude = float(lat)
+                    rec.longitude = float(lon)
+                except Exception as e:
+                    _logger.warning(f"Failed to extract coords from shape: {e}")
+
+    @api.onchange('latitude', 'longitude')
+    def _onchange_latlon(self):
+        """Kalau user isi latitude/longitude manual, update shape"""
+        for rec in self:
+            if rec.latitude and rec.longitude:
+                try:
+                    rec.set_location_from_coordinates(rec.latitude, rec.longitude)
+                except Exception as e:
+                    _logger.warning(f"Failed to update shape from lat/lon: {e}")
 
     @api.depends('shape', 'latitude', 'longitude')
     def _compute_location_display(self):
-        """Compute human-readable location display"""
         for rec in self:
-            if rec.shape:
-                # Get coordinates from PostGIS geometry
+            if rec.shape and hasattr(rec.shape, 'coords'):
                 try:
-                    geom = rec.shape
-                    if hasattr(geom, 'coords') and geom.coords:
-                        lon, lat = geom.coords[0], geom.coords[1]
-                        rec.location_display = f"Lat: {lat:.6f}, Lng: {lon:.6f}"
-                    else:
-                        rec.location_display = "PostGIS Geometry Set"
-                except:
+                    lon, lat = rec.shape.coords[0], rec.shape.coords[1]
+                    rec.location_display = f"Lat: {lat:.6f}, Lng: {lon:.6f}"
+                except Exception:
                     rec.location_display = "PostGIS Geometry Set"
-            elif rec.latitude is not None and rec.longitude is not None:
+            elif rec.latitude and rec.longitude:
                 rec.location_display = f"Lat: {rec.latitude:.6f}, Lng: {rec.longitude:.6f}"
             else:
                 rec.location_display = "No location set"
 
     @api.depends('shape', 'latitude', 'longitude')
     def _compute_geo_wkt(self):
-        """Compute WKT geometry for display"""
         for rec in self:
             if rec.shape:
                 try:
-                    # Get WKT from PostGIS geometry
                     if hasattr(rec.shape, 'wkt'):
                         rec.geo_wkt = rec.shape.wkt
                     else:
                         rec.geo_wkt = str(rec.shape)
-                except:
+                except Exception:
                     rec.geo_wkt = "PostGIS Geometry"
-            elif rec.latitude is not None and rec.longitude is not None:
+            elif rec.latitude and rec.longitude:
                 rec.geo_wkt = f'POINT({rec.longitude} {rec.latitude})'
             else:
                 rec.geo_wkt = False
 
     @api.constrains('latitude', 'longitude')
     def _check_coordinates(self):
-        """Validate coordinate ranges"""
         for rec in self:
-            if rec.latitude is not None and (rec.latitude < -90 or rec.latitude > 90):
+            if rec.latitude and (rec.latitude < -90 or rec.latitude > 90):
                 raise ValidationError(_('Latitude must be between -90 and 90 degrees.'))
-            if rec.longitude is not None and (rec.longitude < -180 or rec.longitude > 180):
+            if rec.longitude and (rec.longitude < -180 or rec.longitude > 180):
                 raise ValidationError(_('Longitude must be between -180 and 180 degrees.'))
 
     @api.constrains('email')
     def _check_email(self):
-        """Validate email format"""
         for rec in self:
             if rec.email and '@' not in rec.email:
                 raise ValidationError(_('Please enter a valid email address.'))
 
-    def action_set_location_from_coordinates(self):
-        """Set PostGIS geometry from latitude/longitude coordinates"""
-        self.ensure_one()
-
-        if not self.latitude or not self.longitude:
-            raise ValidationError(_('Please enter both latitude and longitude coordinates.'))
-
-        if not (-90 <= self.latitude <= 90) or not (-180 <= self.longitude <= 180):
-            raise ValidationError(
-                _('Invalid coordinates. Latitude must be between -90 and 90, longitude between -180 and 180.'))
-
-        # Create PostGIS POINT geometry with correct SRID
-        try:
-            # Use raw SQL to create PostGIS geometry with SRID 4326
-            self._cr.execute("""
-                UPDATE customer_map 
-                SET shape = ST_SetSRID(ST_MakePoint(%s, %s), 4326)
-                WHERE id = %s
-            """, (self.longitude, self.latitude, self.id))
-
-            # Trigger recompute of computed fields
-            self.invalidate_recordset(['location_display', 'geo_wkt'])
-
-            return {
-                'type': 'ir.actions.client',
-                'tag': 'display_notification',
-                'params': {
-                    'title': _('Location Updated'),
-                    'message': _('PostGIS geometry created from coordinates: Lat %s, Lng %s') % (
-                    self.latitude, self.longitude),
-                    'type': 'success',
-                }
-            }
-
-        except Exception as e:
-            _logger.error("Failed to create PostGIS geometry: %s", e)
-            raise ValidationError(_('Failed to create PostGIS geometry. Please check your PostGIS installation.'))
-
     def set_location_from_coordinates(self, lat, lng):
-        """Internal method to set PostGIS geometry from coordinates"""
+        """Internal method: set shape dari lat/lon"""
         self.ensure_one()
-
-        if not (-90 <= lat <= 90) or not (-180 <= lng <= 180):
-            raise ValidationError(
-                _('Invalid coordinates. Latitude must be between -90 and 90, longitude between -180 and 180.'))
-
+        if not (-90 <= lat <= 90 and -180 <= lng <= 180):
+            raise ValidationError(_('Invalid coordinates.'))
         try:
-            # Use raw SQL to create PostGIS geometry with SRID 4326
             self._cr.execute("""
                 UPDATE customer_map 
                 SET shape = ST_SetSRID(ST_MakePoint(%s, %s), 4326)
                 WHERE id = %s
             """, (lng, lat, self.id))
-
-            # Update coordinate fields
-            self.write({
-                'latitude': lat,
-                'longitude': lng
-            })
-
+            self.write({'latitude': lat, 'longitude': lng})
         except Exception as e:
             _logger.error("Failed to create PostGIS geometry: %s", e)
-            raise ValidationError(_('Failed to create PostGIS geometry. Please check your PostGIS installation.'))
-
+            raise ValidationError(_('Failed to create PostGIS geometry.'))
         return True
 
-    @api.model
-    def create(self, vals):
-        """Override create to sync coordinates with PostGIS geometry"""
-        result = super().create(vals)
-
-        # Sync coordinates to PostGIS if provided
-        if vals.get('latitude') and vals.get('longitude') and not vals.get('shape'):
-            try:
-                result.set_location_from_coordinates(vals['latitude'], vals['longitude'])
-            except Exception as e:
-                _logger.warning("Could not set PostGIS geometry on create: %s", e)
-
-        # Log creation
-        if result.shape or (vals.get('latitude') and vals.get('longitude')):
-            result.message_post(
-                body=_('Customer location created: %s') % result.location_display,
-                message_type='notification'
-            )
-
-        return result
-
-    def write(self, vals):
-        """Override write to sync coordinates with PostGIS geometry"""
-        # Store old locations for tracking
-        old_locations = {}
-        if any(field in vals for field in ['latitude', 'longitude', 'shape']):
-            for rec in self:
-                old_locations[rec.id] = rec.location_display
-
-        result = super().write(vals)
-
-        # Sync coordinates to PostGIS if provided
-        if 'latitude' in vals and 'longitude' in vals and vals['latitude'] and vals['longitude']:
-            for rec in self:
-                if not vals.get('shape'):  # Only sync if shape wasn't explicitly set
-                    try:
-                        rec.set_location_from_coordinates(vals['latitude'], vals['longitude'])
-                    except Exception as e:
-                        _logger.warning("Could not sync coordinates to PostGIS: %s", e)
-
-        # Log location changes
-        if any(field in vals for field in ['latitude', 'longitude', 'shape']):
-            for rec in self:
-                if rec.id in old_locations:
-                    old_loc = old_locations[rec.id]
-                    new_loc = rec.location_display
-                    if old_loc != new_loc:
-                        rec.message_post(
-                            body=_('Location changed from "%s" to "%s"') % (old_loc, new_loc),
-                            message_type='notification'
-                        )
-
-        return result
+    def action_set_location_from_coordinates(self):
+        self.ensure_one()
+        if not self.latitude or not self.longitude:
+            raise ValidationError(_('Please enter both latitude and longitude.'))
+        return self.set_location_from_coordinates(self.latitude, self.longitude)
 
     def action_clear_location(self):
-        """Clear all location data"""
-        self.write({
-            'shape': False,
-            'latitude': False,
-            'longitude': False
-        })
+        self.write({'shape': False, 'latitude': False, 'longitude': False})
         return {
             'type': 'ir.actions.client',
             'tag': 'display_notification',
@@ -247,8 +157,6 @@ class CustomerMap(models.Model):
         }
 
     def action_geocode_address(self):
-        """Geocode address - placeholder for geocoding service integration"""
-        # This would integrate with geocoding services like Google Maps, Nominatim, etc.
         return {
             'type': 'ir.actions.client',
             'tag': 'display_notification',
@@ -260,7 +168,6 @@ class CustomerMap(models.Model):
         }
 
     def action_open_map_view(self):
-        """Open this customer in map view"""
         return {
             'type': 'ir.actions.act_window',
             'name': _('Customer Location Map'),
@@ -271,43 +178,69 @@ class CustomerMap(models.Model):
         }
 
     @api.model
-    def get_customers_geojson(self):
-        """Get customer data in GeoJSON format for external integrations"""
-        customers = self.search([
-            ('shape', '!=', False),
-            ('active', '=', True)
-        ])
-
-        features = []
-        for customer in customers:
+    def create(self, vals):
+        rec = super().create(vals)
+        if vals.get('latitude') and vals.get('longitude') and not vals.get('shape'):
             try:
-                if customer.shape:
-                    # Extract coordinates from PostGIS geometry
-                    feature = {
+                rec.set_location_from_coordinates(vals['latitude'], vals['longitude'])
+            except Exception as e:
+                _logger.warning("Could not set PostGIS geometry on create: %s", e)
+        if rec.shape or (rec.latitude and rec.longitude):
+            rec.message_post(
+                body=_('Customer location created: %s') % rec.location_display,
+                message_type='notification'
+            )
+        return rec
+
+    def write(self, vals):
+        old_locations = {rec.id: rec.location_display for rec in self}
+        res = super().write(vals)
+
+        # Sync jika lat/lon diupdate tanpa shape
+        if 'latitude' in vals and 'longitude' in vals and vals['latitude'] and vals['longitude']:
+            for rec in self:
+                if not vals.get('shape'):
+                    try:
+                        rec.set_location_from_coordinates(vals['latitude'], vals['longitude'])
+                    except Exception as e:
+                        _logger.warning("Could not sync lat/lon to shape: %s", e)
+
+        # Log perubahan lokasi
+        for rec in self:
+            if rec.id in old_locations and old_locations[rec.id] != rec.location_display:
+                rec.message_post(
+                    body=_('Location changed from "%s" to "%s"') %
+                         (old_locations[rec.id], rec.location_display),
+                    message_type='notification'
+                )
+        return res
+
+    @api.model
+    def get_customers_geojson(self):
+        customers = self.search([('shape', '!=', False), ('active', '=', True)])
+        features = []
+        for cust in customers:
+            try:
+                if cust.shape:
+                    features.append({
                         'type': 'Feature',
                         'properties': {
-                            'id': customer.id,
-                            'name': customer.name,
-                            'description': customer.description or '',
-                            'phone': customer.phone or '',
-                            'email': customer.email or '',
+                            'id': cust.id,
+                            'name': cust.name,
+                            'description': cust.description or '',
+                            'phone': cust.phone or '',
+                            'email': cust.email or '',
                         },
                         'geometry': {
                             'type': 'Point',
-                            'coordinates': [customer.shape.coords[0], customer.shape.coords[1]]
+                            'coordinates': [cust.shape.coords[0], cust.shape.coords[1]]
                         }
-                    }
-                    features.append(feature)
+                    })
             except Exception as e:
-                _logger.warning("Failed to process geometry for customer %s: %s", customer.name, e)
-
-        return {
-            'type': 'FeatureCollection',
-            'features': features
-        }
+                _logger.warning("Failed to process geometry for %s: %s", cust.name, e)
+        return {'type': 'FeatureCollection', 'features': features}
 
     def name_get(self):
-        """Custom name display"""
         result = []
         for rec in self:
             name = rec.name
@@ -318,16 +251,12 @@ class CustomerMap(models.Model):
 
     @api.model
     def _name_search(self, name, args=None, operator='ilike', limit=100, name_get_uid=None):
-        """Enhanced name search including phone and email"""
         args = args or []
         if name:
-            # Search in name, phone, and email
-            domain = [
-                '|', '|',
-                ('name', operator, name),
-                ('phone', operator, name),
-                ('email', operator, name)
-            ]
-            customer_ids = self._search(domain + args, limit=limit, access_rights_uid=name_get_uid)
-            return self.browse(customer_ids).name_get()
+            domain = ['|', '|',
+                      ('name', operator, name),
+                      ('phone', operator, name),
+                      ('email', operator, name)]
+            ids = self._search(domain + args, limit=limit, access_rights_uid=name_get_uid)
+            return self.browse(ids).name_get()
         return super()._name_search(name, args, operator, limit, name_get_uid)

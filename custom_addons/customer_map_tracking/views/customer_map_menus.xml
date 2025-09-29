@@ -1,34 +1,23 @@
 <odoo>
-    <!-- Root Menu -->
-    <menuitem id="menu_customer_map_root"
-              name="Customer Tracking"
-              web_icon="customer_map_tracking,static/description/icon.png"
-              sequence="50"/>
+    <data>
+        <!-- Root Menu -->
+        <menuitem id="menu_customer_map_root"
+                  name="Customer Tracking"
+                  web_icon="customer_map_tracking,static/description/icon.png"
+                  sequence="50"/>
 
-    <!-- Dashboard Menu -->
-    <menuitem id="menu_customer_map_dashboard"
-              name="Map Dashboard"
-              parent="menu_customer_map_root"
-              action="action_customer_map_dashboard"
-              sequence="10"/>
+        <!-- Interactive Dashboard Menu (JavaScript-based) -->
+        <menuitem id="menu_customer_map_js_dashboard"
+                  name="Interactive Dashboard"
+                  parent="menu_customer_map_root"
+                  action="action_customer_map_js_dashboard"
+                  sequence="5"/>
 
-    <!-- Customers Menu -->
-    <menuitem id="menu_customer_map_customers"
-              name="Customers"
-              parent="menu_customer_map_root"
-              action="action_customer_map"
-              sequence="20"/>
-
-    <!-- Configuration Submenu -->
-    <menuitem id="menu_customer_map_config"
-              name="Configuration"
-              parent="menu_customer_map_root"
-              sequence="90"/>
-
-    <!-- Settings Menu -->
-    <menuitem id="menu_customer_map_settings"
-              name="Settings"
-              parent="menu_customer_map_config"
-              groups="base.group_system"
-              sequence="10"/>
+        <!-- Standard Customers List -->
+        <menuitem id="menu_customer_map_customers"
+                  name="Customer List"
+                  parent="menu_customer_map_root"
+                  action="action_customer_map"
+                  sequence="20"/>
+    </data>
 </odoo>

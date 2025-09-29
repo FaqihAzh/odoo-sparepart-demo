@@ -1,6 +1,5 @@
 <odoo>
     <data>
-        <!-- Demo Customer Data with PostGIS geometry (SRID 3857) -->
         <record id="customer_demo_jakarta_1" model="customer.map">
             <field name="name">Jakarta Tech Center</field>
             <field name="description">Main technology hub in Jakarta</field>

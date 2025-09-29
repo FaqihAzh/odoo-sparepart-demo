@@ -1,6 +1,5 @@
 <odoo>
     <data>
-        <!-- Vector Layer for Customer Locations -->
         <record id="customer_map_vector_layer" model="geoengine.vector.layer">
             <field name="name">Customer Locations</field>
             <field name="geo_field_id" search="[('model','=','customer.map'),('name','=','shape')]"/>
@@ -12,7 +11,6 @@
             <field name="sequence">10</field>
         </record>
 
-        <!-- Base Raster Layer - OpenStreetMap -->
         <record id="customer_map_raster_osm" model="geoengine.raster.layer">
             <field name="name">OpenStreetMap</field>
             <field name="raster_type">osm</field>
@@ -23,7 +21,6 @@
             <field name="active_on_startup" eval="True"/>
         </record>
 
-        <!-- Alternative Raster Layer - Bing Maps (if you have API key) -->
         <record id="customer_map_raster_bing" model="geoengine.raster.layer">
             <field name="name">Bing Satellite</field>
             <field name="raster_type">bing</field>
@@ -34,7 +31,6 @@
             <field name="active_on_startup" eval="False"/>
         </record>
 
-        <!-- Google Maps Layer (if you have API key) -->
         <record id="customer_map_raster_google" model="geoengine.raster.layer">
             <field name="name">Google Maps</field>
             <field name="raster_type">google</field>
